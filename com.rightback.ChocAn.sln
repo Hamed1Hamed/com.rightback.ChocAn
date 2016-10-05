@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.rightback.ChocAn.DAL", "com.rightback.ChocAn.DAL\com.rightback.ChocAn.DAL.csproj", "{97113576-F292-4C94-8CD4-3FA050F3E669}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.rightback.ChocAn.Services", "com.rightback.ChocAn.Services\com.rightback.ChocAn.Services.csproj", "{B3004C79-B39C-4D19-BFA4-D79A2F7E9E5F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{97113576-F292-4C94-8CD4-3FA050F3E669} = {97113576-F292-4C94-8CD4-3FA050F3E669}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97113576-F292-4C94-8CD4-3FA050F3E669}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97113576-F292-4C94-8CD4-3FA050F3E669}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97113576-F292-4C94-8CD4-3FA050F3E669}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97113576-F292-4C94-8CD4-3FA050F3E669}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3004C79-B39C-4D19-BFA4-D79A2F7E9E5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3004C79-B39C-4D19-BFA4-D79A2F7E9E5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3004C79-B39C-4D19-BFA4-D79A2F7E9E5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3004C79-B39C-4D19-BFA4-D79A2F7E9E5F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
