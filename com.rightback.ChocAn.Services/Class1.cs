@@ -8,5 +8,6 @@ namespace com.rightback.ChocAn.Services
 {
     public class Class1
     {
+
     }
 }
