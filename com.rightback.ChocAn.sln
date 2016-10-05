@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.rightback.ChocAn.Servic
 		{97113576-F292-4C94-8CD4-3FA050F3E669} = {97113576-F292-4C94-8CD4-3FA050F3E669}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.rightback.ChochAn.Web", "com.rightback.ChochAn.Web\com.rightback.ChochAn.Web.csproj", "{FADD28E8-5A72-4821-B63B-27BC21A0EF7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 		{B3004C79-B39C-4D19-BFA4-D79A2F7E9E5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3004C79-B39C-4D19-BFA4-D79A2F7E9E5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3004C79-B39C-4D19-BFA4-D79A2F7E9E5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FADD28E8-5A72-4821-B63B-27BC21A0EF7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FADD28E8-5A72-4821-B63B-27BC21A0EF7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FADD28E8-5A72-4821-B63B-27BC21A0EF7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FADD28E8-5A72-4821-B63B-27BC21A0EF7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
