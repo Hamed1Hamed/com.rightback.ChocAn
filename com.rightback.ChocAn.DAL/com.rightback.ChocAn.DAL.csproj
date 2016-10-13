@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Batch.cs" />
     <Compile Include="ChocAnDBModel.cs" />
     <Compile Include="Claim.cs" />
     <Compile Include="Member.cs" />
