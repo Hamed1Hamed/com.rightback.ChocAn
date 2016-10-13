@@ -1,17 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace com.rightback.ChocAn.DAL
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
-    public partial class Provider
+    class Provider
     {
-        public int ProviderID { get; set; }
+      
+            [Key]
+            [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+            public int ProviderID { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string Name { get; set; }
+            [Required]
+            public string Name { get; set; }
+            [Required]
+            public string StreetAddres { get; set; }
+            [Required]
+            public string City { get; set; }
+            [Required]
+            public string Zip { get; set; }
+            [Required]
+            public string Email { get; set; }
+
+            public enum Type
+            {
+                wwwww,
+                sssss,
+                ABC
+            }
+
+            //Navigation 
+            public virtual ICollection<Claim> Claims { get; set; }
+        }
     }
-}
