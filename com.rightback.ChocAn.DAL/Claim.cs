@@ -24,9 +24,12 @@ namespace com.rightback.ChocAn.DAL
 
 
         //Navigation 
+        [Required]
         public virtual Provider Provider { get; set; }
-        public virtual Provider Member { get; set; }
-        public virtual Provider Service { get; set; }
+        [Required]
+        public virtual Member Member { get; set; }
+        [Required]
+        public virtual Service Service { get; set; }
 
     }
 }
