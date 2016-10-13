@@ -6,7 +6,7 @@ using System.Data.Entity;
 
 namespace com.rightback.ChocAn.DAL
 {
-    class Member
+    public class Member
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

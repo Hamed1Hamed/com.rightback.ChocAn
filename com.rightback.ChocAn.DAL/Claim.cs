@@ -6,7 +6,7 @@ using System.Data.Entity;
 
 namespace com.rightback.ChocAn.DAL
 {
-    class Claim
+    public class Claim
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace com.rightback.ChocAn.DAL
 {
-    class Provider
+    public class Provider
     {
       
             [Key]

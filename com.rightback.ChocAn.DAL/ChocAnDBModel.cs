@@ -13,9 +13,9 @@ namespace com.rightback.ChocAn.DAL
         }
 
         public virtual DbSet<Provider> Providers { get; set; }
-        public virtual DbSet<Claim> Providers { get; set; }
-        public virtual DbSet<Member> Providers { get; set; }
-        public virtual DbSet<Service> Providers { get; set; }
+        public virtual DbSet<Claim> Claims { get; set; }
+        public virtual DbSet<Member> Members { get; set; }
+        public virtual DbSet<Service> Services { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
