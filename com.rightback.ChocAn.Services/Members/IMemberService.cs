@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace com.rightback.ChocAn.Services.Members
 {
-    interface IMemberService
+    public interface IMemberService
     {
     }
 }
