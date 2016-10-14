@@ -10,7 +10,7 @@ namespace com.rightback.ChocAn.DAL
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int claimID { get; set; }
+        public int ClaimID { get; set; }
 
         [Required]
         public string Name { get; set; }

@@ -26,7 +26,11 @@ namespace com.rightback.ChocAn.DAL
             [Required]
             public string Email { get; set; }
 
-            public enum Type
+            //9 digit provider login code
+            [Required]
+            public string Code { get; set; }
+
+        public enum Type
             {
                 wwwww,
                 sssss,
