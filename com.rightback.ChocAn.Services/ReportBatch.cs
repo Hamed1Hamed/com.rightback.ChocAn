@@ -56,7 +56,7 @@ namespace com.rightback.ChocAn.Services
             using (var context = new ChocAnDBModel())
             {
                 // Perform data access using the context 
-                var entry = context.Batchs.First(e => e.DayOfYear == dayOfYear & e.Year == year);
+                var entry = context.Batchs.FirstOrDefault(e => e.DayOfYear == dayOfYear & e.Year == year);
                 if (entry != null)
                     isSuccessful = true;
             }

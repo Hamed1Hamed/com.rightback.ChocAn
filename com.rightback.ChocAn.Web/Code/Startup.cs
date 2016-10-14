@@ -10,7 +10,8 @@ namespace com.rightback.ChocAn.Web
             ConfigureAuth(app);
 
           //friday report generation
-            ReportBatch.ScheduleTask();
+          //this is creating exception, please do not leave the app in broken state :) - commenting out
+          //  ReportBatch.ScheduleTask();
         }
 
     }

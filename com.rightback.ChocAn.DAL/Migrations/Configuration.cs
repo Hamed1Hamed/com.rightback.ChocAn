@@ -30,7 +30,7 @@ namespace com.rightback.ChocAn.DAL.Migrations
             context.Providers.AddOrUpdate(p=> p.Email,
                 new Provider { City = "Istanbul" , Code = "123456789" , Email="beribener@hotmail.com", Name="Beri Bener",StreetAddres="Demet Sok.",Zip="34370" },
                 new Provider { City = "Milwaukee", Code = "223456789", Email = "osmik@darci.com", Name = "Osman Darcan", StreetAddres = "Abc Apt. 1245", Zip = "54370" },
-                new Provider { City = "Franklin", Code = "323456789", Email = "beribener@hotmail.com", Name = "Beri Bener", StreetAddres = "Demet Sok.", Zip = "64370" }
+                new Provider { City = "Franklin", Code = "323456789", Email = "tolga@mail.com", Name = "Tolga Ulus", StreetAddres = "Demet Sok.", Zip = "64370" }
                 );
         }
     }
