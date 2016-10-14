@@ -60,6 +60,8 @@
     <Compile Include="ReportBatch.cs" />
     <Compile Include="ReportWriter.cs" />
     <Compile Include="ServiceFactory.cs" />
+    <Compile Include="StringToInt.cs" />
+    <Compile Include="Token.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\com.rightback.ChocAn.DAL\com.rightback.ChocAn.DAL.csproj">
