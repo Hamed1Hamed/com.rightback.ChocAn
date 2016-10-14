@@ -12,7 +12,7 @@ namespace com.rightback.ChocAn.DAL
 
         [Required]
         public int Year { get; set; }
-
+        // in 365 day format
         [Required]
         public int DayOfYear { get; set; }
 
