@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://rightback.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://rightback.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://rightback.com/">
+      <s:element name="LoginProvider">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="providerCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="terminalCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginProviderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LoginProviderResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="LoginProviderSoapIn">
+    <wsdl:part name="parameters" element="tns:LoginProvider" />
+  </wsdl:message>
+  <wsdl:message name="LoginProviderSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginProviderResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TerminalServiceSoap">
+    <wsdl:operation name="LoginProvider">
+      <wsdl:input message="tns:LoginProviderSoapIn" />
+      <wsdl:output message="tns:LoginProviderSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TerminalServiceSoap" type="tns:TerminalServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LoginProvider">
+      <soap:operation soapAction="http://rightback.com/LoginProvider" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TerminalServiceSoap12" type="tns:TerminalServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LoginProvider">
+      <soap12:operation soapAction="http://rightback.com/LoginProvider" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TerminalService">
+    <wsdl:port name="TerminalServiceSoap" binding="tns:TerminalServiceSoap">
+      <soap:address location="http://localhost:51368/webservice/terminalservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TerminalServiceSoap12" binding="tns:TerminalServiceSoap12">
+      <soap12:address location="http://localhost:51368/webservice/terminalservice.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
