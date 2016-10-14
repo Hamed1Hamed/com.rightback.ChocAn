@@ -55,7 +55,7 @@ namespace com.rightback.ChocAn.Services
             bool isSuccessful=false;
             using (var context = new ChocAnDBModel())
             {
-                // Perform data access using the context 
+                // check if batches run at the specified day
                 var entry = context.Batchs.First(e => e.DayOfYear == dayOfYear & e.Year == year);
                 if (entry != null)
                     isSuccessful = true;
