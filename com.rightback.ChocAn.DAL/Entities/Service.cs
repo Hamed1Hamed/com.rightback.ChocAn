@@ -17,8 +17,12 @@ namespace com.rightback.ChocAn.DAL
         [Required]
         public decimal Fee { get; set; }
 
+        //6 digit service code
+        [Required]
+        public string Code { get; set; }
+
 
         //Navigation 
-        public virtual ICollection<Claim> ClaimsHasThisService { get; set; }
+        public virtual ICollection<Claim> Claims { get; set; }
     }
 }

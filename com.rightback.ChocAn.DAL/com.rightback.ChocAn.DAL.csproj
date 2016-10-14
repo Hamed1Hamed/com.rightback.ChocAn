@@ -51,14 +51,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Batch.cs" />
+    <Compile Include="Entities\Batch.cs" />
     <Compile Include="ChocAnDBModel.cs" />
-    <Compile Include="Claim.cs" />
-    <Compile Include="Member.cs" />
+    <Compile Include="Entities\Claim.cs" />
+    <Compile Include="Entities\Member.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Provider.cs" />
-    <Compile Include="Service.cs" />
+    <Compile Include="Entities\Provider.cs" />
+    <Compile Include="Entities\Service.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

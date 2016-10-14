@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace com.rightback.ChocAn.Terminal
 {
-    public partial class Form1 : Form
+    public partial class ServiceForm : Form
     {
-        public Form1()
+        public ServiceForm()
         {
             InitializeComponent();
         }

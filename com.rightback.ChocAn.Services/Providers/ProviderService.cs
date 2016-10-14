@@ -13,5 +13,14 @@ namespace com.rightback.ChocAn.Services.Providers
         {
             return db.Providers.ToList();
         }
+
+        public Provider getByCode(string code)
+        {
+            return db.Providers
+                .Where(p => p.Code == code)
+                .FirstOrDefault();
+        }
+
+        
     }
 }
