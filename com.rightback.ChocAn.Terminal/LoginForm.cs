@@ -33,7 +33,11 @@ namespace com.rightback.ChocAn.Terminal
             {
                 loginResult = service.LoginProvider(providerCode, TERMINAL_CODE);
                 if (loginResult)
+                {
                     txtLog.Text += "LOGIN SUCCESSFUL";
+                    TerminalScreenManager.providerLoggedIn(this);
+
+                }
                 else
                     txtLog.Text += "LOGIN FAILURE";
             }
