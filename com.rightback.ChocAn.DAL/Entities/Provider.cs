@@ -28,20 +28,20 @@ namespace com.rightback.ChocAn.DAL
         public string Email { get; set; }
         //9 digit provider login code
         [Required]
-            public string Code { get; set; }
+        public string Code { get; set; }
 
-            [Required]
-            public string TerminalCode { get; set; }
+        [Required]
+        public string TerminalCode { get; set; }
 
         public enum Type
-            {
+        {
             internist,
             dietitian,
             exercise,
             specialist
         }
 
-            //Navigation 
-            public virtual ICollection<Claim> Claims { get; set; }
-        }
+        //Navigation 
+        public virtual ICollection<Claim> Claims { get; set; }
     }
+}
