@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace com.rightback.ChocAn.DAL.Entities
 {
-    class Operator:Person
+    class Operator
     {
     }
 }

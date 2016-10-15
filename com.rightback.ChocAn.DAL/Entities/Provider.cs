@@ -9,11 +9,25 @@ using System.Threading.Tasks;
 
 namespace com.rightback.ChocAn.DAL
 {
-    public class Provider:Person
+
+    public class Provider
     {
-      
-            //9 digit provider login code
-            [Required]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int PoviderID { get; set; }
+
+        [Required]
+        public string Name { get; set; }
+        [Required]
+        public string StreetAddres { get; set; }
+        [Required]
+        public string City { get; set; }
+        [Required]
+        public string Zip { get; set; }
+        [Required]
+        public string Email { get; set; }
+        //9 digit provider login code
+        [Required]
             public string Code { get; set; }
 
             [Required]

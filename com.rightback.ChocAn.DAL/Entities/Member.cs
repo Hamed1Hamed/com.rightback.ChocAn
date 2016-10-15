@@ -7,10 +7,23 @@ using System.Data.Entity;
 
 namespace com.rightback.ChocAn.DAL
 {
-    public class Member : Person
+
+    public class Member
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int MemberID { get; set; }
 
-
+        [Required]
+        public string Name { get; set; }
+        [Required]
+        public string StreetAddres { get; set; }
+        [Required]
+        public string City { get; set; }
+        [Required]
+        public string Zip { get; set; }
+        [Required]
+        public string Email { get; set; }
 
         public enum Status
         {
