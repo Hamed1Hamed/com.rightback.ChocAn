@@ -29,11 +29,14 @@ namespace com.rightback.ChocAn.DAL
         [Required]
         public string Code { get; set; }
 
-        public enum Status
+        [Required]
+        public MemberStatus Status { get; set; }
+
+        public enum MemberStatus
         {
-            Active,
-            Suspended,
-            ABC
+            Active = 1,
+            Suspended = 2,
+            Deleted = 3
         }
 
 

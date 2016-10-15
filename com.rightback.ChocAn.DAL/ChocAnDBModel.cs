@@ -17,7 +17,7 @@ namespace com.rightback.ChocAn.DAL
         public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<Service> Services { get; set; }
 
-        public virtual DbSet<Batch> Batchs { get; set; }
+        public virtual DbSet<Batch> Batches { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
