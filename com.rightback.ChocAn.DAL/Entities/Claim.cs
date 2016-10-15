@@ -23,6 +23,8 @@ namespace com.rightback.ChocAn.DAL
         public Byte[] Timestamp { get; set; }
 
 
+        public string Comments { get; set; }
+
         //Navigation 
         [Required]
         public virtual Provider Provider { get; set; }
