@@ -11,7 +11,7 @@ namespace com.rightback.ChocAn.DAL
             : base("name=ChocAnDBModel")
         {
         }
-
+ 
         public virtual DbSet<Provider> Providers { get; set; }
         public virtual DbSet<Claim> Claims { get; set; }
         public virtual DbSet<Member> Members { get; set; }
