@@ -8,34 +8,34 @@ namespace com.rightback.ChocAn.Services
 {
     class StringToInt
     {
-            public static bool isNumber(string text)
+        public static bool isNumber(string text)
+        {
+            try
             {
-                try
-                {
-                    int m = Int32.Parse(text);
-                    return true;
-                }
-                catch (FormatException e)
-                {
-                    return false;
-                }
+                int m = Int32.Parse(text);
+                return true;
             }
-
-            public static int textToNumber(string text)
+            catch (FormatException e)
             {
-                try
-                {
-                    int m = Int32.Parse(text);
-                    return m;
-                }
-                catch (FormatException e)
-                {
-                    Console.WriteLine(e.Message);
-                    return -1;
-                }
+                return false;
+            }
+        }
+
+        public static int textToNumber(string text)
+        {
+            try
+            {
+                int m = Int32.Parse(text);
+                return m;
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+                return -1;
             }
         }
     }
+}
 
-}
-}
+
+

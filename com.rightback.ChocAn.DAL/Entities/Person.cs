@@ -14,7 +14,6 @@ namespace com.rightback.ChocAn.DAL.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PersonID { get; set; }
-
         [Required]
         public string Name { get; set; }
         [Required]

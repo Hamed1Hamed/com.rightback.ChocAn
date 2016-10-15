@@ -7,9 +7,11 @@ using System.Data.Entity;
 
 namespace com.rightback.ChocAn.DAL
 {
-    public class Member:Person
+    public class Member : Person
     {
-           
+
+
+
         public enum Status
         {
             Active,
