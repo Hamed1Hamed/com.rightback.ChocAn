@@ -1,5 +1,6 @@
 ﻿using com.rightback.ChocAn.Services.Members;
 using com.rightback.ChocAn.Services.Providers;
+using com.rightback.ChocAn.Services.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,11 @@ namespace com.rightback.ChocAn.Services
             return new ProviderService();
         }
 
-        
+        public static IServiceService getServiceService()
+        {
+            return new ServiceService();
+        }
+
+
     }
 }

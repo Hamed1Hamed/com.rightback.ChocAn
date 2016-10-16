@@ -9,6 +9,11 @@ namespace com.rightback.ChocAn.Services.Members
 {
     public interface IMemberService
     {
+        /// <summary>
+        /// Returns member by 9 digit member code.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         Member getByCode(string code);
     }
 }

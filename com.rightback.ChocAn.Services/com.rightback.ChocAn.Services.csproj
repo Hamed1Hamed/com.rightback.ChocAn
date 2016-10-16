@@ -61,6 +61,8 @@
     <Compile Include="ReportBatch.cs" />
     <Compile Include="ReportWriter.cs" />
     <Compile Include="ServiceFactory.cs" />
+    <Compile Include="Services\IServiceService.cs" />
+    <Compile Include="Services\ServiceService.cs" />
     <Compile Include="StringToInt.cs" />
     <Compile Include="Token.cs" />
   </ItemGroup>

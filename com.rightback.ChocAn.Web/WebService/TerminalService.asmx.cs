@@ -2,6 +2,7 @@
 using com.rightback.ChocAn.Services;
 using com.rightback.ChocAn.Services.Members;
 using com.rightback.ChocAn.Services.Providers;
+using com.rightback.ChocAn.Services.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,6 +62,13 @@ namespace com.rightback.ChocAn.Web.WebService
 
             return VerifyMemberResult.InvalidMember;
 
+        }
+
+        [WebMethod]
+        public List<Service> getServices()
+        {
+            IServiceService serviceService = ServiceFactory.getServiceService();
+            return serviceService.getAllServices();
         }
     }
 }

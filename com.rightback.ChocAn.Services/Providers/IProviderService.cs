@@ -16,7 +16,7 @@ namespace com.rightback.ChocAn.Services.Providers
         List<Provider> getAllProviders();
 
         /// <summary>
-        /// Returns provider with the provided code.
+        /// Returns provider by 9 digit provider code
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
