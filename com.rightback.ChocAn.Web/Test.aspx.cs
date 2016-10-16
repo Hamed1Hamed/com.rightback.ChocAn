@@ -13,13 +13,13 @@ namespace com.rightback.ChocAn.Web
 {
     public partial class Test : BasePage
     {
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            IProviderService providerService = ServiceFactory.getProviderService();
-
             List<Provider> providers = providerService.getAllProviders();
 
-            foreach(Provider provider in providers)
+            foreach (Provider provider in providers)
             {
                 lblProviders.Text += provider.Name;
                 lblProviders.Text += "<br/>";

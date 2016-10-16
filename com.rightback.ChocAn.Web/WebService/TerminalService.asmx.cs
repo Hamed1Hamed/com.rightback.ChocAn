@@ -23,6 +23,10 @@ namespace com.rightback.ChocAn.Web.WebService
     // [System.Web.Script.Services.ScriptService]
     public class TerminalService : System.Web.Services.WebService
     {
+        private IProviderService providerService = ServiceFactory.getProviderService();
+        private IMemberService memberService = ServiceFactory.getMemberService();
+        private IServiceService serviceService = ServiceFactory.getServiceService();
+
         /// <summary>
         /// Returns true if correct provider code and terminal code provided for the provider.
         /// False otherwise.
@@ -33,8 +37,6 @@ namespace com.rightback.ChocAn.Web.WebService
         [WebMethod]
         public bool loginProvider(String providerCode, String terminalCode)
         {
-            //get provider service from factory
-            IProviderService providerService = ServiceFactory.getProviderService();
 
             //try to get provider from db
             Provider provider = providerService.getByCode(providerCode);
@@ -49,7 +51,7 @@ namespace com.rightback.ChocAn.Web.WebService
         [WebMethod]
         public VerifyMemberResult verifyMember(String memberCode)
         {
-            IMemberService memberService = ServiceFactory.getMemberService();
+
             Member member = memberService.getByCode(memberCode);
 
             if (member == null)
@@ -68,7 +70,7 @@ namespace com.rightback.ChocAn.Web.WebService
         [WebMethod]
         public List<ServiceViewModel> getServices()
         {
-            IServiceService serviceService = ServiceFactory.getServiceService();
+
             List<Service> services = serviceService.getAllServices();
             return ServiceViewModel.fromServiceList(services);
         }
