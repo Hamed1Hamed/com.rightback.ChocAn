@@ -1,4 +1,5 @@
-﻿using com.rightback.ChocAn.Services.Members;
+﻿using com.rightback.ChocAn.Services.Emails;
+using com.rightback.ChocAn.Services.Members;
 using com.rightback.ChocAn.Services.Providers;
 using com.rightback.ChocAn.Services.Services;
 using System;
@@ -17,7 +18,6 @@ namespace com.rightback.ChocAn.Services
             return new MemberService();
         }
 
-
         public static IProviderService getProviderService()
         {
             return new ProviderService();
@@ -28,6 +28,9 @@ namespace com.rightback.ChocAn.Services
             return new ServiceService();
         }
 
-
+        public static IEmailService getEmailService()
+        {
+            return new EmailService();
+        }
     }
 }

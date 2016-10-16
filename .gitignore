@@ -5,6 +5,8 @@
 
 com.rightback.ChocAn.DAL/connections.config
 com.rightback.ChocAn.Web/connections.config
+com.rightback.ChocAn.Web/smtp.config
+com.rightback.ChocAn.Tests/smtp.config
 
 
 # User-specific files
