@@ -212,6 +212,7 @@
     </Content>
     <Content Include="connections.config" />
     <Content Include="WebService\TerminalService.asmx" />
+    <Content Include="Code\Core.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />

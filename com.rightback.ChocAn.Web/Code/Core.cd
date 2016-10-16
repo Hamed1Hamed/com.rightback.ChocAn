@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Data Access Layer">
+    <Position X="0.646" Y="2.25" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Business Logic Layer&#xD;&#xA;">
+    <Position X="0.646" Y="4.427" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="UI Layer&#xD;&#xA;">
+    <Position X="0.646" Y="7.031" Height="0.75" Width="1.7" />
+  </Comment>
+  <Class Name="com.rightback.ChocAn.Web.Code.BasePage">
+    <Position X="4" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Code\BasePage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="com.rightback.ChocAn.Web.Test" Collapsed="true">
+    <Position X="6.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Test.aspx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="com.rightback.ChocAn.Web.WebService.TerminalService">
+    <Position X="9.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAADAAAAAAAAA=</HashCode>
+      <FileName>WebService\TerminalService.asmx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="com.rightback.ChocAn.Services.ServiceFactory">
+    <Position X="2.75" Y="4.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="com.rightback.ChocAn.Services.Providers.ProviderService" Collapsed="true">
+    <Position X="5.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="com.rightback.ChocAn.Services.Members.MemberService" Collapsed="true">
+    <Position X="7.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="com.rightback.ChocAn.Services.Services.ServiceService" Collapsed="true">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="com.rightback.ChocAn.DAL.Service" Collapsed="true">
+    <Position X="5" Y="3" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="com.rightback.ChocAn.DAL.Provider" Collapsed="true">
+    <Position X="5" Y="2.25" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="com.rightback.ChocAn.DAL.Provider.Type" Collapsed="true">
+        <TypeIdentifier />
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="com.rightback.ChocAn.DAL.Member" Collapsed="true">
+    <Position X="6.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="com.rightback.ChocAn.DAL.Claim" Collapsed="true">
+    <Position X="8.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="com.rightback.ChocAn.DAL.Batch" Collapsed="true">
+    <Position X="10.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="com.rightback.ChocAn.DAL.ChocAnDBModel" Collapsed="true">
+    <Position X="2.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="com.rightback.ChocAn.Services.Providers.IProviderService" Collapsed="true">
+    <Position X="5.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="com.rightback.ChocAn.Services.Members.IMemberService" Collapsed="true">
+    <Position X="7.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="com.rightback.ChocAn.Services.Services.IServiceService" Collapsed="true">
+    <Position X="9.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
