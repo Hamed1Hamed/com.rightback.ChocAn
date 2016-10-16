@@ -2,7 +2,7 @@
 <wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://rightback.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://rightback.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://rightback.com/">
-      <s:element name="LoginProvider">
+      <s:element name="loginProvider">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="providerCode" type="s:string" />
@@ -10,31 +10,111 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="LoginProviderResponse">
+      <s:element name="loginProviderResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="LoginProviderResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="loginProviderResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="verifyMember">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="memberCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="verifyMemberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="verifyMemberResult" type="tns:VerifyMemberResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="VerifyMemberResult">
+        <s:restriction base="s:string">
+          <s:enumeration value="Validated" />
+          <s:enumeration value="Suspended" />
+          <s:enumeration value="InvalidMember" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="getServices">
+        <s:complexType />
+      </s:element>
+      <s:element name="getServicesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getServicesResult" type="tns:ArrayOfServiceViewModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfServiceViewModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ServiceViewModel" nillable="true" type="tns:ServiceViewModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ServiceViewModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
     </s:schema>
   </wsdl:types>
-  <wsdl:message name="LoginProviderSoapIn">
-    <wsdl:part name="parameters" element="tns:LoginProvider" />
+  <wsdl:message name="loginProviderSoapIn">
+    <wsdl:part name="parameters" element="tns:loginProvider" />
   </wsdl:message>
-  <wsdl:message name="LoginProviderSoapOut">
-    <wsdl:part name="parameters" element="tns:LoginProviderResponse" />
+  <wsdl:message name="loginProviderSoapOut">
+    <wsdl:part name="parameters" element="tns:loginProviderResponse" />
+  </wsdl:message>
+  <wsdl:message name="verifyMemberSoapIn">
+    <wsdl:part name="parameters" element="tns:verifyMember" />
+  </wsdl:message>
+  <wsdl:message name="verifyMemberSoapOut">
+    <wsdl:part name="parameters" element="tns:verifyMemberResponse" />
+  </wsdl:message>
+  <wsdl:message name="getServicesSoapIn">
+    <wsdl:part name="parameters" element="tns:getServices" />
+  </wsdl:message>
+  <wsdl:message name="getServicesSoapOut">
+    <wsdl:part name="parameters" element="tns:getServicesResponse" />
   </wsdl:message>
   <wsdl:portType name="TerminalServiceSoap">
-    <wsdl:operation name="LoginProvider">
-      <wsdl:input message="tns:LoginProviderSoapIn" />
-      <wsdl:output message="tns:LoginProviderSoapOut" />
+    <wsdl:operation name="loginProvider">
+      <wsdl:input message="tns:loginProviderSoapIn" />
+      <wsdl:output message="tns:loginProviderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="verifyMember">
+      <wsdl:input message="tns:verifyMemberSoapIn" />
+      <wsdl:output message="tns:verifyMemberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getServices">
+      <wsdl:input message="tns:getServicesSoapIn" />
+      <wsdl:output message="tns:getServicesSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="TerminalServiceSoap" type="tns:TerminalServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="LoginProvider">
-      <soap:operation soapAction="http://rightback.com/LoginProvider" style="document" />
+    <wsdl:operation name="loginProvider">
+      <soap:operation soapAction="http://rightback.com/loginProvider" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyMember">
+      <soap:operation soapAction="http://rightback.com/verifyMember" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getServices">
+      <soap:operation soapAction="http://rightback.com/getServices" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -45,8 +125,26 @@
   </wsdl:binding>
   <wsdl:binding name="TerminalServiceSoap12" type="tns:TerminalServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="LoginProvider">
-      <soap12:operation soapAction="http://rightback.com/LoginProvider" style="document" />
+    <wsdl:operation name="loginProvider">
+      <soap12:operation soapAction="http://rightback.com/loginProvider" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyMember">
+      <soap12:operation soapAction="http://rightback.com/verifyMember" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getServices">
+      <soap12:operation soapAction="http://rightback.com/getServices" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

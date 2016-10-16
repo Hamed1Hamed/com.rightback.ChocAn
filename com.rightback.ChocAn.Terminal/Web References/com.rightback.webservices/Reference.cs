@@ -29,7 +29,11 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
     [System.Web.Services.WebServiceBindingAttribute(Name="TerminalServiceSoap", Namespace="http://rightback.com/")]
     public partial class TerminalService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback LoginProviderOperationCompleted;
+        private System.Threading.SendOrPostCallback loginProviderOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback verifyMemberOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getServicesOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -70,36 +74,98 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
         }
         
         /// <remarks/>
-        public event LoginProviderCompletedEventHandler LoginProviderCompleted;
+        public event loginProviderCompletedEventHandler loginProviderCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rightback.com/LoginProvider", RequestNamespace="http://rightback.com/", ResponseNamespace="http://rightback.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool LoginProvider(string providerCode, string terminalCode) {
-            object[] results = this.Invoke("LoginProvider", new object[] {
+        public event verifyMemberCompletedEventHandler verifyMemberCompleted;
+        
+        /// <remarks/>
+        public event getServicesCompletedEventHandler getServicesCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rightback.com/loginProvider", RequestNamespace="http://rightback.com/", ResponseNamespace="http://rightback.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool loginProvider(string providerCode, string terminalCode) {
+            object[] results = this.Invoke("loginProvider", new object[] {
                         providerCode,
                         terminalCode});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void LoginProviderAsync(string providerCode, string terminalCode) {
-            this.LoginProviderAsync(providerCode, terminalCode, null);
+        public void loginProviderAsync(string providerCode, string terminalCode) {
+            this.loginProviderAsync(providerCode, terminalCode, null);
         }
         
         /// <remarks/>
-        public void LoginProviderAsync(string providerCode, string terminalCode, object userState) {
-            if ((this.LoginProviderOperationCompleted == null)) {
-                this.LoginProviderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLoginProviderOperationCompleted);
+        public void loginProviderAsync(string providerCode, string terminalCode, object userState) {
+            if ((this.loginProviderOperationCompleted == null)) {
+                this.loginProviderOperationCompleted = new System.Threading.SendOrPostCallback(this.OnloginProviderOperationCompleted);
             }
-            this.InvokeAsync("LoginProvider", new object[] {
+            this.InvokeAsync("loginProvider", new object[] {
                         providerCode,
-                        terminalCode}, this.LoginProviderOperationCompleted, userState);
+                        terminalCode}, this.loginProviderOperationCompleted, userState);
         }
         
-        private void OnLoginProviderOperationCompleted(object arg) {
-            if ((this.LoginProviderCompleted != null)) {
+        private void OnloginProviderOperationCompleted(object arg) {
+            if ((this.loginProviderCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.LoginProviderCompleted(this, new LoginProviderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.loginProviderCompleted(this, new loginProviderCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rightback.com/verifyMember", RequestNamespace="http://rightback.com/", ResponseNamespace="http://rightback.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public VerifyMemberResult verifyMember(string memberCode) {
+            object[] results = this.Invoke("verifyMember", new object[] {
+                        memberCode});
+            return ((VerifyMemberResult)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void verifyMemberAsync(string memberCode) {
+            this.verifyMemberAsync(memberCode, null);
+        }
+        
+        /// <remarks/>
+        public void verifyMemberAsync(string memberCode, object userState) {
+            if ((this.verifyMemberOperationCompleted == null)) {
+                this.verifyMemberOperationCompleted = new System.Threading.SendOrPostCallback(this.OnverifyMemberOperationCompleted);
+            }
+            this.InvokeAsync("verifyMember", new object[] {
+                        memberCode}, this.verifyMemberOperationCompleted, userState);
+        }
+        
+        private void OnverifyMemberOperationCompleted(object arg) {
+            if ((this.verifyMemberCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.verifyMemberCompleted(this, new verifyMemberCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rightback.com/getServices", RequestNamespace="http://rightback.com/", ResponseNamespace="http://rightback.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ServiceViewModel[] getServices() {
+            object[] results = this.Invoke("getServices", new object[0]);
+            return ((ServiceViewModel[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getServicesAsync() {
+            this.getServicesAsync(null);
+        }
+        
+        /// <remarks/>
+        public void getServicesAsync(object userState) {
+            if ((this.getServicesOperationCompleted == null)) {
+                this.getServicesOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetServicesOperationCompleted);
+            }
+            this.InvokeAsync("getServices", new object[0], this.getServicesOperationCompleted, userState);
+        }
+        
+        private void OngetServicesOperationCompleted(object arg) {
+            if ((this.getServicesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getServicesCompleted(this, new getServicesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -123,18 +189,67 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
     }
     
     /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://rightback.com/")]
+    public enum VerifyMemberResult {
+        
+        /// <remarks/>
+        Validated,
+        
+        /// <remarks/>
+        Suspended,
+        
+        /// <remarks/>
+        InvalidMember,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://rightback.com/")]
+    public partial class ServiceViewModel {
+        
+        private string codeField;
+        
+        private string nameField;
+        
+        /// <remarks/>
+        public string Code {
+            get {
+                return this.codeField;
+            }
+            set {
+                this.codeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    public delegate void LoginProviderCompletedEventHandler(object sender, LoginProviderCompletedEventArgs e);
+    public delegate void loginProviderCompletedEventHandler(object sender, loginProviderCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class LoginProviderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class loginProviderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal LoginProviderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal loginProviderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -144,6 +259,58 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    public delegate void verifyMemberCompletedEventHandler(object sender, verifyMemberCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class verifyMemberCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal verifyMemberCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public VerifyMemberResult Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((VerifyMemberResult)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    public delegate void getServicesCompletedEventHandler(object sender, getServicesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getServicesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getServicesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ServiceViewModel[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ServiceViewModel[])(this.results[0]));
             }
         }
     }

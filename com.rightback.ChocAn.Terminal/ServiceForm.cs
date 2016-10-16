@@ -1,4 +1,5 @@
-﻿using System;
+﻿using com.rightback.ChocAn.Terminal.com.rightback.webservices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,17 @@ namespace com.rightback.ChocAn.Terminal
         public ServiceForm()
         {
             InitializeComponent();
+        }
+
+        private void btnCheckMemberStatus_Click(object sender, EventArgs e)
+        {
+            string memberCode = txtMemberCode.Text;
+
+            TerminalService service = new TerminalService();
+
+            VerifyMemberResult result = service.verifyMember(memberCode);
+
+            lblMemberStatus.Text = result.ToString();
         }
     }
 }

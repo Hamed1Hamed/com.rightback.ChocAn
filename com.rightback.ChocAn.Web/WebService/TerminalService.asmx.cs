@@ -3,6 +3,7 @@ using com.rightback.ChocAn.Services;
 using com.rightback.ChocAn.Services.Members;
 using com.rightback.ChocAn.Services.Providers;
 using com.rightback.ChocAn.Services.Services;
+using com.rightback.ChocAn.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,10 +66,11 @@ namespace com.rightback.ChocAn.Web.WebService
         }
 
         [WebMethod]
-        public List<Service> getServices()
+        public List<ServiceViewModel> getServices()
         {
             IServiceService serviceService = ServiceFactory.getServiceService();
-            return serviceService.getAllServices();
+            List<Service> services = serviceService.getAllServices();
+            return ServiceViewModel.fromServiceList(services);
         }
     }
 }

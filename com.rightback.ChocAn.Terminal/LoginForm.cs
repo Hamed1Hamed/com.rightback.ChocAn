@@ -31,7 +31,7 @@ namespace com.rightback.ChocAn.Terminal
 
             try
             {
-                loginResult = service.LoginProvider(providerCode, TERMINAL_CODE);
+                loginResult = service.loginProvider(providerCode, TERMINAL_CODE);
                 if (loginResult)
                 {
                     txtLog.Text += "LOGIN SUCCESSFUL";

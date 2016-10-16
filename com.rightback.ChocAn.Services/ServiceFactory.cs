@@ -14,9 +14,7 @@ namespace com.rightback.ChocAn.Services
 
         public static IMemberService getMemberService()
         {
-            //todo!
-            //return new MemberService();
-            throw new NotImplementedException();
+            return new MemberService();
         }
 
 
