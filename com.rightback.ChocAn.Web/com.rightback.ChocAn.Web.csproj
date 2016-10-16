@@ -436,6 +436,7 @@
       <DependentUpon>TerminalService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="WebService\VerifyMemberResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,7 +12,7 @@ namespace com.rightback.ChocAn.Services.Members
         public Member getByCode(string code)
         {
             return db.Members
-                .Where(m => m.Email.Equals(code))
+                .Where(m => m.Code.Equals(code))
                 .FirstOrDefault();
         }
     }

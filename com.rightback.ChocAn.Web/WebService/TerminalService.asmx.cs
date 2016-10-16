@@ -1,11 +1,13 @@
 ﻿using com.rightback.ChocAn.DAL;
 using com.rightback.ChocAn.Services;
+using com.rightback.ChocAn.Services.Members;
 using com.rightback.ChocAn.Services.Providers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+using static com.rightback.ChocAn.DAL.Member;
 
 namespace com.rightback.ChocAn.Web.WebService
 {
@@ -27,7 +29,7 @@ namespace com.rightback.ChocAn.Web.WebService
         /// <param name="terminalCode"></param>
         /// <returns></returns>
         [WebMethod]
-        public bool LoginProvider(String providerCode, String terminalCode)
+        public bool loginProvider(String providerCode, String terminalCode)
         {
             //get provider service from factory
             IProviderService providerService = ServiceFactory.getProviderService();
@@ -36,9 +38,29 @@ namespace com.rightback.ChocAn.Web.WebService
             Provider provider = providerService.getByCode(providerCode);
 
             //return true if provider found with matching terminal code.
-            return provider!=null && provider
+            return provider != null && provider
                 .TerminalCode
                 .Equals(terminalCode);
+        }
+
+
+        [WebMethod]
+        public VerifyMemberResult verifyMember(String memberCode)
+        {
+            IMemberService memberService = ServiceFactory.getMemberService();
+            Member member = memberService.getByCode(memberCode);
+
+            if (member == null)
+                return VerifyMemberResult.InvalidMember;
+
+            if (member.Status == MemberStatus.Suspended)
+                return VerifyMemberResult.Suspended;
+
+            if (member.Status == MemberStatus.Active)
+                return VerifyMemberResult.Validated;
+
+            return VerifyMemberResult.InvalidMember;
+
         }
     }
 }

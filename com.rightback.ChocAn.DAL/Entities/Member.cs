@@ -39,8 +39,23 @@ namespace com.rightback.ChocAn.DAL
             Deleted = 3
         }
 
-
         //Navigation 
         public virtual ICollection<Claim> Claims { get; set; }
+
+        public string getStatusAsString()
+        {
+
+            switch (this.Status)
+            {
+                case MemberStatus.Active:
+                    return "Active";
+                case MemberStatus.Suspended:
+                    return "Suspended";
+                case MemberStatus.Deleted:
+                    return "Deleted";   
+            }
+
+            return String.Empty;
+        }
     }
 }
