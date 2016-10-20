@@ -30,7 +30,7 @@ namespace com.rightback.ChocAn.Web.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("ChocAnDBModel", throwIfV1Schema: false)
         {
         }
 

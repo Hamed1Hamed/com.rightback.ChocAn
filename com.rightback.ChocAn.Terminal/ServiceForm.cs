@@ -25,8 +25,25 @@ namespace com.rightback.ChocAn.Terminal
             TerminalService service = new TerminalService();
 
             VerifyMemberResult result = service.verifyMember(memberCode);
+            this.onMemberStatusReceived(result);
+            
+        }
 
-            lblMemberStatus.Text = result.ToString();
+        private void onMemberStatusReceived(VerifyMemberResult result)
+        {
+            //set status labels
+            lblStatus.Text = result.ToString();
+            lblMemberCode.Text = txtMemberCode.Text;
+            
+
+            //clear input box
+            txtMemberCode.Text = String.Empty;
+        }
+
+        private void onMemberStatusCheckRequested()
+        {
+            lblStatus.Text = "Checking...";
+            lblMemberCode.Text = String.Empty;
         }
     }
 }
