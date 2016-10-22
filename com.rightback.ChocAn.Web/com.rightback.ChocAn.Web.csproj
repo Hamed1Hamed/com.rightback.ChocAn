@@ -211,6 +211,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="connections.config" />
+    <Content Include="MemberManagment.aspx" />
     <Content Include="WebService\TerminalService.asmx" />
     <Content Include="Code\Core.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -401,6 +402,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="MemberManagment.aspx.cs">
+      <DependentUpon>MemberManagment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MemberManagment.aspx.designer.cs">
+      <DependentUpon>MemberManagment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />

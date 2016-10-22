@@ -17,7 +17,7 @@ namespace com.rightback.ChocAn.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {//test commit
-            List<Provider> providers = providerService.getAllProviders();
+            List<Provider> providers = providerService.getAllProviders().ToList();
 
             foreach (Provider provider in providers)
             {

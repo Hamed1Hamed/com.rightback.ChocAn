@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using com.rightback.ChocAn.Services.Helpers;
+using com.rightback.ChocAn.Services;
+using com.rightback.ChocAn.Services.Emails;
 
 namespace com.rightback.ChocAn.Tests
 {
