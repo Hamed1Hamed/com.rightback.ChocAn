@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MemberManagment.aspx.cs" Inherits="com.rightback.ChocAn.Web.MemberManagment" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-  
+
     <ul id="profileTabs2" class="nav nav-tabs">
         <li class="active"><a href="#Members" aria-controls="Members" role="tab" data-toggle="tab">Members</a></li>
         <li><a href="#New" aria-controls="New" role="tab" data-toggle="tab">Add New Member</a></li>
@@ -9,9 +9,9 @@
     </ul>
     <div class="tab-content" id="myTabContent2">
         <div id="Members" class="tab-pane active">
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server" >
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="GridViewMembers" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4"  DataKeyNames="MemberID" ForeColor="#333333" GridLines="None" OnRowDeleted="GridViewMembers_RowDeleted" OnSelectedIndexChanging="GridViewMembers_SelectedIndexChanging" >
+                    <asp:GridView ID="GridViewMembers" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="MemberID" ForeColor="#333333" GridLines="None" OnRowDeleted="GridViewMembers_RowDeleted" OnSelectedIndexChanging="GridViewMembers_SelectedIndexChanging">
 
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
@@ -60,7 +60,7 @@
                             <asp:BoundField DataField="Code" HeaderText="Code" SortExpression="Code" />
                             <asp:TemplateField HeaderText="Status" SortExpression="Status">
                                 <EditItemTemplate>
-                                    <asp:DropDownList ID="DropDownList1" runat="server"     >
+                                    <asp:DropDownList ID="DropDownList1" runat="server">
                                     </asp:DropDownList>
                                 </EditItemTemplate>
                                 <ItemTemplate>
@@ -79,18 +79,24 @@
                         <SortedDescendingHeaderStyle BackColor="#820000" />
 
                     </asp:GridView>
-                
+
                     <br />
-                    Selected Member Is:<asp:DetailsView ID="DetailsView1"  ViewStateMode="Enabled"  runat="server" AutoGenerateRows="False" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" DataKeyNames="MemberID"  Height="50px" Width="125px" OnItemUpdating="DetailsView1_ItemUpdating" OnItemInserting="DetailsView1_ItemInserting"   OnModeChanging="DetailsView1_ModeChanging">
+                    Selected Member Is:<asp:DetailsView ID="DetailsView1" ViewStateMode="Enabled" runat="server" AutoGenerateRows="False" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" DataKeyNames="MemberID" Height="50px" Width="125px" OnItemUpdating="DetailsView1_ItemUpdating" OnItemInserting="DetailsView1_ItemInserting" OnModeChanging="DetailsView1_ModeChanging">
                         <EditRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="White" />
                         <Fields>
                             <asp:BoundField DataField="MemberID" HeaderText="MemberID" InsertVisible="False" ReadOnly="True" SortExpression="MemberID" />
                             <asp:TemplateField HeaderText="Name" SortExpression="Name">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox>
+                                    <asp:RequiredFieldValidator runat="server" ID="NameValidator"
+                                        ForeColor="Red" ErrorMessage="Please enter the name" ControlToValidate="TextBox1" />
+                                    <asp:RegularExpressionValidator Display="Dynamic"  ForeColor="Red" ControlToValidate="TextBox1" ID="RegularExpressionValidator3" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
                                 </EditItemTemplate>
                                 <InsertItemTemplate>
                                     <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox>
+                                    <asp:RequiredFieldValidator runat="server" ID="NameValidator"
+                                        ForeColor="Red" ErrorMessage="Please enter the name" ControlToValidate="TextBox1" />
+                                    <asp:RegularExpressionValidator Display="Dynamic"  ForeColor="Red" ControlToValidate="TextBox1" ID="RegularExpressionValidator3" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
                                 </InsertItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="Label1" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
@@ -99,9 +105,15 @@
                             <asp:TemplateField HeaderText="StreetAddres" SortExpression="StreetAddres">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("StreetAddres") %>'></asp:TextBox>
+                                        <asp:RequiredFieldValidator runat="server" ID="StreetAddresValidator"
+                                        ForeColor="Red" ErrorMessage="Please enter the street address" ControlToValidate="TextBox2" />
+                                    <asp:RegularExpressionValidator Display="Dynamic"  ForeColor="Red" ControlToValidate="TextBox2" ID="RegularExpressionValidator3" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
                                 </EditItemTemplate>
                                 <InsertItemTemplate>
                                     <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("StreetAddres") %>'></asp:TextBox>
+                                        <asp:RequiredFieldValidator runat="server" ID="StreetAddresValidator"
+                                        ForeColor="Red" ErrorMessage="Please enter the street address" ControlToValidate="TextBox2" />
+                                    <asp:RegularExpressionValidator Display="Dynamic"  ForeColor="Red" ControlToValidate="TextBox2" ID="RegularExpressionValidator3" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
                                 </InsertItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="Label2" runat="server" Text='<%# Bind("StreetAddres") %>'></asp:Label>
@@ -153,15 +165,15 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Status" SortExpression="Status">
                                 <EditItemTemplate>
-                                    <asp:DropDownList ID="DdlForStatus" runat="server" SelectedItem='<%# Bind("Status") %>' >
+                                    <asp:DropDownList ID="DdlForStatus" runat="server" SelectedItem='<%# Bind("Status") %>'>
                                         <asp:ListItem Value="1">Active</asp:ListItem>
                                         <asp:ListItem Value="2">Suspended</asp:ListItem>
                                         <asp:ListItem Value="3">Deleted</asp:ListItem>
                                     </asp:DropDownList>
-                                 
+
                                 </EditItemTemplate>
                                 <InsertItemTemplate>
-                                       <asp:DropDownList ID="DdlForStatus" runat="server" Text='<%# Bind("Status") %>' SelectedValue='<%# Bind("Status") %>' >
+                                    <asp:DropDownList ID="DdlForStatus" runat="server" Text='<%# Bind("Status") %>' SelectedValue='<%# Bind("Status") %>'>
                                         <asp:ListItem Value="1">Active</asp:ListItem>
                                         <asp:ListItem Value="2">Suspended</asp:ListItem>
                                         <asp:ListItem Value="3">Deleted</asp:ListItem>
@@ -178,22 +190,20 @@
                         <PagerStyle ForeColor="#8C4510" HorizontalAlign="Center" />
                         <RowStyle BackColor="#FFF7E7" ForeColor="#8C4510" />
                     </asp:DetailsView>
-                
+
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
         <div id="New" class="tab-pane fade">
-           <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
-                
-                       </ContentTemplate>
-                 </asp:UpdatePanel>
-             
+                </ContentTemplate>
+            </asp:UpdatePanel>
+
         </div>
         <div id="Reports" class="tab-pane fade">
             <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                 <ContentTemplate>
-                 
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>

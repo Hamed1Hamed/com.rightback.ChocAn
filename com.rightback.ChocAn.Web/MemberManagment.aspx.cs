@@ -20,14 +20,19 @@ namespace com.rightback.ChocAn.Web
             if (!IsPostBack)
             {
                 BindMemberData();
-                bindDetailView();
+                BindDetailView();
             }
 
         }
 
-        private void bindDetailView()
+        private void BindDetailView()
         {
-            DetailsView1.DataSource = Session["Member"];
+            if (Session["Member"] != null)
+            {
+                DetailsView1.DataSource = Session["Member"];
+            }
+            else
+                DetailsView1.ChangeMode(DetailsViewMode.Insert);
             DetailsView1.DataBind();
         }
 
@@ -81,7 +86,7 @@ namespace com.rightback.ChocAn.Web
 
         protected void DetailsView1_ItemUpdating(object sender, DetailsViewUpdateEventArgs e)
         {
-            //ugly solution to find id, but spent hours trying to find a soulution without luck
+            //ugly solution to find Member id, but spent hours trying to find another soulution without luck
             var key = e.Keys.Values;
             var enumerator =key.GetEnumerator();
             enumerator.MoveNext();
@@ -99,8 +104,8 @@ namespace com.rightback.ChocAn.Web
             IMemberService members = new MemberService();
             members.upsertMember(member);
             DetailsView1.ChangeMode(DetailsViewMode.ReadOnly);
-
-            bindDetailView();
+            BindMemberData();
+            BindDetailView();
         }
 
         protected void GridViewMembers_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
@@ -109,7 +114,8 @@ namespace com.rightback.ChocAn.Web
             IMemberService members = new MemberService();
             int MemberId = (int)this.GridViewMembers.DataKeys[e.NewSelectedIndex].Value;
             Session["Member"] = (from u in members.getAllMembers() where u.MemberID == MemberId select u).ToList();
-            bindDetailView();
+            DetailsView1.ChangeMode(DetailsViewMode.ReadOnly);
+            BindDetailView();
         }
 
         protected void DetailsView1_ModeChanging(object sender, DetailsViewModeEventArgs e)
@@ -120,7 +126,7 @@ namespace com.rightback.ChocAn.Web
                 DetailsView1.ChangeMode(DetailsViewMode.ReadOnly);
 
             }
-            bindDetailView();
+            BindDetailView();
         }
 
         protected void DetailsView1_ItemInserting(object sender, DetailsViewInsertEventArgs e)
@@ -133,7 +139,11 @@ namespace com.rightback.ChocAn.Web
             member.Zip = (DetailsView1.Rows[1].FindControl("TextBox4") as TextBox).Text;
             member.Email = (DetailsView1.Rows[1].FindControl("TextBox5") as TextBox).Text;
             member.Status = (Member.MemberStatus)Enum.Parse(typeof(Member.MemberStatus), (DetailsView1.Rows[1].FindControl("DdlForStatus") as DropDownList).SelectedValue, true);
-
+            IMemberService members = new MemberService();
+            members.upsertMember(member);
+            DetailsView1.ChangeMode(DetailsViewMode.ReadOnly);
+            BindMemberData();
+            BindDetailView();
         }
 
        
