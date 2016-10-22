@@ -131,7 +131,6 @@ namespace com.rightback.ChocAn.Web
 
         protected void DetailsView1_ItemInserting(object sender, DetailsViewInsertEventArgs e)
         {
-
             Member member = new Member();
             member.Name = (DetailsView1.Rows[1].FindControl("TextBox1") as TextBox).Text;
             member.StreetAddres = (DetailsView1.Rows[1].FindControl("TextBox2") as TextBox).Text;
