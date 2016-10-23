@@ -25,6 +25,9 @@ namespace com.rightback.ChocAn.Web
                 BindProviderData();
                 BindDetailViewForProvider();
             }
+            else
+                //allow update progress animation to show
+                System.Threading.Thread.Sleep(1500);
 
         }
 
