@@ -44,5 +44,14 @@ namespace com.rightback.ChocAn.Services.Members
         /// <param name="Code"></param>
         /// <returns> </returns>
         void deleteMember(string code);
+
+        /// <summary>
+        /// Returns Members who consulted within specific range
+        /// </summary>
+        /// <param name="Start"></param>
+        /// <param name="End"></param>
+        /// <returns>IQueryable<Member></returns>
+        IQueryable<Member> getMembersWhoConsultedWithin(DateTime start, DateTime end);
+       
     }
 }

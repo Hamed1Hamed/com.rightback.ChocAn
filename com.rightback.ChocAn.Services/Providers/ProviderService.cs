@@ -46,6 +46,11 @@ namespace com.rightback.ChocAn.Services.Providers
                .FirstOrDefault();
         }
 
+        public IQueryable<Provider> getProvidersWhoConsultedWithin(DateTime start, DateTime end)
+        {
+            return from u in db.Claims.Where(e => e.DateOfClaim > start & e.DateOfClaim < end) select u.Provider;
+        }
+
         public void upsertProvider(Provider provider)
         {
             if (provider == null)

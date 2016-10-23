@@ -1,4 +1,5 @@
 ﻿using com.rightback.ChocAn.DAL;
+using com.rightback.ChocAn.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,7 +67,28 @@ namespace com.rightback.ChocAn.Services
         }
         private static void runBatch(int year, int dayOfYear)
         {
-            throw new NotImplementedException();
+            Members.IMemberService members = new Members.MemberService();
+            Providers.IProviderService providers = new Providers.ProviderService();
+
+            foreach(Member m in members.getMembersWhoConsultedWithin(DateTime.Now, DateTime.Now))
+            {
+                //send email
+                //store
+            }
+            foreach (Provider p in providers.getProvidersWhoConsultedWithin(DateTime.Now, DateTime.Now))
+            {
+                //send email
+                //store
+            }
+
+
+            using (var context = new ChocAnDBModel())
+            {
+                // save batch details in the DB
+                context.Batches.Add(new Batch {DayOfYear= dayOfYear,Year=year });
+                context.SaveChanges();
+                
+            }
         }
     }
 }

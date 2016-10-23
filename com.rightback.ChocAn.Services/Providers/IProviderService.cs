@@ -44,5 +44,14 @@ namespace com.rightback.ChocAn.Services.Providers
         /// <param name="Code"></param>
         /// <returns></returns>
         void deleteProvider(string code);
+
+        /// <summary>
+        /// Returns providers who consulted within specific range
+        /// </summary>
+        /// <param name="Start"></param>
+        /// <param name="End"></param>
+        /// <returns>IQueryable<Provider></returns>
+        IQueryable<Provider> getProvidersWhoConsultedWithin(DateTime start, DateTime end);
+        
     }
 }
