@@ -10,7 +10,7 @@
 namespace com.rightback.ChocAn.Web {
     
     
-    public partial class MemberManagment {
+    public partial class OperatorConsole {
         
         /// <summary>
         /// UpdatePanel1 control.
@@ -31,13 +31,13 @@ namespace com.rightback.ChocAn.Web {
         protected global::System.Web.UI.WebControls.GridView GridViewMembers;
         
         /// <summary>
-        /// DetailsView1 control.
+        /// DetailsViewForMember control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DetailsView DetailsView1;
+        protected global::System.Web.UI.WebControls.DetailsView DetailsViewForMember;
         
         /// <summary>
         /// UpdatePanel2 control.
@@ -47,6 +47,24 @@ namespace com.rightback.ChocAn.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+        
+        /// <summary>
+        /// GridViewForProviders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewForProviders;
+        
+        /// <summary>
+        /// DetailsViewForSelectedProvider control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DetailsView DetailsViewForSelectedProvider;
         
         /// <summary>
         /// UpdatePanel3 control.

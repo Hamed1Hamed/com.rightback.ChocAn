@@ -42,7 +42,7 @@ namespace com.rightback.ChocAn.Services.Providers
         public Provider getById(int Id)
         {
             return db.Providers
-               .Where(p => p.PoviderID == Id)
+               .Where(p => p.ProviderID == Id)
                .FirstOrDefault();
         }
 

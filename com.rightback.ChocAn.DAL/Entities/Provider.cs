@@ -14,7 +14,7 @@ namespace com.rightback.ChocAn.DAL
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int PoviderID { get; set; }
+        public int ProviderID { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -33,12 +33,14 @@ namespace com.rightback.ChocAn.DAL
         [Required]
         public string TerminalCode { get; set; }
 
-        public enum Type
+        public ProviderType Type { get; set; }
+
+        public enum ProviderType
         {
-            internist,
-            dietitian,
-            exercise,
-            specialist
+            internist=0,
+            dietitian=1,
+            exercise=2,
+            specialist=3
         }
 
         //Navigation 
