@@ -77,9 +77,9 @@ namespace com.rightback.ChocAn.Web
         protected void GridViewMembers_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
 
-            IMemberService members = new MemberService();
+            IServiceService services = new ServiceService();
             int MemberId = (int)this.GridViewMembers.DataKeys[e.NewSelectedIndex].Value;
-            Session["Member"] = (from u in members.getMembersWhoConsultedWithin(DateTime.Now.AddDays(-7), DateTime.Now) where u.MemberID == MemberId select u).ToList();
+            Session["Member"] = (from u in services.getClaimsWithin(DateTime.Now.AddDays(-7), DateTime.Now) where u.Member.MemberID == MemberId select u).ToList();
             BindgridviewForMemberClaims();
         }
 
@@ -119,9 +119,9 @@ namespace com.rightback.ChocAn.Web
 
         protected void GridViewForProviders_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-            IProviderService provider = new ProviderService();
+            IServiceService services = new ServiceService();
             int ProviderId = (int)this.GridViewForProviders.DataKeys[e.NewSelectedIndex].Value;
-            Session["Provider"] = (from u in provider.getProvidersWhoConsultedWithin(DateTime.Now.AddDays(-7), DateTime.Now) where u.ProviderID == ProviderId select u).ToList();
+            Session["Provider"] = (from u in services.getClaimsWithin(DateTime.Now.AddDays(-7), DateTime.Now) where u.Provider.ProviderID == ProviderId select u).ToList();
             BindGridViewForProviderClaims();
         }
 

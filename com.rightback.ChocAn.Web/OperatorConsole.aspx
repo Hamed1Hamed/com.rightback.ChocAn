@@ -17,52 +17,38 @@
                         <Columns>
                             <asp:CommandField ShowDeleteButton="True" ShowSelectButton="True" ShowCancelButton="False" />
                             <asp:BoundField DataField="MemberID" HeaderText="MemberID" InsertVisible="False" ReadOnly="True" SortExpression="MemberID" />
-                            <asp:TemplateField HeaderText="Name" SortExpression="Name">
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox>
-                                </EditItemTemplate>
+                            <asp:TemplateField HeaderText="Name" SortExpression="Name">                             
                                 <ItemTemplate>
                                     <asp:Label ID="Label1" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="StreetAddres" SortExpression="StreetAddres">
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("StreetAddres") %>'></asp:TextBox>
-                                </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="Label2" runat="server" Text='<%# Bind("StreetAddres") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="City" SortExpression="City">
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("City") %>'></asp:TextBox>
-                                </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="Label3" runat="server" Text='<%# Bind("City") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                                  <asp:TemplateField HeaderText="State" SortExpression="State">
+                                <ItemTemplate>
+                                    <asp:Label ID="LabelState" runat="server" Text='<%# Bind("State") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Zip" SortExpression="Zip">
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Zip") %>'></asp:TextBox>
-                                </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="Label4" runat="server" Text='<%# Bind("Zip") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Email" SortExpression="Email">
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Email") %>'></asp:TextBox>
-                                </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="Label5" runat="server" Text='<%# Bind("Email") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="Code" HeaderText="Code" SortExpression="Code" />
                             <asp:TemplateField HeaderText="Status" SortExpression="Status">
-                                <EditItemTemplate>
-                                    <asp:DropDownList ID="DropDownList1" runat="server">
-                                    </asp:DropDownList>
-                                </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="Label6" runat="server" Text='<%# Bind("Status") %>'></asp:Label>
                                 </ItemTemplate>
@@ -136,6 +122,19 @@
                                             </InsertItemTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="Label3" runat="server" Text='<%# Bind("City") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="State" SortExpression="State">
+                                            <EditItemTemplate>
+                                                <asp:DropDownList ID="DdlForState" runat="server" DataSource="<%# Enum.GetNames(typeof(com.rightback.ChocAn.DAL.Entities.USState.State))%>" SelectedItem='<%# Bind("State") %>'>
+                                                </asp:DropDownList>
+                                           </EditItemTemplate>
+                                            <InsertItemTemplate>
+                                                <asp:DropDownList ID="DdlForState" runat="server" DataSource="<%# Enum.GetNames(typeof(com.rightback.ChocAn.DAL.Entities.USState.State))%>">
+                                                </asp:DropDownList>
+                                            </InsertItemTemplate>
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label6" runat="server" Text='<%# Bind("State") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Zip" SortExpression="Zip">
@@ -236,51 +235,37 @@
                             <asp:CommandField ShowDeleteButton="True" ShowSelectButton="True" ShowCancelButton="False" />
                             <asp:BoundField DataField="ProviderID" HeaderText="ProviderID" InsertVisible="False" ReadOnly="True" SortExpression="ProviderID" />
                             <asp:TemplateField HeaderText="Name" SortExpression="Name">
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox>
-                                </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="Label1" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="StreetAddres" SortExpression="StreetAddres">
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("StreetAddres") %>'></asp:TextBox>
-                                </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="Label2" runat="server" Text='<%# Bind("StreetAddres") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="City" SortExpression="City">
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("City") %>'></asp:TextBox>
-                                </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="Label3" runat="server" Text='<%# Bind("City") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                                  <asp:TemplateField HeaderText="State" SortExpression="State">
+                                <ItemTemplate>
+                                    <asp:Label ID="LabelState" runat="server" Text='<%# Bind("State") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Zip" SortExpression="Zip">
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Zip") %>'></asp:TextBox>
-                                </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="Label4" runat="server" Text='<%# Bind("Zip") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Email" SortExpression="Email">
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Email") %>'></asp:TextBox>
-                                </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="Label5" runat="server" Text='<%# Bind("Email") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="Code" HeaderText="Code" SortExpression="Code" />
                             <asp:TemplateField HeaderText="Type" SortExpression="Type">
-                                <EditItemTemplate>
-                                    <asp:DropDownList ID="DropDownList1" runat="server">
-                                    </asp:DropDownList>
-                                </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="Label6" runat="server" Text='<%# Bind("Type") %>'></asp:Label>
                                 </ItemTemplate>
@@ -373,6 +358,19 @@
                                             </InsertItemTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="Label4" runat="server" Text='<%# Bind("Zip") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                         <asp:TemplateField HeaderText="State" SortExpression="State">
+                                            <EditItemTemplate>
+                                                <asp:DropDownList ID="DdlForState" runat="server" DataSource="<%# Enum.GetNames(typeof(com.rightback.ChocAn.DAL.Entities.USState.State))%>" SelectedItem='<%# Bind("State") %>'>
+                                                </asp:DropDownList>
+                                           </EditItemTemplate>
+                                            <InsertItemTemplate>
+                                                <asp:DropDownList ID="DdlForState" runat="server" DataSource="<%# Enum.GetNames(typeof(com.rightback.ChocAn.DAL.Entities.USState.State))%>">
+                                                </asp:DropDownList>
+                                            </InsertItemTemplate>
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label6" runat="server" Text='<%# Bind("State") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Email" SortExpression="Email">

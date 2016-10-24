@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static com.rightback.ChocAn.DAL.Entities.USState;
 
 namespace com.rightback.ChocAn.DAL
 {
@@ -22,6 +23,10 @@ namespace com.rightback.ChocAn.DAL
         public string StreetAddres { get; set; }
         [Required]
         public string City { get; set; }
+
+        [Required]
+        public State State { get; set; }
+
         [Required]
         public string Zip { get; set; }
         [Required]

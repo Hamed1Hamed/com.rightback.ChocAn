@@ -1,4 +1,5 @@
 ﻿using com.rightback.ChocAn.DAL;
+using com.rightback.ChocAn.DAL.Entities;
 using com.rightback.ChocAn.Services.Members;
 using com.rightback.ChocAn.Services.Providers;
 using System;
@@ -76,6 +77,7 @@ namespace com.rightback.ChocAn.Web
             member.City = (DetailsViewForMember.Rows[1].FindControl("TextBox3") as TextBox).Text;
             member.Zip = (DetailsViewForMember.Rows[1].FindControl("TextBox4") as TextBox).Text;
             member.Email = (DetailsViewForMember.Rows[1].FindControl("TextBox5") as TextBox).Text;
+            member.State= (USState.State)Enum.Parse(typeof(USState.State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
             member.Code = (DetailsViewForMember.Rows[1].FindControl("TextBox6") as TextBox).Text;
             member.Status = (Member.MemberStatus)Enum.Parse(typeof(Member.MemberStatus), (DetailsViewForMember.Rows[1].FindControl("DdlForStatus") as DropDownList).SelectedValue, true);
 
@@ -119,6 +121,7 @@ namespace com.rightback.ChocAn.Web
             member.Zip = (DetailsViewForMember.Rows[1].FindControl("TextBox4") as TextBox).Text;
             member.Email = (DetailsViewForMember.Rows[1].FindControl("TextBox5") as TextBox).Text;
             member.Status = (Member.MemberStatus)Enum.Parse(typeof(Member.MemberStatus), (DetailsViewForMember.Rows[1].FindControl("DdlForStatus") as DropDownList).SelectedValue, true);
+                 member.State = (USState.State)Enum.Parse(typeof(USState.State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
             IMemberService members = new MemberService();
             members.upsertMember(member);
             DetailsViewForMember.ChangeMode(DetailsViewMode.ReadOnly);
@@ -192,6 +195,7 @@ namespace com.rightback.ChocAn.Web
             provider.Zip = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox4") as TextBox).Text;
             provider.Email = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox5") as TextBox).Text;
             provider.Code = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox6") as TextBox).Text;
+            provider.State = (USState.State)Enum.Parse(typeof(USState.State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
             provider.Type = (Provider.ProviderType)Enum.Parse(typeof(Provider.ProviderType), (DetailsViewForSelectedProvider.Rows[1].FindControl("DdlForType") as DropDownList).SelectedValue, true);
 
             IProviderService providers = new ProviderService();
@@ -212,6 +216,7 @@ u.ProviderID == Int32.Parse(GridViewForProviders.SelectedDataKey.Value as string
             provider.StreetAddres = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox2") as TextBox).Text;
             provider.City = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox3") as TextBox).Text;
             provider.Zip = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox4") as TextBox).Text;
+            provider.State = (USState.State)Enum.Parse(typeof(USState.State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
             provider.Email = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox5") as TextBox).Text;
             provider.Type = (Provider.ProviderType)Enum.Parse(typeof(Provider.ProviderType), (DetailsViewForSelectedProvider.Rows[1].FindControl("DdlForType") as DropDownList).SelectedValue, true);
             IProviderService providers = new ProviderService();

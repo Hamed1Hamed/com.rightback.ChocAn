@@ -94,7 +94,7 @@
                                         <asp:BoundField DataField="Service_ServiceID" HeaderText="Service_ServiceID" SortExpression="Service_ServiceID" />
                                     </Columns>
                                 </asp:GridView>
-                                Statics
+                                
 
 
                     &nbsp;
