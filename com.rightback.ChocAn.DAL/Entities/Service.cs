@@ -21,7 +21,6 @@ namespace com.rightback.ChocAn.DAL
         [Required]
         public string Code { get; set; }
 
-
         //Navigation 
         public virtual ICollection<Claim> Claims { get; set; }
     }

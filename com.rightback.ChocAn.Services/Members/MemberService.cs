@@ -52,6 +52,7 @@ namespace com.rightback.ChocAn.Services.Members
             return from u in db.Claims.Where(e => e.DateOfClaim > start & e.DateOfClaim < end) select u.Member;
         }
 
+     
         public void upsertMember(Member member)
         {
             if (member == null)

@@ -22,5 +22,10 @@ namespace com.rightback.ChocAn.Services.Services
                  .Select(s => s.Name)
                  .FirstOrDefault();
         }
+        public IQueryable<Claim> getClaimsWithin(DateTime start, DateTime end)
+        {
+            return from u in db.Claims.Where(e => e.DateOfClaim > start & e.DateOfClaim < end) select u;
+        }
+
     }
 }
