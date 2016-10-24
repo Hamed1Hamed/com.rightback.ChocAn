@@ -1,5 +1,6 @@
 ﻿using com.rightback.ChocAn.DAL;
 using com.rightback.ChocAn.Services;
+using com.rightback.ChocAn.Services.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +18,12 @@ namespace com.rightback.ChocAn.Services
             {
                 int daysToOffset = (((int)DayOfWeek.Friday - (int)DateTime.Now.DayOfWeek + 7) % 7) * -1;
                 DateTime lastFridayOfLastCompletedWeek = DateTime.Now.AddDays(daysToOffset);
-                int dayOfYear = lastFridayOfLastCompletedWeek.Date.DayOfYear;
+                int day = lastFridayOfLastCompletedWeek.Date.Day;
+                int month= lastFridayOfLastCompletedWeek.Date.Month;
                 int year = lastFridayOfLastCompletedWeek.Date.Year;
-                runBatch(year,dayOfYear);
+                runBatch(year,month,day);
             }
               
-        
-
-
             // This finds the next Friday (or today if it's Friday) and then adds a day... so the
             // result is in the range [0-6]
                 int daysUntilFriday = (((int)DayOfWeek.Friday - (int)DateTime.Now.DayOfWeek + 7) % 7) ;
@@ -40,7 +39,7 @@ namespace com.rightback.ChocAn.Services
             {
                 while (DateTime.Now.TimeOfDay.Hours!=1)
                     Task.Delay(1000).Wait();
-                runBatch(DateTime.Now.Year, DateTime.Now.DayOfYear);
+                runBatch(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             }
         }
 
@@ -65,27 +64,42 @@ namespace com.rightback.ChocAn.Services
             return isSuccessful;
 
         }
-        private static void runBatch(int year, int dayOfYear)
+        private static void runBatch(int year, int month,int day)
         {
-            Members.IMemberService members = new Members.MemberService();
-            Providers.IProviderService providers = new Providers.ProviderService();
+            DateTime end = new DateTime(year,month,day);
+            DateTime start = end.AddDays(-7);
 
-            foreach(Member m in members.getMembersWhoConsultedWithin(DateTime.Now, DateTime.Now))
-            {
-                //send email
-                //store
-            }
-            foreach (Provider p in providers.getProvidersWhoConsultedWithin(DateTime.Now, DateTime.Now))
-            {
-                //send email
-                //store
-            }
+            Services.IServiceService services = new ServiceService();
+            var claims = services.getClaimsWithin(start, end);
 
+            Emails.IEmailService emailServer = new Emails.EmailService();
+
+            foreach (Member m in from u in claims select u.Member)
+            {
+                var memberClaims= claims.Where(e => e.Member.MemberID == m.MemberID);
+                var message = Helpers.DataConversion.ConvertDataTableToHTML(IquerableConverter.ToDataTable(memberClaims.ToList()));
+                //send email
+                emailServer.sendEmail("no-reply@ChocAn.com",m.Email,"ChocAn Statment", message);
+             
+            }
+            foreach (Provider  p in from u in claims select u.Provider)
+            {
+                var providerClaims = claims.Where(e => e.Member.MemberID == p.ProviderID);
+                var message = Helpers.DataConversion.ConvertDataTableToHTML(IquerableConverter.ToDataTable(providerClaims.ToList()));
+                //send email
+                emailServer.sendEmail("no-reply@ChocAn.com", p.Email, "ChocAn Statment", message);
+                //send email
+
+            }
+            //store
+           // ReportWriter.CreateHtmlFile()
 
             using (var context = new ChocAnDBModel())
             {
                 // save batch details in the DB
-                context.Batches.Add(new Batch {DayOfYear= dayOfYear,Year=year });
+                int dayOfYear = end.DayOfYear;
+                Batch batchEntry = new Batch{ DayOfYear = dayOfYear, Year = year };
+                context.Batches.Add(batchEntry);
                 context.SaveChanges();
                 
             }
