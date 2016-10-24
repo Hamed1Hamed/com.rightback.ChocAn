@@ -46,6 +46,12 @@ namespace com.rightback.ChocAn.Web
                 DetailsViewForMember.ChangeMode(DetailsViewMode.Insert);
             DetailsViewForMember.DataBind();
         }
+        protected void TextBoxSerchMembers_TextChanged(object sender, EventArgs e)
+        {
+            IMemberService members = new MemberService();
+            GridViewMembers.DataSource = members.getMembersWhoContains(TextBoxSerchMembers.Text).ToList();
+            GridViewMembers.DataBind();
+        }
 
         private void BindMemberData()
         {
@@ -236,7 +242,15 @@ u.ProviderID == Int32.Parse(GridViewForProviders.SelectedDataKey.Value as string
             }
             BindDetailViewForProvider();
         }
+        protected void TextBoxSearchProviders_TextChanged(object sender, EventArgs e)
+        {
+            IProviderService providers = new ProviderService();
+            GridViewForProviders.DataSource = providers.getProvidersWhoContains(TextBoxSearchProviders.Text).ToList();
+            GridViewForProviders.DataBind();
+        }
 
         #endregion
+
+
     }
 }

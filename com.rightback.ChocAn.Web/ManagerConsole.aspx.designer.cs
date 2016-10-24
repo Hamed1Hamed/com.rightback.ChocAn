@@ -22,6 +22,15 @@ namespace com.rightback.ChocAn.Web {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
+        /// TextBoxSerchMembers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxSerchMembers;
+        
+        /// <summary>
         /// GridViewMembers control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace com.rightback.ChocAn.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+        
+        /// <summary>
+        /// TextBoxSearchProviders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxSearchProviders;
         
         /// <summary>
         /// GridViewForProviders control.

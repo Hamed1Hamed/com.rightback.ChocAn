@@ -124,9 +124,20 @@ namespace com.rightback.ChocAn.Web
             Session["Provider"] = (from u in services.getClaimsWithin(DateTime.Now.AddDays(-7), DateTime.Now) where u.Provider.ProviderID == ProviderId select u).ToList();
             BindGridViewForProviderClaims();
         }
+        protected void TextBoxSearchProviders_TextChanged(object sender, EventArgs e)
+        {
+            IProviderService providers = new ProviderService();
+            GridViewForProviders.DataSource = providers.getProvidersWhoContains(TextBoxSearchProviders.Text).ToList();
+            GridViewForProviders.DataBind();
+        }
+        protected void TextBoxSerchMembers_TextChanged(object sender, EventArgs e)
+        {
+            IMemberService members = new MemberService();
+            GridViewMembers.DataSource = members.getMembersWhoContains(TextBoxSerchMembers.Text).ToList();
+            GridViewMembers.DataBind();
+        }
 
 
-      
         #endregion
     }
 }

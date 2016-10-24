@@ -7,16 +7,22 @@
         <li><a href="#Providers" aria-controls="Providers" role="tab" data-toggle="tab">Providers</a></li>
         <li><a href="#Reports" aria-controls="Reports" role="tab" data-toggle="tab">Reports</a></li>
     </ul>
+    
     <div class="tab-content" id="myTabContent2">
         <div id="Members" class="tab-pane active">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:GridView class="col-lg-8 col-xs-12 col-centered" ID="GridViewMembers" runat="server" AllowPaging="True" PageSize="20" AllowSorting="True" AutoGenerateColumns="False" CellPadding="3" DataKeyNames="MemberID" ForeColor="Black" GridLines="Vertical" OnRowDeleted="GridViewMembers_RowDeleted" OnPageIndexChanging="GridViewMembers_PageIndexChanging" OnSelectedIndexChanging="GridViewMembers_SelectedIndexChanging" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">
+                    <br>
+                    </br>
+                    <asp:TextBox ID="TextBoxSerchMembers" runat="server" placeHolder="Search Keword" OnTextChanged="TextBoxSerchMembers_TextChanged" AutoPostBack="true"></asp:TextBox>
+                     <br>
+                     </br>
+                    <asp:GridView class="col-lg-8 col-xs-12 col-centered" ID="GridViewMembers" runat="server" AllowPaging="True" PageSize="20"  AutoGenerateColumns="False" CellPadding="3" DataKeyNames="MemberID" ForeColor="Black" GridLines="Vertical" OnRowDeleted="GridViewMembers_RowDeleted" OnPageIndexChanging="GridViewMembers_PageIndexChanging" OnSelectedIndexChanging="GridViewMembers_SelectedIndexChanging" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" ShowHeaderWhenEmpty="true" EmptyDataText="No data found">
 
                         <AlternatingRowStyle BackColor="#CCCCCC" />
                         <Columns>
                             <asp:CommandField ShowDeleteButton="True" ShowSelectButton="True" ShowCancelButton="False" />
-                            <asp:BoundField DataField="MemberID" HeaderText="MemberID" InsertVisible="False" ReadOnly="True" SortExpression="MemberID" />
+                            <asp:BoundField DataField="MemberID" HeaderText="MemberID" InsertVisible="False" ReadOnly="True" SortExpression="MemberID"  />
                             <asp:TemplateField HeaderText="Name" SortExpression="Name">                             
                                 <ItemTemplate>
                                     <asp:Label ID="Label1" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
@@ -228,7 +234,12 @@
         <div id="Providers" class="tab-pane fade">
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
-                    <asp:GridView class="col-lg-8 col-xs-12 col-centered" ID="GridViewForProviders" runat="server" AllowPaging="True" PageSize="20" AllowSorting="True" AutoGenerateColumns="False" CellPadding="3" DataKeyNames="ProviderID" ForeColor="Black" GridLines="Vertical" OnRowDeleted="GridViewForProviders_RowDeleted" OnPageIndexChanging="GridViewForProviders_PageIndexChanging" OnSelectedIndexChanging="GridViewForProviders_SelectedIndexChanging" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">
+                     <br>
+                     </br>
+                    <asp:TextBox ID="TextBoxSearchProviders" runat="server" placeHolder="Search Keword" OnTextChanged="TextBoxSearchProviders_TextChanged" AutoPostBack="true"></asp:TextBox>
+                     <br>
+                     </br>
+                    <asp:GridView class="col-lg-8 col-xs-12 col-centered" ID="GridViewForProviders" runat="server" AllowPaging="True" PageSize="20"  AutoGenerateColumns="False" CellPadding="3" DataKeyNames="ProviderID" ForeColor="Black" GridLines="Vertical" OnRowDeleted="GridViewForProviders_RowDeleted" OnPageIndexChanging="GridViewForProviders_PageIndexChanging" OnSelectedIndexChanging="GridViewForProviders_SelectedIndexChanging" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" EmptyDataText="No data found">
 
                         <AlternatingRowStyle BackColor="#CCCCCC" />
                         <Columns>
@@ -448,7 +459,7 @@
         <asp:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="0">
             <ProgressTemplate>
                 <div style=" background: #e9e9e9; position: absolute; top: 0; right: 0; bottom: 0; left: 0;">
-                    <img src="http://i.stack.imgur.com/8puiO.gif" />&nbsp;please wait...
+                    <img src="http://i.stack.imgur.com/8puiO.gif" />&nbsp;
                 </div>
             </ProgressTemplate>
         </asp:UpdateProgress>

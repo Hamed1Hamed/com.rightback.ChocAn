@@ -12,7 +12,10 @@
         <div id="Members" class="tab-pane active">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:GridView  ID="GridViewMembers" runat="server" AllowPaging="True" PageSize="20" AllowSorting="True" AutoGenerateColumns="False" CellPadding="3" DataKeyNames="MemberID" ForeColor="Black" GridLines="Vertical" OnPageIndexChanging="GridViewMembers_PageIndexChanging" OnSelectedIndexChanging="GridViewMembers_SelectedIndexChanging" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">
+                    </br>
+                    <asp:TextBox ID="TextBoxSerchMembers" runat="server" placeHolder="Search Keword" OnTextChanged="TextBoxSerchMembers_TextChanged" AutoPostBack="true"></asp:TextBox>
+                     </br>
+                    <asp:GridView  ID="GridViewMembers" runat="server" PageSize="20" AllowSorting="True" AutoGenerateColumns="False" CellPadding="3" DataKeyNames="MemberID" ForeColor="Black" GridLines="Vertical" OnPageIndexChanging="GridViewMembers_PageIndexChanging" OnSelectedIndexChanging="GridViewMembers_SelectedIndexChanging" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">
 
                         <AlternatingRowStyle BackColor="#CCCCCC" />
                         <Columns>
@@ -83,7 +86,7 @@
            
                                 Selected Member Claims:
                                 <br />
-                                <asp:GridView ID="GridViewForMemberClaims"  runat="server" AutoGenerateColumns="False" DataKeyNames="ClaimID" ShowHeaderWhenEmpty="true">
+                                <asp:GridView ID="GridViewForMemberClaims"  runat="server" AutoGenerateColumns="False" DataKeyNames="ClaimID" ShowHeaderWhenEmpty="true"  EmptyDataText="No data found">
                                     <Columns>
                                         <asp:BoundField DataField="ClaimID" HeaderText="ClaimID" InsertVisible="False" ReadOnly="True" SortExpression="ClaimID" />
                                         <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
@@ -105,7 +108,10 @@
         <div id="Providers" class="tab-pane fade">
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>`  
-                    <asp:GridView ID="GridViewForProviders" runat="server" AllowPaging="True" PageSize="20" AllowSorting="True" AutoGenerateColumns="False" CellPadding="3" DataKeyNames="ProviderID" ForeColor="Black" GridLines="Vertical" OnPageIndexChanging="GridViewForProviders_PageIndexChanging" OnSelectedIndexChanging="GridViewForProviders_SelectedIndexChanging" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">
+                     </br>
+                    <asp:TextBox ID="TextBoxSearchProviders" runat="server" placeHolder="Search Keword" OnTextChanged="TextBoxSearchProviders_TextChanged" AutoPostBack="true"></asp:TextBox>
+                     </br>
+                    <asp:GridView ID="GridViewForProviders" runat="server" PageSize="20" AllowSorting="True" AutoGenerateColumns="False" CellPadding="3" DataKeyNames="ProviderID" ForeColor="Black" GridLines="Vertical" OnPageIndexChanging="GridViewForProviders_PageIndexChanging" OnSelectedIndexChanging="GridViewForProviders_SelectedIndexChanging" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" ShowHeaderWhenEmpty="true" EmptyDataText="No data found" >
 
                         <AlternatingRowStyle BackColor="#CCCCCC" />
                         <Columns>
@@ -172,7 +178,7 @@
                         <SortedDescendingHeaderStyle BackColor="#383838" />
 
                     </asp:GridView>
-                        <asp:GridView ID="GridViewForProviderClaims"  runat="server" AutoGenerateColumns="False" DataKeyNames="ClaimID"  ShowHeaderWhenEmpty="true">
+                        <asp:GridView ID="GridViewForProviderClaims"  runat="server" AutoGenerateColumns="False" DataKeyNames="ClaimID"  ShowHeaderWhenEmpty="true" EmptyDataText="No data found">
                                     <Columns>
                                         <asp:BoundField DataField="ClaimID" HeaderText="ClaimID" InsertVisible="False" ReadOnly="True" SortExpression="ClaimID" />
                                         <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
@@ -215,7 +221,7 @@
         <asp:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="0">
             <ProgressTemplate>
                 <div style=" background: #e9e9e9; position: absolute; top: 0; right: 0; bottom: 0; left: 0;">
-                    <img src="http://i.stack.imgur.com/8puiO.gif" />&nbsp;please wait...
+                    <img src="http://i.stack.imgur.com/8puiO.gif" />&nbsp;
                 </div>
             </ProgressTemplate>
         </asp:UpdateProgress>

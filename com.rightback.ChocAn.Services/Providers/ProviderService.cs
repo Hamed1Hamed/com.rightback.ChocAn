@@ -51,6 +51,19 @@ namespace com.rightback.ChocAn.Services.Providers
             return from u in db.Claims.Where(e => e.DateOfClaim > start & e.DateOfClaim < end) select u.Provider;
         }
 
+        public IQueryable<Provider> getProvidersWhoContains(string keyWord)
+        {
+            return (from u in db.Providers.Where(e => e.Name.Contains(keyWord)
+                          || e.Code.Contains(keyWord)
+                    || e.Zip.Contains(keyWord)
+                    || e.Type.ToString().Contains(keyWord)
+                    || e.State.ToString().Contains(keyWord)
+                    || e.StreetAddres.Contains(keyWord)
+                    || e.Email.Contains(keyWord)
+                    || e.City.Contains(keyWord))
+                    select u).Distinct();
+        }
+
         public void upsertProvider(Provider provider)
         {
             if (provider == null)

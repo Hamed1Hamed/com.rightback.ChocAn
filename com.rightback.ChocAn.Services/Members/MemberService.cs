@@ -52,7 +52,19 @@ namespace com.rightback.ChocAn.Services.Members
             return from u in db.Claims.Where(e => e.DateOfClaim > start & e.DateOfClaim < end) select u.Member;
         }
 
-     
+        public IQueryable<Member> getMembersWhoContains(string keyWord)
+        {
+            return (from u in db.Members.Where(e => e.Name.Contains(keyWord)
+                    ||e.Code.Contains(keyWord)
+                    || e.Zip.Contains(keyWord)
+                    || e.Status.ToString().Contains(keyWord)
+                    || e.State.ToString().Contains(keyWord)
+                    ||e.StreetAddres.Contains(keyWord)
+                    || e.Email.Contains(keyWord)
+                    || e.City.Contains(keyWord))
+                    select u).Distinct();
+        }
+
         public void upsertMember(Member member)
         {
             if (member == null)

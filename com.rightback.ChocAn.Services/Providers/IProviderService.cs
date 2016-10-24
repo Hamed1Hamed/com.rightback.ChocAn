@@ -52,6 +52,13 @@ namespace com.rightback.ChocAn.Services.Providers
         /// <param name="End"></param>
         /// <returns>IQueryable<Provider></returns>
         IQueryable<Provider> getProvidersWhoConsultedWithin(DateTime start, DateTime end);
-        
+
+        /// <summary>
+        /// Returns Providers who has the giving keyword in thier records
+        /// </summary>
+        /// <param name="KeyWord"></param>
+        /// <returns>IQueryable<Provider></returns>
+        IQueryable<Provider> getProvidersWhoContains(string keyWord);
+
     }
 }

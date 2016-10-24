@@ -52,6 +52,13 @@ namespace com.rightback.ChocAn.Services.Members
         /// <param name="End"></param>
         /// <returns>IQueryable<Member></returns>
         IQueryable<Member> getMembersWhoConsultedWithin(DateTime start, DateTime end);
-       
+
+        /// <summary>
+        /// Returns Members who has the giving keyword in thier records
+        /// </summary>
+        /// <param name="KeyWord"></param>
+        /// <returns>IQueryable<Member></returns>
+        IQueryable<Member> getMembersWhoContains(string keyWord);
+
     }
 }
