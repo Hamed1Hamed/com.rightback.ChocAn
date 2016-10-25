@@ -28,7 +28,7 @@ namespace com.rightback.ChocAn.Web
             }
             else
                 //allow update progress animation to show
-                System.Threading.Thread.Sleep(1500);
+                System.Threading.Thread.Sleep(800);
 
         }
 
