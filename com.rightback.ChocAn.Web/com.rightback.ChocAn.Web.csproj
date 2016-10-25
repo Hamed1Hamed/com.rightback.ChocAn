@@ -214,7 +214,9 @@
     <Content Include="ManagerConsole.aspx" />
     <Content Include="OperatorConsole.aspx" />
     <Content Include="WebService\TerminalService.asmx" />
-    <Content Include="Code\Core.cd" />
+    <Content Include="Code\bll_class_diagram.cd" />
+    <Content Include="Code\dal_class_diagram.cd" />
+    <Content Include="Code\ui_class_diagram.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />

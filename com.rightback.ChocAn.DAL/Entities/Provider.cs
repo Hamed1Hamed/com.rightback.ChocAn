@@ -11,7 +11,7 @@ using static com.rightback.ChocAn.DAL.Entities.USState;
 namespace com.rightback.ChocAn.DAL
 {
 
-    public class Provider
+    public class Provider : BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

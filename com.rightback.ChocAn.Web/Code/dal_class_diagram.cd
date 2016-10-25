@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Comment CommentText="Data Access Layer">
+    <Position X="0.542" Y="0.5" Height="0.75" Width="1.7" />
+  </Comment>
+  <Class Name="com.rightback.ChocAn.DAL.Batch">
+    <Position X="8.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="com.rightback.ChocAn.DAL.Claim">
+    <Position X="6" Y="6" Width="2" />
+    <InheritanceLine Type="com.rightback.ChocAn.DAL.BaseEntity" FixedToPoint="true">
+      <Path>
+        <Point X="7" Y="1.062" />
+        <Point X="7" Y="1.375" />
+        <Point X="5.625" Y="1.375" />
+        <Point X="5.625" Y="6.411" />
+        <Point X="6" Y="6.411" />
+      </Path>
+    </InheritanceLine>
+    <AssociationLine Name="Service" Type="com.rightback.ChocAn.DAL.Service" FixedToPoint="true">
+      <Path>
+        <Point X="6.5" Y="6" />
+        <Point X="6.5" Y="4.511" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Provider" Type="com.rightback.ChocAn.DAL.Provider" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8" Y="7.688" />
+        <Point X="12.422" Y="7.688" />
+        <Point X="12.422" Y="5.425" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Member" Type="com.rightback.ChocAn.DAL.Member" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="6.812" />
+        <Point X="3.938" Y="6.812" />
+        <Point X="3.938" Y="5.232" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Service" />
+      <Property Name="Provider" />
+      <Property Name="Member" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="com.rightback.ChocAn.DAL.Member">
+    <Position X="2.5" Y="1.75" Width="2" />
+    <Members>
+      <Method Name="getStatusAsString" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Enum Name="com.rightback.ChocAn.DAL.Member.MemberStatus" Collapsed="true">
+        <TypeIdentifier />
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier />
+    <ShowAsCollectionAssociation>
+      <Property Name="Claims" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="com.rightback.ChocAn.DAL.Provider">
+    <Position X="11" Y="1.75" Width="2.25" />
+    <NestedTypes>
+      <Enum Name="com.rightback.ChocAn.DAL.Provider.ProviderType" Collapsed="true">
+        <TypeIdentifier />
+      </Enum>
+    </NestedTypes>
+    <AssociationLine Name="Claims" Type="com.rightback.ChocAn.DAL.Claim" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.531" Y="5.425" />
+        <Point X="11.531" Y="6.938" />
+        <Point X="8" Y="6.938" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier />
+    <ShowAsCollectionAssociation>
+      <Property Name="Claims" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="com.rightback.ChocAn.DAL.Service">
+    <Position X="6" Y="2.25" Width="2" />
+    <AssociationLine Name="Claims" Type="com.rightback.ChocAn.DAL.Claim" FixedFromPoint="true">
+      <Path>
+        <Point X="7.625" Y="4.511" />
+        <Point X="7.625" Y="6" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.982" Y="1.068" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier />
+    <ShowAsCollectionAssociation>
+      <Property Name="Claims" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="com.rightback.ChocAn.DAL.Entities.USState">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="com.rightback.ChocAn.DAL.Entities.USState.State" Collapsed="true">
+        <TypeIdentifier />
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="com.rightback.ChocAn.DAL.ChocAnDBModel">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <Members>
+      <Method Name="OnModelCreating" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="com.rightback.ChocAn.DAL.BaseEntity" Collapsed="true">
+    <Position X="6.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

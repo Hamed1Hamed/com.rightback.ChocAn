@@ -2,6 +2,7 @@
 using com.rightback.ChocAn.Services.Members;
 using com.rightback.ChocAn.Services.Providers;
 using com.rightback.ChocAn.Services.Services;
+using com.rightback.ChocAn.Web.Code;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ using System.Web.UI.WebControls;
 
 namespace com.rightback.ChocAn.Web
 {
-    public partial class ManagerConsole : System.Web.UI.Page
+    public partial class ManagerConsole : BasePage
     {
 
         protected void Page_Load(object sender, EventArgs e)

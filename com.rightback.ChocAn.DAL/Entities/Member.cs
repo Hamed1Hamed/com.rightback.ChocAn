@@ -9,7 +9,7 @@ using static com.rightback.ChocAn.DAL.Entities.USState;
 namespace com.rightback.ChocAn.DAL
 {
 
-    public class Member
+    public class Member : BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
