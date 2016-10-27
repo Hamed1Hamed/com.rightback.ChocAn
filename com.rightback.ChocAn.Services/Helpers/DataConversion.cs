@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace com.rightback.ChocAn.Services.Helpers
 {
-    class DataConversion
+    public class DataConversion
     {
         public static string ConvertDataTableToHTML(DataTable dt)
         {
