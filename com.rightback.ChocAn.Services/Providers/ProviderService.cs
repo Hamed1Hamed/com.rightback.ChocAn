@@ -69,7 +69,7 @@ namespace com.rightback.ChocAn.Services.Providers
             if (provider == null)
                 throw new ArgumentNullException();
             if (provider.Code == null)
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("Code", "Member code is missing");
             var providerSearch = getByCode(provider.Code);
             if (providerSearch == null)
             {

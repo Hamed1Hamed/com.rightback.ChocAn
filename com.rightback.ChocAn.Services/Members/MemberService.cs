@@ -41,7 +41,7 @@ namespace com.rightback.ChocAn.Services.Members
 
         public Member getById(int Id)
         {
-   
+
             return db.Members
               .Where(m => m.MemberID.Equals(Id))
               .FirstOrDefault();
@@ -55,11 +55,11 @@ namespace com.rightback.ChocAn.Services.Members
         public IQueryable<Member> getMembersWhoContains(string keyWord)
         {
             return (from u in db.Members.Where(e => e.Name.Contains(keyWord)
-                    ||e.Code.Contains(keyWord)
+                    || e.Code.Contains(keyWord)
                     || e.Zip.Contains(keyWord)
                     || e.Status.ToString().Contains(keyWord)
                     || e.State.ToString().Contains(keyWord)
-                    ||e.StreetAddres.Contains(keyWord)
+                    || e.StreetAddres.Contains(keyWord)
                     || e.Email.Contains(keyWord)
                     || e.City.Contains(keyWord))
                     select u).Distinct();
@@ -68,10 +68,10 @@ namespace com.rightback.ChocAn.Services.Members
         public void upsertMember(Member member)
         {
             if (member == null)
-
                 throw new ArgumentNullException();
             if (member.Code == null)
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("Code", "Member code is missing");
+
 
             var memberSearch = getByCode(member.Code);
             if (memberSearch == null)

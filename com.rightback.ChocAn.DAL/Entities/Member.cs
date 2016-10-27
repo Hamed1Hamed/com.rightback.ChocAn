@@ -15,6 +15,7 @@ namespace com.rightback.ChocAn.DAL
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MemberID { get; set; }
 
+        [StringLength(14, MinimumLength = 5)]
         [Required]
         public string Name { get; set; }
         [Required]

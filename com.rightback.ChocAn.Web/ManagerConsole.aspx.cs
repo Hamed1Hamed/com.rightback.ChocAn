@@ -53,7 +53,7 @@ namespace com.rightback.ChocAn.Web
         private void BindgridviewForMemberClaims()
         {
            
-                GridViewForMemberClaims.DataSource = Session["Member"];
+            GridViewForMemberClaims.DataSource = (Session["Member"] as List<Member>);
                 GridViewForMemberClaims.DataBind();
         }
 
@@ -107,7 +107,7 @@ namespace com.rightback.ChocAn.Web
         private void BindGridViewForProviderClaims()
         {
 
-            GridViewForProviderClaims.DataSource = Session["Provider"];
+            GridViewForProviderClaims.DataSource = (Session["Provider"] as List<Provider>); ;
 
             GridViewForProviderClaims.DataBind();
         }
@@ -122,7 +122,7 @@ namespace com.rightback.ChocAn.Web
         {
             IServiceService services = new ServiceService();
             int ProviderId = (int)this.GridViewForProviders.DataKeys[e.NewSelectedIndex].Value;
-            Session["Provider"] = (from u in services.getClaimsWithin(DateTime.Now.AddDays(-7), DateTime.Now) where u.Provider.ProviderID == ProviderId select u).ToList();
+            Session["Provider"] = (from u in services.getClaimsWithin(DateTime.Now.AddDays(-7), DateTime.Now) where u.Provider.ProviderID == ProviderId select u);
             BindGridViewForProviderClaims();
         }
         protected void TextBoxSearchProviders_TextChanged(object sender, EventArgs e)
