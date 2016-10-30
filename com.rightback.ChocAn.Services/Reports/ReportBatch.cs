@@ -3,10 +3,13 @@ using com.rightback.ChocAn.Services;
 using com.rightback.ChocAn.Services.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Mail;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Web;
 
 namespace com.rightback.ChocAn.Services
 {
@@ -77,22 +80,30 @@ namespace com.rightback.ChocAn.Services
             foreach (Member m in from u in claims select u.Member)
             {
                 var memberClaims= claims.Where(e => e.Member.MemberID == m.MemberID);
-                var message = Helpers.DataConversion.ConvertDataTableToHTML(IquerableConverter.ToDataTable(memberClaims.ToList()));
+                var statment = Helpers.DataConversion.ConvertDataTableToHTML(IquerableConverter.ToDataTable(memberClaims.ToList()));
+                MemoryStream stream = new MemoryStream(Encoding.ASCII.GetBytes(statment));
+                    //Add a new attachment to the E-mail message, using the correct MIME type
+                    Attachment attachment = new Attachment(stream, new ContentType("text/plain"));
+                    attachment.Name = "statment.html";
                 //send email
-                emailServer.sendEmail("no-reply@ChocAn.com",m.Email,"ChocAn Statment", message);
+                emailServer.sendEmail("no-reply@ChocAn.com",m.Email,"ChocAn Statment", "Attached your statment for this week." , new Attachment[] {attachment });
              
             }
             foreach (Provider  p in from u in claims select u.Provider)
             {
-                var providerClaims = claims.Where(e => e.Member.MemberID == p.ProviderID);
-                var message = Helpers.DataConversion.ConvertDataTableToHTML(IquerableConverter.ToDataTable(providerClaims.ToList()));
+                var providerClaims = claims.Where(e => e.Provider.ProviderID == p.ProviderID);
+                var statment = Helpers.DataConversion.ConvertDataTableToHTML(IquerableConverter.ToDataTable(providerClaims.ToList()));
+                MemoryStream stream = new MemoryStream(Encoding.ASCII.GetBytes(statment));
+                //Add a new attachment to the E-mail message, using the correct MIME type
+                Attachment attachment = new Attachment(stream, new ContentType("text/plain"));
+                attachment.Name = "statment.html";
                 //send email
-                emailServer.sendEmail("no-reply@ChocAn.com", p.Email, "ChocAn Statment", message);
-                //send email
+                emailServer.sendEmail("no-reply@ChocAn.com", p.Email, "ChocAn Statment", "Attached your statment for this week.", new Attachment[] { attachment });
+
 
             }
             //store
-           // ReportWriter.CreateHtmlFile()
+            // ReportWriter.CreateHtmlFile()
 
             using (var context = new ChocAnDBModel())
             {

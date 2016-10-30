@@ -43,7 +43,7 @@ namespace com.rightback.ChocAn.Web
                 DetailsViewForMember.DataSource = Session["Member"];
             }
             else
-                //force the statil view into insert mode
+                //force the detail view into insert mode
                 DetailsViewForMember.ChangeMode(DetailsViewMode.Insert);
             DetailsViewForMember.DataBind();
         }

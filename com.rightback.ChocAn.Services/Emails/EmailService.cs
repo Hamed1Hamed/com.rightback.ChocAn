@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,7 +10,7 @@ namespace com.rightback.ChocAn.Services.Emails
 {
     public class EmailService : IEmailService
     {
-        public bool sendEmail(string from, string to,string subject,string body)
+        public bool sendEmail(string from, string to,string subject,string body,Attachment[] attachment)
         {
             bool result = false;
           
@@ -18,17 +19,18 @@ namespace com.rightback.ChocAn.Services.Emails
              
                 try
                 {
-                    //MailMessage mail = new MailMessage();
+                    MailMessage mail = new MailMessage();
                     //SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-                    //mail.From = new MailAddress("your mail@gmail.com");
-                    //mail.To.Add("to_mail@gmail.com");
-                    //mail.Subject = "Test Mail - 1";
-                    //mail.Body = "mail with attachment";
+                    mail.From = new MailAddress(from);
+                    mail.To.Add(to);
+                    mail.Subject = subject;
+                    mail.Body = body;
                     //System.Net.Mail.Attachment attachment;
                     //attachment = new System.Net.Mail.Attachment("c:/textfile.txt");
-                    //mail.Attachments.Add(attachment);
-
-                    client.Send(from, to, subject, body);
+                    foreach(Attachment a in attachment)
+                    mail.Attachments.Add(a);
+                    
+                    client.Send(mail);
                     result = true;
                 }
                 catch (Exception ex)
