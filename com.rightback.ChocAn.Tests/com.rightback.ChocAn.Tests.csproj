@@ -52,12 +52,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Emails\EmailServiceTests.cs" />
     <Compile Include="Helpers\DataConversionTests.cs" />
     <Compile Include="Helpers\IquerableConverterTests.cs" />
     <Compile Include="Helpers\TokenTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="EmailTest.cs" />
+    <Compile Include="Emails\EmailTest.cs" />
     <Compile Include="Providers\ProviderServiceTests.cs" />
     <Compile Include="Services\ServiceServiceTests.cs" />
   </ItemGroup>

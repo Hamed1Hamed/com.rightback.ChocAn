@@ -7,6 +7,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -27,6 +28,7 @@ namespace com.rightback.ChocAn.Web
                 BindProviderData();
                 BindGridViewForProviderClaims();
                 BindStatistics();
+                BindFiles();
             }
             else
                 //allow update progress animation to show
@@ -140,5 +142,38 @@ namespace com.rightback.ChocAn.Web
 
 
         #endregion
+
+        public void BindFiles()
+        {
+            string[] filePaths = Directory.GetFiles(Server.MapPath("~/Uploads/"));
+            List<ListItem> files = new List<ListItem>();
+            foreach (string filePath in filePaths)
+            {
+                files.Add(new ListItem(Path.GetFileName(filePath), filePath));
+            }
+            GridViewForFiles.DataSource = files;
+            GridViewForFiles.DataBind();
+        }
+        protected void UploadFile(object sender, EventArgs e)
+        {
+            string fileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
+            FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Uploads/") + fileName);
+            Response.Redirect(Request.Url.AbsoluteUri);
+        }
+        protected void DownloadFile(object sender, EventArgs e)
+        {
+            string filePath = (sender as LinkButton).CommandArgument;
+            Response.ContentType = ContentType;
+            Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
+            Response.WriteFile(filePath);
+            Response.End();
+        }
+        protected void DeleteFile(object sender, EventArgs e)
+        {
+            string filePath = (sender as LinkButton).CommandArgument;
+            File.Delete(filePath);
+            Response.Redirect(Request.Url.AbsoluteUri);
+        }
+
     }
 }
