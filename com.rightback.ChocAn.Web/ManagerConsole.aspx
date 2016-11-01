@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManagerConsole.aspx.cs" Inherits="com.rightback.ChocAn.Web.ManagerConsole" %>
-
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <ul id="profileTabs2" class="nav nav-tabs">
@@ -214,8 +214,8 @@
           <div id="Other" class="tab-pane fade">
             <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                 <ContentTemplate>
-                    <asp:FileUpload ID="FileUpload1" runat="server" />
-<asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="UploadFile" />
+                    <ajaxToolkit:AsyncFileUpload ID="AsyncFileUpload1" runat="server" 
+                onuploadedcomplete="AsyncFileUpload1_UploadedComplete" />
 <hr />
 <asp:GridView ID="GridViewForFiles" runat="server" AutoGenerateColumns="false" EmptyDataText = "No files uploaded">
     <Columns>

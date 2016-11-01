@@ -154,11 +154,14 @@ namespace com.rightback.ChocAn.Web
             GridViewForFiles.DataSource = files;
             GridViewForFiles.DataBind();
         }
-        protected void UploadFile(object sender, EventArgs e)
+        protected void AsyncFileUpload1_UploadedComplete(object sender, AjaxControlToolkit.AsyncFileUploadEventArgs e)
         {
-            string fileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
-            FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Uploads/") + fileName);
-            Response.Redirect(Request.Url.AbsoluteUri);
+            if (AsyncFileUpload1.HasFile)
+            {
+                string fileName = Path.GetFileName(AsyncFileUpload1.PostedFile.FileName);
+                AsyncFileUpload1.PostedFile.SaveAs(Server.MapPath("~/Uploads/") + fileName);
+                Response.Redirect(Request.Url.AbsoluteUri);
+            }
         }
         protected void DownloadFile(object sender, EventArgs e)
         {
