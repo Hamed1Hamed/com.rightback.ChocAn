@@ -213,6 +213,9 @@
         </div>
           <div id="Other" class="tab-pane fade">
             <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+                    <Triggers>
+       <asp:PostBackTrigger ControlID="GridViewForFiles" />
+   </Triggers>
                 <ContentTemplate>
                     <ajaxToolkit:AsyncFileUpload ID="AsyncFileUpload1" runat="server" 
                 onuploadedcomplete="AsyncFileUpload1_UploadedComplete" />
