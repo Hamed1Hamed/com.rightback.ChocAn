@@ -51,11 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Batch.cs" />
     <Compile Include="ChocAnDBModel.cs" />
     <Compile Include="Entities\Claim.cs" />
     <Compile Include="Entities\Member.cs" />
+    <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\USState.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

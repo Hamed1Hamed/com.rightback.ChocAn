@@ -1,4 +1,5 @@
 ﻿using com.rightback.ChocAn.DAL;
+using com.rightback.ChocAn.DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,33 +10,14 @@ using static com.rightback.ChocAn.DAL.Entities.USState;
 namespace com.rightback.ChocAn.DAL
 {
 
-    public class Member : BaseEntity
+    public class Member : Person
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MemberID { get; set; }
 
-        [StringLength(14, MinimumLength = 5)]
-        [Required]
-        public string Name { get; set; }
-        [Required]
-        public string StreetAddres { get; set; }
-        [Required]
-        public string City { get; set; }
 
-        [Required]
-        public State State { get; set; }
-        
-        [Required]
-        public string Zip { get; set; }
-        [Required]
-        public string Email { get; set; }
 
-        //9 digit member code
-        [Required]
-        public string Code { get; set; }
-
-        [Required]
         public MemberStatus Status { get; set; }
 
         public enum MemberStatus

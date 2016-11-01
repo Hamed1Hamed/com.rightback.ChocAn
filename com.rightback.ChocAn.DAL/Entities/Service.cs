@@ -6,7 +6,7 @@ using System.Data.Entity;
 
 namespace com.rightback.ChocAn.DAL
 {
-    public class Service : BaseEntity
+    public class Service 
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
