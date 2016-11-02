@@ -160,11 +160,12 @@ namespace com.rightback.ChocAn.Web
             if (Session["Provider"] != null)
             {
                 DetailsViewForSelectedProvider.DataSource = Session["Provider"];
+                DetailsViewForSelectedProvider.DataBind();
             }
             else
                 //force the statil view into insert mode
                 DetailsViewForSelectedProvider.ChangeMode(DetailsViewMode.Insert);
-            DetailsViewForSelectedProvider.DataBind();
+            
         }
         protected void GridViewForProviders_RowDeleted(object sender, GridViewDeletedEventArgs e)
         {

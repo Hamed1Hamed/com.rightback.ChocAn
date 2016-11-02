@@ -214,13 +214,13 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="connections.config" />
     <Content Include="ManagerConsole.aspx" />
     <Content Include="OperatorConsole.aspx" />
     <Content Include="WebService\TerminalService.asmx" />
     <Content Include="Code\bll_class_diagram.cd" />
     <Content Include="Code\dal_class_diagram.cd" />
     <Content Include="Code\ui_class_diagram.cd" />
+    <Content Include="connections.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
@@ -265,7 +265,6 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Site.Mobile.Master" />
-    <Content Include="smtp.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
