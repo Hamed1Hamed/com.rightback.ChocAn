@@ -16,9 +16,16 @@ namespace com.rightback.ChocAn.Terminal
 
         private ServiceViewModel[] serviceCodes;
 
+        private String selectedServiceCode;
+
         public ServiceCodesForm()
         {
             InitializeComponent();
+        }
+
+        public String getSelectedServiceCode()
+        {
+            return this.selectedServiceCode;
         }
 
         private void ServiceCodesForm_Load(object sender, EventArgs e)
@@ -58,6 +65,34 @@ namespace com.rightback.ChocAn.Terminal
         private void txtServiceCode_TextChanged(object sender, EventArgs e)
         {
             this.bindData(txtServiceCode.Text);
+
+
+        }
+
+        private void gvServiceCodes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex != 0)
+                return;
+
+          this.closeWithSelection( gvServiceCodes.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+        }
+
+        private void txtServiceCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)Keys.Return)
+            {
+                if(!String.IsNullOrWhiteSpace(txtServiceCode.Text) && txtServiceCode.Text.Length==6)
+                {
+                    this.closeWithSelection(txtServiceCode.Text);
+                    
+                }
+            }
+        }
+
+        private void closeWithSelection(String selection)
+        {
+            this.selectedServiceCode = selection;
+            this.Close();
         }
     }
 }

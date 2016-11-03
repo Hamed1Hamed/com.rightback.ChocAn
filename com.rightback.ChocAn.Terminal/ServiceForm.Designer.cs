@@ -35,13 +35,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblMemberCode = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtServiceCode = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnLookup = new System.Windows.Forms.Button();
+            this.btnVerify = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtMemberCode
@@ -98,13 +99,13 @@
             this.lblStatus.TabIndex = 7;
             this.lblStatus.Text = "-";
             // 
-            // textBox2
+            // txtServiceCode
             // 
-            this.textBox2.Location = new System.Drawing.Point(111, 248);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(74, 20);
-            this.textBox2.TabIndex = 11;
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtServiceCode.Location = new System.Drawing.Point(111, 248);
+            this.txtServiceCode.Name = "txtServiceCode";
+            this.txtServiceCode.Size = new System.Drawing.Size(74, 20);
+            this.txtServiceCode.TabIndex = 11;
+            this.txtServiceCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
             // 
@@ -161,9 +162,18 @@
             this.btnLookup.Name = "btnLookup";
             this.btnLookup.Size = new System.Drawing.Size(75, 23);
             this.btnLookup.TabIndex = 16;
-            this.btnLookup.Text = "Lookup";
+            this.btnLookup.Text = "Dictionary";
             this.btnLookup.UseVisualStyleBackColor = true;
             this.btnLookup.Click += new System.EventHandler(this.btnLookup_Click);
+            // 
+            // btnVerify
+            // 
+            this.btnVerify.Location = new System.Drawing.Point(111, 274);
+            this.btnVerify.Name = "btnVerify";
+            this.btnVerify.Size = new System.Drawing.Size(75, 23);
+            this.btnVerify.TabIndex = 17;
+            this.btnVerify.Text = "Verify";
+            this.btnVerify.UseVisualStyleBackColor = true;
             // 
             // ServiceForm
             // 
@@ -172,12 +182,13 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(294, 501);
+            this.Controls.Add(this.btnVerify);
             this.Controls.Add(this.btnLookup);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtServiceCode);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.lblMemberCode);
@@ -199,12 +210,13 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblMemberCode;
         private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtServiceCode;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLookup;
+        private System.Windows.Forms.Button btnVerify;
     }
 }

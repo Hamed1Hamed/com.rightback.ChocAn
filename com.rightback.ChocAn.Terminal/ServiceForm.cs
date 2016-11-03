@@ -50,6 +50,12 @@ namespace com.rightback.ChocAn.Terminal
         {
             ServiceCodesForm serviceCodesForm = new ServiceCodesForm();
             serviceCodesForm.ShowDialog();
+
+            txtServiceCode.Text = serviceCodesForm.getSelectedServiceCode();
+
+            serviceCodesForm.Dispose();
+
+
         }
     }
 }

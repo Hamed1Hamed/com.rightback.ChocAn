@@ -50,8 +50,9 @@
             this.gvServiceCodes.Location = new System.Drawing.Point(22, 58);
             this.gvServiceCodes.Name = "gvServiceCodes";
             this.gvServiceCodes.ReadOnly = true;
-            this.gvServiceCodes.Size = new System.Drawing.Size(779, 150);
+            this.gvServiceCodes.Size = new System.Drawing.Size(369, 148);
             this.gvServiceCodes.TabIndex = 0;
+            this.gvServiceCodes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvServiceCodes_CellClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -70,7 +71,6 @@
             // serviceCodeSource
             // 
             this.serviceCodeSource.AllowNew = false;
-            this.serviceCodeSource.DataSource = typeof(com.rightback.webservices.ServiceViewModel);
             // 
             // txtServiceCode
             // 
@@ -79,6 +79,7 @@
             this.txtServiceCode.Size = new System.Drawing.Size(155, 20);
             this.txtServiceCode.TabIndex = 1;
             this.txtServiceCode.TextChanged += new System.EventHandler(this.txtServiceCode_TextChanged);
+            this.txtServiceCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtServiceCode_KeyPress);
             // 
             // lblServiceCode
             // 
@@ -93,7 +94,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(939, 376);
+            this.ClientSize = new System.Drawing.Size(405, 380);
             this.Controls.Add(this.lblServiceCode);
             this.Controls.Add(this.txtServiceCode);
             this.Controls.Add(this.gvServiceCodes);

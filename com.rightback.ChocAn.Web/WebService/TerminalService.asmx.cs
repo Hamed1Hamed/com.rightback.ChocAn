@@ -78,6 +78,14 @@ namespace com.rightback.ChocAn.Web.WebService
         }
 
         [WebMethod]
+        [ScriptMethod(UseHttpGet = true)]
+        public ServiceViewModel getService(string code)
+        {
+
+            return ServiceViewModel.fromService(serviceService.getServiceByCode(code));
+        }
+
+        [WebMethod]
         public List<ServiceViewModel> recordProvidedService()
         {
             throw new NotImplementedException();

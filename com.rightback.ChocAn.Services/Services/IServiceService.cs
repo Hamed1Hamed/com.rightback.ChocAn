@@ -14,7 +14,7 @@ namespace com.rightback.ChocAn.Services.Services
         /// </summary>
         /// <param name="serviceCode"></param>
         /// <returns></returns>
-        string getServiceName(string serviceCode);
+        Service getServiceByCode(string serviceCode);
 
         /// <summary>
         /// Returns all services from the repository.

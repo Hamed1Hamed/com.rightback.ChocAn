@@ -12,14 +12,14 @@ namespace com.rightback.ChocAn.Services.Services
         public List<Service> getAllServices()
         {
             return db.Services
+                .OrderBy(s=>s.Name)
                 .ToList();
         }
 
-        public string getServiceName(string serviceCode)
+        public Service getServiceByCode(string serviceCode)
         {
             return db.Services
                  .Where(s => s.Code.Equals(serviceCode))
-                 .Select(s => s.Name)
                  .FirstOrDefault();
         }
         public IQueryable<Claim> getClaimsWithin(DateTime start, DateTime end)
