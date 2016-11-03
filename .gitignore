@@ -250,3 +250,4 @@ ModelManifest.xml
 .fake/
 /Modeling
 /com.rightback.ChocAn.WebLoadTest
+/com.rightback.ChocAn.Services/Mail.config
