@@ -57,21 +57,53 @@
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fee" type="s:decimal" />
         </s:sequence>
       </s:complexType>
-      <s:element name="recordProvidedService">
-        <s:complexType />
-      </s:element>
-      <s:element name="recordProvidedServiceResponse">
+      <s:element name="getService">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="recordProvidedServiceResult" type="tns:ArrayOfServiceViewModel" />
+            <s:element minOccurs="0" maxOccurs="1" name="code" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="getServiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getServiceResult" type="tns:ServiceViewModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="recordClaim">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="providerNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="memberNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serviceCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="comments" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dateServiceProvided" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="recordClaimResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="recordClaimResult" type="tns:RecordClaimResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RecordClaimResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="service" type="tns:ServiceViewModel" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="boolean" type="s:boolean" />
       <s:element name="VerifyMemberResult" type="tns:VerifyMemberResult" />
       <s:element name="ArrayOfServiceViewModel" nillable="true" type="tns:ArrayOfServiceViewModel" />
+      <s:element name="ServiceViewModel" nillable="true" type="tns:ServiceViewModel" />
+      <s:element name="RecordClaimResult" nillable="true" type="tns:RecordClaimResult" />
     </s:schema>
   </wsdl:types>
   <wsdl:message name="loginProviderSoapIn">
@@ -92,11 +124,17 @@
   <wsdl:message name="getServicesSoapOut">
     <wsdl:part name="parameters" element="tns:getServicesResponse" />
   </wsdl:message>
-  <wsdl:message name="recordProvidedServiceSoapIn">
-    <wsdl:part name="parameters" element="tns:recordProvidedService" />
+  <wsdl:message name="getServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:getService" />
   </wsdl:message>
-  <wsdl:message name="recordProvidedServiceSoapOut">
-    <wsdl:part name="parameters" element="tns:recordProvidedServiceResponse" />
+  <wsdl:message name="getServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:getServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="recordClaimSoapIn">
+    <wsdl:part name="parameters" element="tns:recordClaim" />
+  </wsdl:message>
+  <wsdl:message name="recordClaimSoapOut">
+    <wsdl:part name="parameters" element="tns:recordClaimResponse" />
   </wsdl:message>
   <wsdl:message name="loginProviderHttpGetIn">
     <wsdl:part name="providerCode" type="s:string" />
@@ -115,9 +153,21 @@
   <wsdl:message name="getServicesHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfServiceViewModel" />
   </wsdl:message>
-  <wsdl:message name="recordProvidedServiceHttpGetIn" />
-  <wsdl:message name="recordProvidedServiceHttpGetOut">
-    <wsdl:part name="Body" element="tns:ArrayOfServiceViewModel" />
+  <wsdl:message name="getServiceHttpGetIn">
+    <wsdl:part name="code" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="getServiceHttpGetOut">
+    <wsdl:part name="Body" element="tns:ServiceViewModel" />
+  </wsdl:message>
+  <wsdl:message name="recordClaimHttpGetIn">
+    <wsdl:part name="providerNumber" type="s:string" />
+    <wsdl:part name="memberNumber" type="s:string" />
+    <wsdl:part name="serviceCode" type="s:string" />
+    <wsdl:part name="comments" type="s:string" />
+    <wsdl:part name="dateServiceProvided" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="recordClaimHttpGetOut">
+    <wsdl:part name="Body" element="tns:RecordClaimResult" />
   </wsdl:message>
   <wsdl:message name="loginProviderHttpPostIn">
     <wsdl:part name="providerCode" type="s:string" />
@@ -136,9 +186,21 @@
   <wsdl:message name="getServicesHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfServiceViewModel" />
   </wsdl:message>
-  <wsdl:message name="recordProvidedServiceHttpPostIn" />
-  <wsdl:message name="recordProvidedServiceHttpPostOut">
-    <wsdl:part name="Body" element="tns:ArrayOfServiceViewModel" />
+  <wsdl:message name="getServiceHttpPostIn">
+    <wsdl:part name="code" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="getServiceHttpPostOut">
+    <wsdl:part name="Body" element="tns:ServiceViewModel" />
+  </wsdl:message>
+  <wsdl:message name="recordClaimHttpPostIn">
+    <wsdl:part name="providerNumber" type="s:string" />
+    <wsdl:part name="memberNumber" type="s:string" />
+    <wsdl:part name="serviceCode" type="s:string" />
+    <wsdl:part name="comments" type="s:string" />
+    <wsdl:part name="dateServiceProvided" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="recordClaimHttpPostOut">
+    <wsdl:part name="Body" element="tns:RecordClaimResult" />
   </wsdl:message>
   <wsdl:portType name="TerminalServiceSoap">
     <wsdl:operation name="loginProvider">
@@ -153,9 +215,13 @@
       <wsdl:input message="tns:getServicesSoapIn" />
       <wsdl:output message="tns:getServicesSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="recordProvidedService">
-      <wsdl:input message="tns:recordProvidedServiceSoapIn" />
-      <wsdl:output message="tns:recordProvidedServiceSoapOut" />
+    <wsdl:operation name="getService">
+      <wsdl:input message="tns:getServiceSoapIn" />
+      <wsdl:output message="tns:getServiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="recordClaim">
+      <wsdl:input message="tns:recordClaimSoapIn" />
+      <wsdl:output message="tns:recordClaimSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="TerminalServiceHttpGet">
@@ -171,9 +237,13 @@
       <wsdl:input message="tns:getServicesHttpGetIn" />
       <wsdl:output message="tns:getServicesHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="recordProvidedService">
-      <wsdl:input message="tns:recordProvidedServiceHttpGetIn" />
-      <wsdl:output message="tns:recordProvidedServiceHttpGetOut" />
+    <wsdl:operation name="getService">
+      <wsdl:input message="tns:getServiceHttpGetIn" />
+      <wsdl:output message="tns:getServiceHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="recordClaim">
+      <wsdl:input message="tns:recordClaimHttpGetIn" />
+      <wsdl:output message="tns:recordClaimHttpGetOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="TerminalServiceHttpPost">
@@ -189,9 +259,13 @@
       <wsdl:input message="tns:getServicesHttpPostIn" />
       <wsdl:output message="tns:getServicesHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="recordProvidedService">
-      <wsdl:input message="tns:recordProvidedServiceHttpPostIn" />
-      <wsdl:output message="tns:recordProvidedServiceHttpPostOut" />
+    <wsdl:operation name="getService">
+      <wsdl:input message="tns:getServiceHttpPostIn" />
+      <wsdl:output message="tns:getServiceHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="recordClaim">
+      <wsdl:input message="tns:recordClaimHttpPostIn" />
+      <wsdl:output message="tns:recordClaimHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="TerminalServiceSoap" type="tns:TerminalServiceSoap">
@@ -223,8 +297,17 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="recordProvidedService">
-      <soap:operation soapAction="http://rightback.com/recordProvidedService" style="document" />
+    <wsdl:operation name="getService">
+      <soap:operation soapAction="http://rightback.com/getService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recordClaim">
+      <soap:operation soapAction="http://rightback.com/recordClaim" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -262,8 +345,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="recordProvidedService">
-      <soap12:operation soapAction="http://rightback.com/recordProvidedService" style="document" />
+    <wsdl:operation name="getService">
+      <soap12:operation soapAction="http://rightback.com/getService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recordClaim">
+      <soap12:operation soapAction="http://rightback.com/recordClaim" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -301,8 +393,17 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="recordProvidedService">
-      <http:operation location="/recordProvidedService" />
+    <wsdl:operation name="getService">
+      <http:operation location="/getService" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recordClaim">
+      <http:operation location="/recordClaim" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -340,8 +441,17 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="recordProvidedService">
-      <http:operation location="/recordProvidedService" />
+    <wsdl:operation name="getService">
+      <http:operation location="/getService" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recordClaim">
+      <http:operation location="/recordClaim" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

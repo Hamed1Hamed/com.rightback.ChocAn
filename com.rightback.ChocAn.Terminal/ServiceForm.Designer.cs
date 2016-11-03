@@ -37,12 +37,17 @@
             this.lblStatus = new System.Windows.Forms.Label();
             this.txtServiceCode = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtServiceProvided = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnLookup = new System.Windows.Forms.Button();
             this.btnVerify = new System.Windows.Forms.Button();
+            this.lblServiceName = new System.Windows.Forms.Label();
+            this.lblVerify = new System.Windows.Forms.Label();
+            this.txtComments = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtMemberCode
@@ -106,6 +111,7 @@
             this.txtServiceCode.Size = new System.Drawing.Size(74, 20);
             this.txtServiceCode.TabIndex = 11;
             this.txtServiceCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtServiceCode.Click += new System.EventHandler(this.txtServiceCode_Click);
             // 
             // label5
             // 
@@ -117,12 +123,12 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Service Code";
             // 
-            // dateTimePicker1
+            // dtServiceProvided
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(70, 222);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 12;
+            this.dtServiceProvided.Location = new System.Drawing.Point(70, 222);
+            this.dtServiceProvided.Name = "dtServiceProvided";
+            this.dtServiceProvided.Size = new System.Drawing.Size(200, 20);
+            this.dtServiceProvided.TabIndex = 12;
             // 
             // label4
             // 
@@ -174,6 +180,55 @@
             this.btnVerify.TabIndex = 17;
             this.btnVerify.Text = "Verify";
             this.btnVerify.UseVisualStyleBackColor = true;
+            this.btnVerify.Click += new System.EventHandler(this.btnVerify_Click);
+            // 
+            // lblServiceName
+            // 
+            this.lblServiceName.AutoSize = true;
+            this.lblServiceName.Location = new System.Drawing.Point(57, 300);
+            this.lblServiceName.Name = "lblServiceName";
+            this.lblServiceName.Size = new System.Drawing.Size(80, 13);
+            this.lblServiceName.TabIndex = 18;
+            this.lblServiceName.Text = "Service Name: ";
+            this.lblServiceName.Visible = false;
+            // 
+            // lblVerify
+            // 
+            this.lblVerify.AutoSize = true;
+            this.lblVerify.Location = new System.Drawing.Point(137, 300);
+            this.lblVerify.Name = "lblVerify";
+            this.lblVerify.Size = new System.Drawing.Size(43, 13);
+            this.lblVerify.TabIndex = 19;
+            this.lblVerify.Text = "lblVerify";
+            this.lblVerify.Visible = false;
+            // 
+            // txtComments
+            // 
+            this.txtComments.Location = new System.Drawing.Point(16, 332);
+            this.txtComments.Multiline = true;
+            this.txtComments.Name = "txtComments";
+            this.txtComments.Size = new System.Drawing.Size(260, 66);
+            this.txtComments.TabIndex = 20;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(13, 316);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(59, 13);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "Comments:";
+            this.label7.Visible = false;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(84, 404);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(128, 23);
+            this.btnSave.TabIndex = 22;
+            this.btnSave.Text = "Save Provided Service";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // ServiceForm
             // 
@@ -182,12 +237,17 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(294, 501);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtComments);
+            this.Controls.Add(this.lblVerify);
+            this.Controls.Add(this.lblServiceName);
             this.Controls.Add(this.btnVerify);
             this.Controls.Add(this.btnLookup);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dtServiceProvided);
             this.Controls.Add(this.txtServiceCode);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblStatus);
@@ -212,11 +272,16 @@
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.TextBox txtServiceCode;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtServiceProvided;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLookup;
         private System.Windows.Forms.Button btnVerify;
+        private System.Windows.Forms.Label lblServiceName;
+        private System.Windows.Forms.Label lblVerify;
+        private System.Windows.Forms.TextBox txtComments;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnSave;
     }
 }

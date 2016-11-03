@@ -1,5 +1,6 @@
 ﻿using com.rightback.ChocAn.DAL;
 using com.rightback.ChocAn.Services;
+using com.rightback.ChocAn.Services.Claims;
 using com.rightback.ChocAn.Services.Members;
 using com.rightback.ChocAn.Services.Providers;
 using com.rightback.ChocAn.Services.Services;
@@ -27,6 +28,7 @@ namespace com.rightback.ChocAn.Web.WebService
         private IProviderService providerService = ServiceFactory.getProviderService();
         private IMemberService memberService = ServiceFactory.getMemberService();
         private IServiceService serviceService = ServiceFactory.getServiceService();
+        private IClaimService claimService = ServiceFactory.getClaimService();
 
         /// <summary>
         /// Returns true if correct provider code and terminal code provided for the provider.
@@ -86,9 +88,26 @@ namespace com.rightback.ChocAn.Web.WebService
         }
 
         [WebMethod]
-        public List<ServiceViewModel> recordProvidedService()
+        public RecordClaimResult recordClaim(string providerNumber,string memberNumber,string serviceCode, string comments,DateTime dateServiceProvided)
         {
-            throw new NotImplementedException();
+            String result = claimService.recordClaim(providerNumber, memberNumber, serviceCode, comments, dateServiceProvided);
+
+            if(!String.IsNullOrWhiteSpace(result))
+            {
+                return new RecordClaimResult()
+                {
+                    success = false,
+                    message = result
+                };
+            }
+
+            ServiceViewModel serviceViewModel = ServiceViewModel.fromService(serviceService.getServiceByCode(serviceCode));
+
+            return new RecordClaimResult()
+            {
+                success = true,
+                service = serviceViewModel
+            };
         }
     }
 }

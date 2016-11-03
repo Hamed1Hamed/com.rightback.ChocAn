@@ -35,7 +35,9 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
         
         private System.Threading.SendOrPostCallback getServicesOperationCompleted;
         
-        private System.Threading.SendOrPostCallback recordProvidedServiceOperationCompleted;
+        private System.Threading.SendOrPostCallback getServiceOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback recordClaimOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -85,7 +87,10 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
         public event getServicesCompletedEventHandler getServicesCompleted;
         
         /// <remarks/>
-        public event recordProvidedServiceCompletedEventHandler recordProvidedServiceCompleted;
+        public event getServiceCompletedEventHandler getServiceCompleted;
+        
+        /// <remarks/>
+        public event recordClaimCompletedEventHandler recordClaimCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rightback.com/loginProvider", RequestNamespace="http://rightback.com/", ResponseNamespace="http://rightback.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -175,29 +180,68 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rightback.com/recordProvidedService", RequestNamespace="http://rightback.com/", ResponseNamespace="http://rightback.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public ServiceViewModel[] recordProvidedService() {
-            object[] results = this.Invoke("recordProvidedService", new object[0]);
-            return ((ServiceViewModel[])(results[0]));
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rightback.com/getService", RequestNamespace="http://rightback.com/", ResponseNamespace="http://rightback.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ServiceViewModel getService(string code) {
+            object[] results = this.Invoke("getService", new object[] {
+                        code});
+            return ((ServiceViewModel)(results[0]));
         }
         
         /// <remarks/>
-        public void recordProvidedServiceAsync() {
-            this.recordProvidedServiceAsync(null);
+        public void getServiceAsync(string code) {
+            this.getServiceAsync(code, null);
         }
         
         /// <remarks/>
-        public void recordProvidedServiceAsync(object userState) {
-            if ((this.recordProvidedServiceOperationCompleted == null)) {
-                this.recordProvidedServiceOperationCompleted = new System.Threading.SendOrPostCallback(this.OnrecordProvidedServiceOperationCompleted);
+        public void getServiceAsync(string code, object userState) {
+            if ((this.getServiceOperationCompleted == null)) {
+                this.getServiceOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetServiceOperationCompleted);
             }
-            this.InvokeAsync("recordProvidedService", new object[0], this.recordProvidedServiceOperationCompleted, userState);
+            this.InvokeAsync("getService", new object[] {
+                        code}, this.getServiceOperationCompleted, userState);
         }
         
-        private void OnrecordProvidedServiceOperationCompleted(object arg) {
-            if ((this.recordProvidedServiceCompleted != null)) {
+        private void OngetServiceOperationCompleted(object arg) {
+            if ((this.getServiceCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.recordProvidedServiceCompleted(this, new recordProvidedServiceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.getServiceCompleted(this, new getServiceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rightback.com/recordClaim", RequestNamespace="http://rightback.com/", ResponseNamespace="http://rightback.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public RecordClaimResult recordClaim(string providerNumber, string memberNumber, string serviceCode, string comments, System.DateTime dateServiceProvided) {
+            object[] results = this.Invoke("recordClaim", new object[] {
+                        providerNumber,
+                        memberNumber,
+                        serviceCode,
+                        comments,
+                        dateServiceProvided});
+            return ((RecordClaimResult)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void recordClaimAsync(string providerNumber, string memberNumber, string serviceCode, string comments, System.DateTime dateServiceProvided) {
+            this.recordClaimAsync(providerNumber, memberNumber, serviceCode, comments, dateServiceProvided, null);
+        }
+        
+        /// <remarks/>
+        public void recordClaimAsync(string providerNumber, string memberNumber, string serviceCode, string comments, System.DateTime dateServiceProvided, object userState) {
+            if ((this.recordClaimOperationCompleted == null)) {
+                this.recordClaimOperationCompleted = new System.Threading.SendOrPostCallback(this.OnrecordClaimOperationCompleted);
+            }
+            this.InvokeAsync("recordClaim", new object[] {
+                        providerNumber,
+                        memberNumber,
+                        serviceCode,
+                        comments,
+                        dateServiceProvided}, this.recordClaimOperationCompleted, userState);
+        }
+        
+        private void OnrecordClaimOperationCompleted(object arg) {
+            if ((this.recordClaimCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.recordClaimCompleted(this, new recordClaimCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -248,6 +292,8 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
         
         private string nameField;
         
+        private decimal feeField;
+        
         /// <remarks/>
         public string Code {
             get {
@@ -265,6 +311,61 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
             }
             set {
                 this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal Fee {
+            get {
+                return this.feeField;
+            }
+            set {
+                this.feeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://rightback.com/")]
+    public partial class RecordClaimResult {
+        
+        private bool successField;
+        
+        private string messageField;
+        
+        private ServiceViewModel serviceField;
+        
+        /// <remarks/>
+        public bool success {
+            get {
+                return this.successField;
+            }
+            set {
+                this.successField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string message {
+            get {
+                return this.messageField;
+            }
+            set {
+                this.messageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public ServiceViewModel service {
+            get {
+                return this.serviceField;
+            }
+            set {
+                this.serviceField = value;
             }
         }
     }
@@ -349,26 +450,52 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    public delegate void recordProvidedServiceCompletedEventHandler(object sender, recordProvidedServiceCompletedEventArgs e);
+    public delegate void getServiceCompletedEventHandler(object sender, getServiceCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class recordProvidedServiceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class getServiceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal recordProvidedServiceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal getServiceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
         /// <remarks/>
-        public ServiceViewModel[] Result {
+        public ServiceViewModel Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((ServiceViewModel[])(this.results[0]));
+                return ((ServiceViewModel)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    public delegate void recordClaimCompletedEventHandler(object sender, recordClaimCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class recordClaimCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal recordClaimCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public RecordClaimResult Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((RecordClaimResult)(this.results[0]));
             }
         }
     }

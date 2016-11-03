@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using com.rightback.ChocAn.Services.Claims;
 
 namespace com.rightback.ChocAn.Services
 {
@@ -31,6 +32,11 @@ namespace com.rightback.ChocAn.Services
         public static IEmailService getEmailService()
         {
             return new EmailService();
+        }
+
+        public static IClaimService getClaimService()
+        {
+            return new ClaimService();
         }
     }
 }
