@@ -41,6 +41,8 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
         
         private System.Threading.SendOrPostCallback recordClaimCheckOperationCompleted;
         
+        private System.Threading.SendOrPostCallback requestProviderDirectoryOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -96,6 +98,9 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
         
         /// <remarks/>
         public event recordClaimCheckCompletedEventHandler recordClaimCheckCompleted;
+        
+        /// <remarks/>
+        public event requestProviderDirectoryCompletedEventHandler requestProviderDirectoryCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rightback.com/loginProvider", RequestNamespace="http://rightback.com/", ResponseNamespace="http://rightback.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -288,6 +293,35 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
             if ((this.recordClaimCheckCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.recordClaimCheckCompleted(this, new recordClaimCheckCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rightback.com/requestProviderDirectory", RequestNamespace="http://rightback.com/", ResponseNamespace="http://rightback.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string requestProviderDirectory(string providerNumber) {
+            object[] results = this.Invoke("requestProviderDirectory", new object[] {
+                        providerNumber});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void requestProviderDirectoryAsync(string providerNumber) {
+            this.requestProviderDirectoryAsync(providerNumber, null);
+        }
+        
+        /// <remarks/>
+        public void requestProviderDirectoryAsync(string providerNumber, object userState) {
+            if ((this.requestProviderDirectoryOperationCompleted == null)) {
+                this.requestProviderDirectoryOperationCompleted = new System.Threading.SendOrPostCallback(this.OnrequestProviderDirectoryOperationCompleted);
+            }
+            this.InvokeAsync("requestProviderDirectory", new object[] {
+                        providerNumber}, this.requestProviderDirectoryOperationCompleted, userState);
+        }
+        
+        private void OnrequestProviderDirectoryOperationCompleted(object arg) {
+            if ((this.requestProviderDirectoryCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.requestProviderDirectoryCompleted(this, new requestProviderDirectoryCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -559,6 +593,32 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
         private object[] results;
         
         internal recordClaimCheckCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    public delegate void requestProviderDirectoryCompletedEventHandler(object sender, requestProviderDirectoryCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class requestProviderDirectoryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal requestProviderDirectoryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

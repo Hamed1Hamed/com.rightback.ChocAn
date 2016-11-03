@@ -122,7 +122,9 @@ namespace com.rightback.ChocAn.Terminal
             this.disableVerifyLabels();
             this.lblMemberCode.Text = String.Empty;
             this.lblStatus.Text = String.Empty;
-            this.txtComments.Text = String.Empty;        
+            this.txtComments.Text = String.Empty;
+            txtMemberCode.Text = String.Empty;
+            txtServiceCode.Text = String.Empty;     
 
         }
 

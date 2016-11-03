@@ -119,6 +119,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="requestProviderDirectory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="providerNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="requestProviderDirectoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestProviderDirectoryResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="boolean" type="s:boolean" />
       <s:element name="VerifyMemberResult" type="tns:VerifyMemberResult" />
       <s:element name="ArrayOfServiceViewModel" nillable="true" type="tns:ArrayOfServiceViewModel" />
@@ -163,6 +177,12 @@
   <wsdl:message name="recordClaimCheckSoapOut">
     <wsdl:part name="parameters" element="tns:recordClaimCheckResponse" />
   </wsdl:message>
+  <wsdl:message name="requestProviderDirectorySoapIn">
+    <wsdl:part name="parameters" element="tns:requestProviderDirectory" />
+  </wsdl:message>
+  <wsdl:message name="requestProviderDirectorySoapOut">
+    <wsdl:part name="parameters" element="tns:requestProviderDirectoryResponse" />
+  </wsdl:message>
   <wsdl:message name="loginProviderHttpGetIn">
     <wsdl:part name="providerCode" type="s:string" />
     <wsdl:part name="terminalCode" type="s:string" />
@@ -206,6 +226,12 @@
     <wsdl:part name="fee" type="s:string" />
   </wsdl:message>
   <wsdl:message name="recordClaimCheckHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="requestProviderDirectoryHttpGetIn">
+    <wsdl:part name="providerNumber" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="requestProviderDirectoryHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="loginProviderHttpPostIn">
@@ -253,6 +279,12 @@
   <wsdl:message name="recordClaimCheckHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="requestProviderDirectoryHttpPostIn">
+    <wsdl:part name="providerNumber" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="requestProviderDirectoryHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:portType name="TerminalServiceSoap">
     <wsdl:operation name="loginProvider">
       <wsdl:input message="tns:loginProviderSoapIn" />
@@ -277,6 +309,10 @@
     <wsdl:operation name="recordClaimCheck">
       <wsdl:input message="tns:recordClaimCheckSoapIn" />
       <wsdl:output message="tns:recordClaimCheckSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="requestProviderDirectory">
+      <wsdl:input message="tns:requestProviderDirectorySoapIn" />
+      <wsdl:output message="tns:requestProviderDirectorySoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="TerminalServiceHttpGet">
@@ -304,6 +340,10 @@
       <wsdl:input message="tns:recordClaimCheckHttpGetIn" />
       <wsdl:output message="tns:recordClaimCheckHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="requestProviderDirectory">
+      <wsdl:input message="tns:requestProviderDirectoryHttpGetIn" />
+      <wsdl:output message="tns:requestProviderDirectoryHttpGetOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="TerminalServiceHttpPost">
     <wsdl:operation name="loginProvider">
@@ -329,6 +369,10 @@
     <wsdl:operation name="recordClaimCheck">
       <wsdl:input message="tns:recordClaimCheckHttpPostIn" />
       <wsdl:output message="tns:recordClaimCheckHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="requestProviderDirectory">
+      <wsdl:input message="tns:requestProviderDirectoryHttpPostIn" />
+      <wsdl:output message="tns:requestProviderDirectoryHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="TerminalServiceSoap" type="tns:TerminalServiceSoap">
@@ -380,6 +424,15 @@
     </wsdl:operation>
     <wsdl:operation name="recordClaimCheck">
       <soap:operation soapAction="http://rightback.com/recordClaimCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="requestProviderDirectory">
+      <soap:operation soapAction="http://rightback.com/requestProviderDirectory" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -444,6 +497,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="requestProviderDirectory">
+      <soap12:operation soapAction="http://rightback.com/requestProviderDirectory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="TerminalServiceHttpGet" type="tns:TerminalServiceHttpGet">
     <http:binding verb="GET" />
@@ -501,6 +563,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="requestProviderDirectory">
+      <http:operation location="/requestProviderDirectory" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="TerminalServiceHttpPost" type="tns:TerminalServiceHttpPost">
     <http:binding verb="POST" />
@@ -551,6 +622,15 @@
     </wsdl:operation>
     <wsdl:operation name="recordClaimCheck">
       <http:operation location="/recordClaimCheck" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="requestProviderDirectory">
+      <http:operation location="/requestProviderDirectory" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

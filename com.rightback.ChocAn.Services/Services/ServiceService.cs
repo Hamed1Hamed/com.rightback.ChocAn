@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using com.rightback.ChocAn.DAL;
+using com.rightback.ChocAn.Services.Reports;
 
 namespace com.rightback.ChocAn.Services.Services
 {
     public class ServiceService : BaseService, IServiceService
     {
+        private IReportService reportService = new ReportService();
+
         public List<Service> getAllServices()
         {
             return db.Services
@@ -25,6 +28,40 @@ namespace com.rightback.ChocAn.Services.Services
         public IQueryable<Claim> getClaimsWithin(DateTime start, DateTime end)
         {
             return from u in db.Claims.Where(e => e.DateOfClaim > start & e.DateOfClaim < end) select u;
+        }
+
+        /// <summary>
+        /// Current implementation saves it to the file.
+        /// </summary>
+        /// <param name="providerNumber"></param>
+        /// <returns></returns>
+        public String sendServiceDirectory(string providerNumber)
+        {
+            Provider provider = db.Providers
+                .Where(p => p.Code.Equals(providerNumber))
+                .FirstOrDefault();
+
+            if (provider == null)
+                return "Invalid provider";
+
+            List<Service> allServices = this.getAllServices();
+
+            List<ServiceReportItem> serializableServices = new List<ServiceReportItem>();
+            foreach (Service service in allServices)
+                serializableServices.Add(new ServiceReportItem(service));
+
+            String result = String.Empty;
+            try
+            {
+                this.reportService.writeServiceDirectory(provider, serializableServices);
+            }
+            catch(Exception ex)
+            {
+                result = "An error occurred." + ex.Message;
+
+            }
+            return result;
+            
         }
 
     }

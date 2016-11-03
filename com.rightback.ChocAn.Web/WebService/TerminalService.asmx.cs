@@ -71,7 +71,7 @@ namespace com.rightback.ChocAn.Web.WebService
         }
 
         [WebMethod]
-        [ScriptMethod(UseHttpGet=true)]
+        [ScriptMethod(UseHttpGet = true)]
         public List<ServiceViewModel> getServices()
         {
 
@@ -88,11 +88,11 @@ namespace com.rightback.ChocAn.Web.WebService
         }
 
         [WebMethod]
-        public RecordClaimResult recordClaim(string providerNumber,string memberNumber,string serviceCode, string comments,DateTime dateServiceProvided)
+        public RecordClaimResult recordClaim(string providerNumber, string memberNumber, string serviceCode, string comments, DateTime dateServiceProvided)
         {
             String result = claimService.addClaim(providerNumber, memberNumber, serviceCode, comments, dateServiceProvided);
 
-            if(!String.IsNullOrWhiteSpace(result))
+            if (!String.IsNullOrWhiteSpace(result))
             {
                 return new RecordClaimResult()
                 {
@@ -113,9 +113,13 @@ namespace com.rightback.ChocAn.Web.WebService
         [WebMethod]
         public String recordClaimCheck(string providerNumber, DateTime currentDate, DateTime serviceDate, String memberName, String memberNumber, String serviceCode, decimal fee)
         {
-            return claimService.addClaimCheck(providerNumber, currentDate,serviceDate,memberName,memberNumber,serviceCode,fee);
+            return claimService.addClaimCheck(providerNumber, currentDate, serviceDate, memberName, memberNumber, serviceCode, fee);
+        }
 
-           
+        [WebMethod]
+        public String requestProviderDirectory(string providerNumber)
+        {
+            return serviceService.sendServiceDirectory(providerNumber);
         }
     }
 }

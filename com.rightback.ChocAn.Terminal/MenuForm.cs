@@ -1,4 +1,5 @@
-﻿using System;
+﻿using com.rightback.ChocAn.Terminal.com.rightback.webservices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,7 +30,13 @@ namespace com.rightback.ChocAn.Terminal
 
         private void btnServiceDirectory_Click(object sender, EventArgs e)
         {
-            //todo
+            TerminalService ts = new TerminalService();
+            String result = ts.requestProviderDirectory(TerminalScreenManager.ProviderCode);
+
+            if (String.IsNullOrEmpty(result))
+                MessageBox.Show("Service directory sent to your email address.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("An error occurred while sending service directory. "+result, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void btnTurnOff_Click(object sender, EventArgs e)
