@@ -152,5 +152,11 @@ namespace com.rightback.ChocAn.Terminal
             else
                 MessageBox.Show(result.message, "Error saving claim", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void btnGoBack_Click(object sender, EventArgs e)
+        {
+            this.clearForm();
+            this.Close();
+        }
     }
 }
