@@ -28,6 +28,11 @@ namespace com.rightback.ChocAn.DAL
         [Display(Name = "Record DateTime of Claim")]
         public DateTime DateOfClaimRecorded { get; set; }
 
+        //we can't rely on Service fee - it must be in claim too.
+        //because service fee can change in time, historical reports should not change
+        [Required]
+        public decimal Fee { get; set; }
+
         [Timestamp]
         public Byte[] Timestamp { get; set; }
 

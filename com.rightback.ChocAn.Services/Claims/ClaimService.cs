@@ -31,6 +31,7 @@ namespace com.rightback.ChocAn.Services.Claims
                 Member = member,
                 Provider = provider,
                 Service = service,
+                Fee = service.Fee,
                 Name = String.Format("Service {0} provided to {1}. (by {2},{3})", service.Name, member.Name, provider.Name, dateServiceProvided)
             };
 
