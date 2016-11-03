@@ -15,13 +15,19 @@ namespace com.rightback.ChocAn.Web.Models
     {
         public string Code { get; set; }
         public string Name { get; set; }
+        public decimal Fee { get; set; }
 
         public static ServiceViewModel fromService(Service service)
         {
+
+            if (service == null)
+                return new ServiceViewModel();
+
             return new ServiceViewModel()
             {
                 Code = service.Code,
-                Name = service.Name
+                Name = service.Name,
+                Fee = service.Fee
             };
         }
 

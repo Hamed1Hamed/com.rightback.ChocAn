@@ -456,6 +456,7 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
+    <Compile Include="WebService\RecordClaimResult.cs" />
     <Compile Include="WebService\TerminalService.asmx.cs">
       <DependentUpon>TerminalService.asmx</DependentUpon>
       <SubType>Component</SubType>

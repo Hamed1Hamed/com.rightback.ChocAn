@@ -16,9 +16,17 @@ namespace com.rightback.ChocAn.DAL
         [Required]
         public string Name { get; set; }
 
+        //date service actually provided to member by provider
+        [Required]
         [DataType(DataType.DateTime)]
         [Display(Name = "DateTime of Claim")]
         public DateTime DateOfClaim { get; set; }
+
+        //date provider recorded the service from its terminal
+        [Required]
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Record DateTime of Claim")]
+        public DateTime DateOfClaimRecorded { get; set; }
 
         [Timestamp]
         public Byte[] Timestamp { get; set; }

@@ -38,6 +38,11 @@ namespace com.rightback.ChocAn.DAL.Migrations
                 new Member { City="Waukesha",Code="123456789",Email = "member@hotmail.com",Name="Koko Jambo",Status = Member.MemberStatus.Active, State = Entities.USState.State.WI, StreetAddres ="I dunno", Zip="53707" },
                                 new Member { City = "Ozakee", Code = "223456789", Email = "suspendedusr@hotmail.com", Name = "Susta User",State = Entities.USState.State.WI, Status = Member.MemberStatus.Suspended, StreetAddres = "I dunno", Zip = "53707" }
                 );
+
+            context.Services.AddOrUpdate(s => s.Code, new Service() { Fee = 80, Code = "598470", Name = "Dietitian" },
+                new Service() { Fee = 80, Code = "883948", Name = "Aerobics Excersise" },
+                new Service() { Fee = 80, Code = "100000", Name = "Test Session" }
+                );
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using com.rightback.ChocAn.DAL;
 using com.rightback.ChocAn.Services;
+using com.rightback.ChocAn.Services.Claims;
 using com.rightback.ChocAn.Services.Members;
 using com.rightback.ChocAn.Services.Providers;
 using com.rightback.ChocAn.Services.Services;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Services;
 using System.Web.Services;
 using static com.rightback.ChocAn.DAL.Member;
 
@@ -26,6 +28,7 @@ namespace com.rightback.ChocAn.Web.WebService
         private IProviderService providerService = ServiceFactory.getProviderService();
         private IMemberService memberService = ServiceFactory.getMemberService();
         private IServiceService serviceService = ServiceFactory.getServiceService();
+        private IClaimService claimService = ServiceFactory.getClaimService();
 
         /// <summary>
         /// Returns true if correct provider code and terminal code provided for the provider.
@@ -68,6 +71,7 @@ namespace com.rightback.ChocAn.Web.WebService
         }
 
         [WebMethod]
+        [ScriptMethod(UseHttpGet=true)]
         public List<ServiceViewModel> getServices()
         {
 
@@ -76,9 +80,34 @@ namespace com.rightback.ChocAn.Web.WebService
         }
 
         [WebMethod]
-        public List<ServiceViewModel> recordProvidedService()
+        [ScriptMethod(UseHttpGet = true)]
+        public ServiceViewModel getService(string code)
         {
-            throw new NotImplementedException();
+
+            return ServiceViewModel.fromService(serviceService.getServiceByCode(code));
+        }
+
+        [WebMethod]
+        public RecordClaimResult recordClaim(string providerNumber,string memberNumber,string serviceCode, string comments,DateTime dateServiceProvided)
+        {
+            String result = claimService.recordClaim(providerNumber, memberNumber, serviceCode, comments, dateServiceProvided);
+
+            if(!String.IsNullOrWhiteSpace(result))
+            {
+                return new RecordClaimResult()
+                {
+                    success = false,
+                    message = result
+                };
+            }
+
+            ServiceViewModel serviceViewModel = ServiceViewModel.fromService(serviceService.getServiceByCode(serviceCode));
+
+            return new RecordClaimResult()
+            {
+                success = true,
+                service = serviceViewModel
+            };
         }
     }
 }

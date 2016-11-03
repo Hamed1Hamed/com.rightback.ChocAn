@@ -10,6 +10,7 @@ namespace com.rightback.ChocAn.Terminal
     {
         private static LoginForm m_LoginForm;
         private static ServiceForm m_ServiceForm;
+        public static String ProviderCode;
 
         public static void providerLoggedIn(LoginForm loginForm)
         {

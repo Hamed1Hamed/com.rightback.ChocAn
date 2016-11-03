@@ -13,6 +13,9 @@ namespace com.rightback.ChocAn.Terminal
 {
     public partial class ServiceForm : Form
     {
+
+        private ServiceViewModel selectedService;
+
         public ServiceForm()
         {
             InitializeComponent();
@@ -44,6 +47,98 @@ namespace com.rightback.ChocAn.Terminal
         {
             lblStatus.Text = "Checking...";
             lblMemberCode.Text = String.Empty;
+        }
+
+        private void btnLookup_Click(object sender, EventArgs e)
+        {
+            this.disableVerifyLabels();
+            ServiceCodesForm serviceCodesForm = new ServiceCodesForm();
+            serviceCodesForm.ShowDialog();
+
+            txtServiceCode.Text = serviceCodesForm.getSelectedServiceCode();
+
+            serviceCodesForm.Dispose();
+        }
+
+        private void disableVerifyLabels()
+        {
+            this.lblServiceName.Visible = false;
+            this.lblVerify.Visible = false;
+            this.selectedService = null;
+        }
+
+        private void enableVerifyLabels(ServiceViewModel service) {
+
+            if (service == null)
+            {
+                lblVerify.Text = "Service not found";
+                this.lblVerify.ForeColor = Color.Red;
+                this.selectedService = null;
+            }
+            else
+            {
+                this.selectedService = service;
+                this.lblVerify.Text = service.Name;
+            }
+
+
+            this.lblServiceName.Visible = true;
+            
+            this.lblVerify.Visible = true;
+            this.lblVerify.ForeColor = Color.Black;
+        }
+
+
+        private void btnVerify_Click(object sender, EventArgs e)
+        {
+            TerminalService ts = new TerminalService();
+            ServiceViewModel service = ts.getService(txtServiceCode.Text);
+
+            if (service==null || String.IsNullOrWhiteSpace(service.Name))
+                this.enableVerifyLabels(null);
+            else
+                this.enableVerifyLabels(service);
+        }
+
+        private void txtServiceCode_Click(object sender, EventArgs e)
+        {
+            this.disableVerifyLabels();
+        }
+
+        private String getMemberCode()
+        {
+            String memberCode;
+
+            memberCode = txtMemberCode.Text;
+            if (String.IsNullOrWhiteSpace(memberCode) || memberCode.Length != 9)
+                memberCode = lblMemberCode.Text;
+
+
+            return memberCode;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            String memberCode = this.getMemberCode();
+            if(String.IsNullOrWhiteSpace(memberCode) || memberCode.Length!=9)
+            {
+                MessageBox.Show("Please enter a 9 digit member code.","Missing information",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (this.selectedService==null)
+            {
+                MessageBox.Show("Please enter a 6 digit service code and verify","Missing information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            TerminalService ts = new TerminalService();
+            RecordClaimResult result = ts.recordClaim(TerminalScreenManager.ProviderCode, memberCode, this.selectedService.Code, txtComments.Text, dtServiceProvided.Value);
+
+            if (result.success)
+                MessageBox.Show("Claim recorded successfully. Fee to be paid is: " + result.service.Fee, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show(result.message, "Error saving claim", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

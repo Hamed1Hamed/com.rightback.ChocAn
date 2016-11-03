@@ -25,9 +25,6 @@
   <Class Name="com.rightback.ChocAn.Services.BaseService">
     <Position X="0.75" Y="1.5" Width="1.5" />
     <TypeIdentifier />
-    <ShowAsAssociation>
-      <Field Name="db" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="com.rightback.ChocAn.DAL.ChocAnDBModel" Collapsed="true">
     <Position X="8" Y="2" Width="1.5" />
