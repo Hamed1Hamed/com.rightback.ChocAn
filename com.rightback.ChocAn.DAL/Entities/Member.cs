@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
+
 using static com.rightback.ChocAn.DAL.Entities.USState;
 
 namespace com.rightback.ChocAn.DAL
