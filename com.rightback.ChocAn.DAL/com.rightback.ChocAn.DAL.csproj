@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Entities\Batch.cs" />
     <Compile Include="ChocAnDBModel.cs" />
+    <Compile Include="Entities\ClaimCheck.cs" />
     <Compile Include="Entities\Claim.cs" />
     <Compile Include="Entities\Member.cs" />
     <Compile Include="Entities\Person.cs" />
