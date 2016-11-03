@@ -23,7 +23,7 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="TerminalServiceSoap", Namespace="http://rightback.com/")]
@@ -34,6 +34,8 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
         private System.Threading.SendOrPostCallback verifyMemberOperationCompleted;
         
         private System.Threading.SendOrPostCallback getServicesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback recordProvidedServiceOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -81,6 +83,9 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
         
         /// <remarks/>
         public event getServicesCompletedEventHandler getServicesCompleted;
+        
+        /// <remarks/>
+        public event recordProvidedServiceCompletedEventHandler recordProvidedServiceCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rightback.com/loginProvider", RequestNamespace="http://rightback.com/", ResponseNamespace="http://rightback.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -170,6 +175,33 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rightback.com/recordProvidedService", RequestNamespace="http://rightback.com/", ResponseNamespace="http://rightback.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ServiceViewModel[] recordProvidedService() {
+            object[] results = this.Invoke("recordProvidedService", new object[0]);
+            return ((ServiceViewModel[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void recordProvidedServiceAsync() {
+            this.recordProvidedServiceAsync(null);
+        }
+        
+        /// <remarks/>
+        public void recordProvidedServiceAsync(object userState) {
+            if ((this.recordProvidedServiceOperationCompleted == null)) {
+                this.recordProvidedServiceOperationCompleted = new System.Threading.SendOrPostCallback(this.OnrecordProvidedServiceOperationCompleted);
+            }
+            this.InvokeAsync("recordProvidedService", new object[0], this.recordProvidedServiceOperationCompleted, userState);
+        }
+        
+        private void OnrecordProvidedServiceOperationCompleted(object arg) {
+            if ((this.recordProvidedServiceCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.recordProvidedServiceCompleted(this, new recordProvidedServiceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -189,7 +221,7 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://rightback.com/")]
     public enum VerifyMemberResult {
@@ -205,7 +237,7 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -238,11 +270,11 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void loginProviderCompletedEventHandler(object sender, loginProviderCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class loginProviderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -264,11 +296,11 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void verifyMemberCompletedEventHandler(object sender, verifyMemberCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class verifyMemberCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -290,11 +322,11 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     public delegate void getServicesCompletedEventHandler(object sender, getServicesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class getServicesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -302,6 +334,32 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
         private object[] results;
         
         internal getServicesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ServiceViewModel[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ServiceViewModel[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    public delegate void recordProvidedServiceCompletedEventHandler(object sender, recordProvidedServiceCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class recordProvidedServiceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal recordProvidedServiceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

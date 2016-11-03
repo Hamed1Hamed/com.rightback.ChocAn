@@ -59,6 +59,19 @@
           <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="recordProvidedService">
+        <s:complexType />
+      </s:element>
+      <s:element name="recordProvidedServiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="recordProvidedServiceResult" type="tns:ArrayOfServiceViewModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="boolean" type="s:boolean" />
+      <s:element name="VerifyMemberResult" type="tns:VerifyMemberResult" />
+      <s:element name="ArrayOfServiceViewModel" nillable="true" type="tns:ArrayOfServiceViewModel" />
     </s:schema>
   </wsdl:types>
   <wsdl:message name="loginProviderSoapIn">
@@ -79,6 +92,54 @@
   <wsdl:message name="getServicesSoapOut">
     <wsdl:part name="parameters" element="tns:getServicesResponse" />
   </wsdl:message>
+  <wsdl:message name="recordProvidedServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:recordProvidedService" />
+  </wsdl:message>
+  <wsdl:message name="recordProvidedServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:recordProvidedServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="loginProviderHttpGetIn">
+    <wsdl:part name="providerCode" type="s:string" />
+    <wsdl:part name="terminalCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="loginProviderHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="verifyMemberHttpGetIn">
+    <wsdl:part name="memberCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="verifyMemberHttpGetOut">
+    <wsdl:part name="Body" element="tns:VerifyMemberResult" />
+  </wsdl:message>
+  <wsdl:message name="getServicesHttpGetIn" />
+  <wsdl:message name="getServicesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfServiceViewModel" />
+  </wsdl:message>
+  <wsdl:message name="recordProvidedServiceHttpGetIn" />
+  <wsdl:message name="recordProvidedServiceHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfServiceViewModel" />
+  </wsdl:message>
+  <wsdl:message name="loginProviderHttpPostIn">
+    <wsdl:part name="providerCode" type="s:string" />
+    <wsdl:part name="terminalCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="loginProviderHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="verifyMemberHttpPostIn">
+    <wsdl:part name="memberCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="verifyMemberHttpPostOut">
+    <wsdl:part name="Body" element="tns:VerifyMemberResult" />
+  </wsdl:message>
+  <wsdl:message name="getServicesHttpPostIn" />
+  <wsdl:message name="getServicesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfServiceViewModel" />
+  </wsdl:message>
+  <wsdl:message name="recordProvidedServiceHttpPostIn" />
+  <wsdl:message name="recordProvidedServiceHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfServiceViewModel" />
+  </wsdl:message>
   <wsdl:portType name="TerminalServiceSoap">
     <wsdl:operation name="loginProvider">
       <wsdl:input message="tns:loginProviderSoapIn" />
@@ -91,6 +152,46 @@
     <wsdl:operation name="getServices">
       <wsdl:input message="tns:getServicesSoapIn" />
       <wsdl:output message="tns:getServicesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="recordProvidedService">
+      <wsdl:input message="tns:recordProvidedServiceSoapIn" />
+      <wsdl:output message="tns:recordProvidedServiceSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TerminalServiceHttpGet">
+    <wsdl:operation name="loginProvider">
+      <wsdl:input message="tns:loginProviderHttpGetIn" />
+      <wsdl:output message="tns:loginProviderHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="verifyMember">
+      <wsdl:input message="tns:verifyMemberHttpGetIn" />
+      <wsdl:output message="tns:verifyMemberHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getServices">
+      <wsdl:input message="tns:getServicesHttpGetIn" />
+      <wsdl:output message="tns:getServicesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="recordProvidedService">
+      <wsdl:input message="tns:recordProvidedServiceHttpGetIn" />
+      <wsdl:output message="tns:recordProvidedServiceHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TerminalServiceHttpPost">
+    <wsdl:operation name="loginProvider">
+      <wsdl:input message="tns:loginProviderHttpPostIn" />
+      <wsdl:output message="tns:loginProviderHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="verifyMember">
+      <wsdl:input message="tns:verifyMemberHttpPostIn" />
+      <wsdl:output message="tns:verifyMemberHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getServices">
+      <wsdl:input message="tns:getServicesHttpPostIn" />
+      <wsdl:output message="tns:getServicesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="recordProvidedService">
+      <wsdl:input message="tns:recordProvidedServiceHttpPostIn" />
+      <wsdl:output message="tns:recordProvidedServiceHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="TerminalServiceSoap" type="tns:TerminalServiceSoap">
@@ -115,6 +216,15 @@
     </wsdl:operation>
     <wsdl:operation name="getServices">
       <soap:operation soapAction="http://rightback.com/getServices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recordProvidedService">
+      <soap:operation soapAction="http://rightback.com/recordProvidedService" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -152,6 +262,93 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="recordProvidedService">
+      <soap12:operation soapAction="http://rightback.com/recordProvidedService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TerminalServiceHttpGet" type="tns:TerminalServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="loginProvider">
+      <http:operation location="/loginProvider" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyMember">
+      <http:operation location="/verifyMember" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getServices">
+      <http:operation location="/getServices" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recordProvidedService">
+      <http:operation location="/recordProvidedService" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TerminalServiceHttpPost" type="tns:TerminalServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="loginProvider">
+      <http:operation location="/loginProvider" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyMember">
+      <http:operation location="/verifyMember" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getServices">
+      <http:operation location="/getServices" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recordProvidedService">
+      <http:operation location="/recordProvidedService" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="TerminalService">
     <wsdl:port name="TerminalServiceSoap" binding="tns:TerminalServiceSoap">
@@ -159,6 +356,12 @@
     </wsdl:port>
     <wsdl:port name="TerminalServiceSoap12" binding="tns:TerminalServiceSoap12">
       <soap12:address location="http://localhost:51368/webservice/terminalservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TerminalServiceHttpGet" binding="tns:TerminalServiceHttpGet">
+      <http:address location="http://localhost:51368/webservice/terminalservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TerminalServiceHttpPost" binding="tns:TerminalServiceHttpPost">
+      <http:address location="http://localhost:51368/webservice/terminalservice.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

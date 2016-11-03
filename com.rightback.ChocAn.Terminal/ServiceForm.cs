@@ -45,5 +45,11 @@ namespace com.rightback.ChocAn.Terminal
             lblStatus.Text = "Checking...";
             lblMemberCode.Text = String.Empty;
         }
+
+        private void btnLookup_Click(object sender, EventArgs e)
+        {
+            ServiceCodesForm serviceCodesForm = new ServiceCodesForm();
+            serviceCodesForm.ShowDialog();
+        }
     }
 }

@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Services;
 using System.Web.Services;
 using static com.rightback.ChocAn.DAL.Member;
 
@@ -68,6 +69,7 @@ namespace com.rightback.ChocAn.Web.WebService
         }
 
         [WebMethod]
+        [ScriptMethod(UseHttpGet=true)]
         public List<ServiceViewModel> getServices()
         {
 
