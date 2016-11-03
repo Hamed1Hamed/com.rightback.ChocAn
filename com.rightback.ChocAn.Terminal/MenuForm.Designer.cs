@@ -98,6 +98,7 @@
             this.Controls.Add(this.btnClaimConfirm);
             this.Controls.Add(this.btnService);
             this.Name = "MenuForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MenuForm";
             this.ResumeLayout(false);
 

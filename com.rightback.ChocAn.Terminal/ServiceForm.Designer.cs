@@ -275,6 +275,7 @@
             this.Controls.Add(this.btnCheckMemberStatus);
             this.Controls.Add(this.txtMemberCode);
             this.Name = "ServiceForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ServiceForm";
             this.ResumeLayout(false);
             this.PerformLayout();

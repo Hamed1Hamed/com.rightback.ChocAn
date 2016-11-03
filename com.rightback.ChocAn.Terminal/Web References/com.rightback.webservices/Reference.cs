@@ -39,6 +39,8 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
         
         private System.Threading.SendOrPostCallback recordClaimOperationCompleted;
         
+        private System.Threading.SendOrPostCallback recordClaimCheckOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -91,6 +93,9 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
         
         /// <remarks/>
         public event recordClaimCompletedEventHandler recordClaimCompleted;
+        
+        /// <remarks/>
+        public event recordClaimCheckCompletedEventHandler recordClaimCheckCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rightback.com/loginProvider", RequestNamespace="http://rightback.com/", ResponseNamespace="http://rightback.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -242,6 +247,47 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
             if ((this.recordClaimCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.recordClaimCompleted(this, new recordClaimCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rightback.com/recordClaimCheck", RequestNamespace="http://rightback.com/", ResponseNamespace="http://rightback.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string recordClaimCheck(string providerNumber, System.DateTime currentDate, System.DateTime serviceDate, string memberName, string memberNumber, string serviceCode, decimal fee) {
+            object[] results = this.Invoke("recordClaimCheck", new object[] {
+                        providerNumber,
+                        currentDate,
+                        serviceDate,
+                        memberName,
+                        memberNumber,
+                        serviceCode,
+                        fee});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void recordClaimCheckAsync(string providerNumber, System.DateTime currentDate, System.DateTime serviceDate, string memberName, string memberNumber, string serviceCode, decimal fee) {
+            this.recordClaimCheckAsync(providerNumber, currentDate, serviceDate, memberName, memberNumber, serviceCode, fee, null);
+        }
+        
+        /// <remarks/>
+        public void recordClaimCheckAsync(string providerNumber, System.DateTime currentDate, System.DateTime serviceDate, string memberName, string memberNumber, string serviceCode, decimal fee, object userState) {
+            if ((this.recordClaimCheckOperationCompleted == null)) {
+                this.recordClaimCheckOperationCompleted = new System.Threading.SendOrPostCallback(this.OnrecordClaimCheckOperationCompleted);
+            }
+            this.InvokeAsync("recordClaimCheck", new object[] {
+                        providerNumber,
+                        currentDate,
+                        serviceDate,
+                        memberName,
+                        memberNumber,
+                        serviceCode,
+                        fee}, this.recordClaimCheckOperationCompleted, userState);
+        }
+        
+        private void OnrecordClaimCheckOperationCompleted(object arg) {
+            if ((this.recordClaimCheckCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.recordClaimCheckCompleted(this, new recordClaimCheckCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -496,6 +542,32 @@ namespace com.rightback.ChocAn.Terminal.com.rightback.webservices {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((RecordClaimResult)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    public delegate void recordClaimCheckCompletedEventHandler(object sender, recordClaimCheckCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class recordClaimCheckCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal recordClaimCheckCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
             }
         }
     }

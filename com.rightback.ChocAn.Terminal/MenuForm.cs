@@ -24,12 +24,12 @@ namespace com.rightback.ChocAn.Terminal
 
         private void btnClaimConfirm_Click(object sender, EventArgs e)
         {
-
+            TerminalScreenManager.claimConfirm();
         }
 
         private void btnServiceDirectory_Click(object sender, EventArgs e)
         {
-
+            //todo
         }
 
         private void btnTurnOff_Click(object sender, EventArgs e)

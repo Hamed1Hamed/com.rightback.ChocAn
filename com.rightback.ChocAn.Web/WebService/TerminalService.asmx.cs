@@ -90,7 +90,7 @@ namespace com.rightback.ChocAn.Web.WebService
         [WebMethod]
         public RecordClaimResult recordClaim(string providerNumber,string memberNumber,string serviceCode, string comments,DateTime dateServiceProvided)
         {
-            String result = claimService.recordClaim(providerNumber, memberNumber, serviceCode, comments, dateServiceProvided);
+            String result = claimService.addClaim(providerNumber, memberNumber, serviceCode, comments, dateServiceProvided);
 
             if(!String.IsNullOrWhiteSpace(result))
             {
@@ -108,6 +108,14 @@ namespace com.rightback.ChocAn.Web.WebService
                 success = true,
                 service = serviceViewModel
             };
+        }
+
+        [WebMethod]
+        public String recordClaimCheck(string providerNumber, DateTime currentDate, DateTime serviceDate, String memberName, String memberNumber, String serviceCode, decimal fee)
+        {
+            return claimService.addClaimCheck(providerNumber, currentDate,serviceDate,memberName,memberNumber,serviceCode,fee);
+
+           
         }
     }
 }
