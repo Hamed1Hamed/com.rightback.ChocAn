@@ -9,6 +9,11 @@ namespace com.rightback.ChocAn.Services.Helpers
 {
     public class DataConversion
     {
+        /// <summary>
+        /// Convert Data Table To HTML
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns>string</returns>
         public static string ConvertDataTableToHTML(DataTable dt)
         {
             string html = "<table>";

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace com.rightback.ChocAn.Services.Claims
 {
     public class ClaimService : BaseService, IClaimService
-    {
+    { 
         public string addClaim(string providerNumber, string memberNumber, string serviceCode, string comments, DateTime dateServiceProvided)
         {
-            Provider provider = db.Providers.Where(p => p.Code.Equals(providerNumber)).FirstOrDefault();
+                Provider provider = db.Providers.Where(p => p.Code.Equals(providerNumber)).FirstOrDefault();
             if (provider == null)
                 return "Provider not found.";
 

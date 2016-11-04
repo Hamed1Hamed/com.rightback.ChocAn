@@ -59,6 +59,7 @@
     <Compile Include="EmailTest.cs" />
     <Compile Include="ProviderServiceTests.cs" />
     <Compile Include="ServiceServiceTests.cs" />
+    <Compile Include="UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\com.rightback.ChocAn.Services\com.rightback.ChocAn.Services.csproj">
