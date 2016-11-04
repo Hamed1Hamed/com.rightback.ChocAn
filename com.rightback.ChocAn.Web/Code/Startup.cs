@@ -11,8 +11,8 @@ namespace com.rightback.ChocAn.Web
 
           //friday report generation
           //this is creating exception, please do not leave the app in broken state :) - commenting out
-          //Maged reply: I think the problem is not here, you have to run Update-Database command 
-          //each time you do mod in DAL :)
+          //Maged reply: the problem fixed I forgot to put async keword on scheduler method :)
+          //
             ReportBatch.ScheduleTask();
         }
 
