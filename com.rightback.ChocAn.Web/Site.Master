@@ -66,7 +66,7 @@
                                 <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
                                 <li>
                                     <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
-                                    <a href="~OperatorConsole.aspx" > <span class="glyphicon glyphicon-tasks"></span> </a>
+                                    <a href="OperatorConsole.aspx" > <span class="glyphicon glyphicon-tasks"></span> </a>
                                 </li>
                             </ul>
                         </LoggedInTemplate>

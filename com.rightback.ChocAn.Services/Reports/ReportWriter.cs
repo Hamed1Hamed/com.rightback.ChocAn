@@ -67,7 +67,7 @@ namespace com.rightback.ChocAn.Services
             }
             catch (Exception ex)
             {
-                throw ex; ;
+                throw ex; 
             }
         }
 
