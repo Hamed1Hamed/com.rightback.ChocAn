@@ -24,5 +24,12 @@ namespace com.rightback.ChocAn.Services.Services
 
         IQueryable<Claim> getClaimsWithin(DateTime start, DateTime end);
 
+        /// <summary>
+        /// Sends service directory to the provider
+        /// </summary>
+        /// <param name="providerNumber"></param>
+        /// <returns></returns>
+        String sendServiceDirectory(string providerNumber);
+
     }
 }

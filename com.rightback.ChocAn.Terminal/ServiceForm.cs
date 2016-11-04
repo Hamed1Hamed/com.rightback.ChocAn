@@ -117,6 +117,17 @@ namespace com.rightback.ChocAn.Terminal
             return memberCode;
         }
 
+        private void clearForm()
+        {
+            this.disableVerifyLabels();
+            this.lblMemberCode.Text = String.Empty;
+            this.lblStatus.Text = String.Empty;
+            this.txtComments.Text = String.Empty;
+            txtMemberCode.Text = String.Empty;
+            txtServiceCode.Text = String.Empty;     
+
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             String memberCode = this.getMemberCode();
@@ -136,9 +147,18 @@ namespace com.rightback.ChocAn.Terminal
             RecordClaimResult result = ts.recordClaim(TerminalScreenManager.ProviderCode, memberCode, this.selectedService.Code, txtComments.Text, dtServiceProvided.Value);
 
             if (result.success)
+            {
                 MessageBox.Show("Claim recorded successfully. Fee to be paid is: " + result.service.Fee, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.clearForm();
+            }
             else
                 MessageBox.Show(result.message, "Error saving claim", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btnGoBack_Click(object sender, EventArgs e)
+        {
+            this.clearForm();
+            this.Close();
         }
     }
 }

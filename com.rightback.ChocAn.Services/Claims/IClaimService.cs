@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace com.rightback.ChocAn.Services.Claims
 {
     public interface IClaimService
     {
-        String recordClaim(string providerNumber, string memberNumber, string serviceCode, string comments, DateTime dateServiceProvided);
+        String addClaim(string providerNumber, string memberNumber, string serviceCode, string comments, DateTime dateServiceProvided);
+
+        String addClaimCheck(string providerNumber,DateTime currentDate,DateTime serviceDate,String memberName,String memberNumber,String serviceCode,decimal fee);
     }
 }

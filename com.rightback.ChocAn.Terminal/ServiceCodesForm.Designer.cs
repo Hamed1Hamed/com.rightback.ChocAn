@@ -32,9 +32,9 @@
             this.gvServiceCodes = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.serviceCodeSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtServiceCode = new System.Windows.Forms.TextBox();
             this.lblServiceCode = new System.Windows.Forms.Label();
+            this.serviceCodeSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gvServiceCodes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceCodeSource)).BeginInit();
             this.SuspendLayout();
@@ -68,10 +68,6 @@
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
-            // serviceCodeSource
-            // 
-            this.serviceCodeSource.AllowNew = false;
-            // 
             // txtServiceCode
             // 
             this.txtServiceCode.Location = new System.Drawing.Point(93, 29);
@@ -90,6 +86,10 @@
             this.lblServiceCode.TabIndex = 2;
             this.lblServiceCode.Text = "ServiceCode";
             // 
+            // serviceCodeSource
+            // 
+            this.serviceCodeSource.AllowNew = false;
+            // 
             // ServiceCodesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -99,6 +99,7 @@
             this.Controls.Add(this.txtServiceCode);
             this.Controls.Add(this.gvServiceCodes);
             this.Name = "ServiceCodesForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ServiceCodesForm";
             this.Load += new System.EventHandler(this.ServiceCodesForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gvServiceCodes)).EndInit();

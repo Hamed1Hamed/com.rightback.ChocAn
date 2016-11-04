@@ -65,10 +65,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\IProviderService.cs" />
     <Compile Include="Providers\ProviderService.cs" />
+    <Compile Include="Reports\IReportService.cs" />
     <Compile Include="Reports\ReportBatch.cs" />
+    <Compile Include="Reports\ReportService.cs" />
     <Compile Include="Reports\ReportWriter.cs" />
     <Compile Include="ServiceFactory.cs" />
     <Compile Include="Services\IServiceService.cs" />
+    <Compile Include="Services\ServiceReportItem.cs" />
     <Compile Include="Services\ServiceService.cs" />
     <Compile Include="Helpers\Token.cs" />
   </ItemGroup>
