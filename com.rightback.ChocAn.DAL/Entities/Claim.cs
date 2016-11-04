@@ -31,7 +31,7 @@ namespace com.rightback.ChocAn.DAL
         //we can't rely on Service fee - it must be in claim too.
         //because service fee can change in time, historical reports should not change
         [Required]
-        public decimal Fee { get; set; }
+        public decimal Fee { get { return this.Fee; } set { Fee=Service.Fee; } }
 
         [Timestamp]
         public Byte[] Timestamp { get; set; }
