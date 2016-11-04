@@ -12,8 +12,10 @@
         <div id="Members" class="tab-pane active">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
+                    <br>
                     </br>
                     <asp:TextBox ID="TextBoxSerchMembers" runat="server" placeHolder="Search Keword" OnTextChanged="TextBoxSerchMembers_TextChanged" AutoPostBack="true"></asp:TextBox>
+                     <br>
                      </br>
                     <asp:GridView  ID="GridViewMembers" runat="server" PageSize="20" AllowSorting="True" AutoGenerateColumns="False" CellPadding="3" DataKeyNames="MemberID" ForeColor="Black" GridLines="Vertical" OnPageIndexChanging="GridViewMembers_PageIndexChanging" OnSelectedIndexChanging="GridViewMembers_SelectedIndexChanging" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">
 
@@ -84,7 +86,7 @@
                     </asp:GridView>
 
            
-                                Selected Member Claims:
+                                <p>Selected Member Claims within 7 days:</p>
                                 <br />
                                 <asp:GridView ID="GridViewForMemberClaims"  runat="server" AutoGenerateColumns="False" DataKeyNames="ClaimID" ShowHeaderWhenEmpty="true"  EmptyDataText="No data found">
                                     <Columns>
@@ -108,8 +110,10 @@
         <div id="Providers" class="tab-pane fade">
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>`  
+                     <br>  
                      </br>
                     <asp:TextBox ID="TextBoxSearchProviders" runat="server" placeHolder="Search Keword" OnTextChanged="TextBoxSearchProviders_TextChanged" AutoPostBack="true"></asp:TextBox>
+                     <br>
                      </br>
                     <asp:GridView ID="GridViewForProviders" runat="server" PageSize="20" AllowSorting="True" AutoGenerateColumns="False" CellPadding="3" DataKeyNames="ProviderID" ForeColor="Black" GridLines="Vertical" OnPageIndexChanging="GridViewForProviders_PageIndexChanging" OnSelectedIndexChanging="GridViewForProviders_SelectedIndexChanging" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" ShowHeaderWhenEmpty="true" EmptyDataText="No data found" >
 

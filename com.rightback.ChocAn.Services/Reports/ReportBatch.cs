@@ -15,38 +15,39 @@ namespace com.rightback.ChocAn.Services
 {
     public class ReportBatch
     {
-        public static void ScheduleTask()
+        public static async void ScheduleTask()
         {
             if (!checkIfLastReportWasGenerated())
             {
                 int daysToOffset = (((int)DayOfWeek.Friday - (int)DateTime.Now.DayOfWeek + 7) % 7) * -1;
                 DateTime lastFridayOfLastCompletedWeek = DateTime.Now.AddDays(daysToOffset);
                 int day = lastFridayOfLastCompletedWeek.Date.Day;
-                int month= lastFridayOfLastCompletedWeek.Date.Month;
+                int month = lastFridayOfLastCompletedWeek.Date.Month;
                 int year = lastFridayOfLastCompletedWeek.Date.Year;
-                runBatch(year,month,day);
+                runBatch(year, month, day);
             }
-              
+
             // This finds the next Friday (or today if it's Friday) and then adds a day... so the
             // result is in the range [0-6]
-                int daysUntilFriday = (((int)DayOfWeek.Friday - (int)DateTime.Now.DayOfWeek + 7) % 7) ;
+            int daysUntilFriday = (((int)DayOfWeek.Friday - (int)DateTime.Now.DayOfWeek + 7) % 7);
 
             if (daysUntilFriday > 0)
             {
                 const int hrToMs = 60 * 60 * 1000;
                 //waits certan time and run the code
-                Task.Delay(hrToMs).Wait();
+                await Task.Delay(hrToMs);
                 ScheduleTask();
             }
             else
             {
-                while (DateTime.Now.TimeOfDay.Hours!=1)
-                    Task.Delay(1000).Wait();
+                const int minToMs = 60 * 1000;
+                while (DateTime.Now.TimeOfDay.Hours != 1)
+                await Task.Delay(minToMs);
                 runBatch(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             }
         }
 
-      
+
         private static bool checkIfLastReportWasGenerated()
         {
 
@@ -72,10 +73,11 @@ namespace com.rightback.ChocAn.Services
             DateTime end = new DateTime(year,month,day);
             DateTime start = end.AddDays(-7);
 
-            Services.IServiceService services = new ServiceService();
+            IServiceService services = new ServiceService();
             var claims = services.getClaimsWithin(start, end);
 
             Emails.IEmailService emailServer = new Emails.EmailService();
+            Reports.IReportService Writer = new Reports.ReportService();
 
             foreach (Member m in from u in claims select u.Member)
             {
@@ -87,7 +89,7 @@ namespace com.rightback.ChocAn.Services
                     attachment.Name = "statment.html";
                 //send email
                 emailServer.sendEmail("no-reply@ChocAn.com",m.Email,"ChocAn Statment", "Attached your statment for this week." , new Attachment[] {attachment });
-             
+
             }
             foreach (Provider  p in from u in claims select u.Provider)
             {
@@ -99,7 +101,7 @@ namespace com.rightback.ChocAn.Services
                 attachment.Name = "statment.html";
                 //send email
                 emailServer.sendEmail("no-reply@ChocAn.com", p.Email, "ChocAn Statment", "Attached your statment for this week.", new Attachment[] { attachment });
-
+                
 
             }
             //store

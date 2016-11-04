@@ -51,12 +51,22 @@ namespace com.rightback.ChocAn.Web
 
 
         #region Members tab operations
-
+        
         private void BindgridviewForMemberClaims()
         {
-           
-            GridViewForMemberClaims.DataSource = (Session["Member"] as List<Member>);
+            if( Session["MemberClaims"] != null)
+            {
+            var filtered=from u in (Session["MemberClaims"] as List<Claim>)
+                         select new { ClaimID=u.ClaimID,
+                             Name =u.Name,
+                             DateOfClaim =u.DateOfClaim,
+                             Comments =u.Comments,
+                             Member_MemberID=u.Member.MemberID,
+                             Provider_ProviderID =u.Provider.ProviderID,
+                             Service_ServiceID =u.Service.ServiceID };
+            GridViewForMemberClaims.DataSource = filtered;
                 GridViewForMemberClaims.DataBind();
+            }
         }
 
         private void BindMemberData()
@@ -82,7 +92,7 @@ namespace com.rightback.ChocAn.Web
 
             IServiceService services = new ServiceService();
             int MemberId = (int)this.GridViewMembers.DataKeys[e.NewSelectedIndex].Value;
-            Session["Member"] = (from u in services.getClaimsWithin(DateTime.Now.AddDays(-7), DateTime.Now) where u.Member.MemberID == MemberId select u).ToList();
+            Session["MemberClaims"] = (from u in services.getClaimsWithin(DateTime.Now.AddDays(-7), DateTime.Now) where u.Member.MemberID == MemberId select u).ToList();
             BindgridviewForMemberClaims();
         }
 
@@ -108,10 +118,22 @@ namespace com.rightback.ChocAn.Web
 
         private void BindGridViewForProviderClaims()
         {
-
-            GridViewForProviderClaims.DataSource = (Session["Provider"] as List<Provider>); ;
-
-            GridViewForProviderClaims.DataBind();
+            if (Session["ProviderClaims"] != null)
+            {
+                var filtered = from u in (Session["ProviderClaims"] as List<Claim>)
+                               select new
+                               {
+                                   ClaimID = u.ClaimID,
+                                   Name = u.Name,
+                                   DateOfClaim = u.DateOfClaim,
+                                   Comments = u.Comments,
+                                   Member_MemberID = u.Member.MemberID,
+                                   Provider_ProviderID = u.Provider.ProviderID,
+                                   Service_ServiceID = u.Service.ServiceID
+                               };
+                GridViewForProviderClaims.DataSource = filtered;
+                GridViewForProviderClaims.DataBind();
+            }
         }
        
         protected void GridViewForProviders_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -124,7 +146,7 @@ namespace com.rightback.ChocAn.Web
         {
             IServiceService services = new ServiceService();
             int ProviderId = (int)this.GridViewForProviders.DataKeys[e.NewSelectedIndex].Value;
-            Session["Provider"] = (from u in services.getClaimsWithin(DateTime.Now.AddDays(-7), DateTime.Now) where u.Provider.ProviderID == ProviderId select u);
+            Session["ProviderClaims"] = (from u in services.getClaimsWithin(DateTime.Now.AddDays(-7), DateTime.Now) where u.Provider.ProviderID == ProviderId select u).ToList();
             BindGridViewForProviderClaims();
         }
         protected void TextBoxSearchProviders_TextChanged(object sender, EventArgs e)
@@ -145,7 +167,7 @@ namespace com.rightback.ChocAn.Web
 
         public void BindFiles()
         {
-            string[] filePaths = Directory.GetFiles(Server.MapPath("~/Uploads/"));
+            string[] filePaths = Directory.GetFiles(Server.MapPath("~/Reports/"));
             List<ListItem> files = new List<ListItem>();
             foreach (string filePath in filePaths)
             {
@@ -159,7 +181,7 @@ namespace com.rightback.ChocAn.Web
             if (AsyncFileUpload1.HasFile)
             {
                 string fileName = Path.GetFileName(AsyncFileUpload1.PostedFile.FileName);
-                AsyncFileUpload1.PostedFile.SaveAs(Server.MapPath("~/Uploads/") + fileName);
+                AsyncFileUpload1.PostedFile.SaveAs(Server.MapPath("~/Reports/") + fileName);
                 Response.Redirect(Request.Url.AbsoluteUri);
             }
         }
