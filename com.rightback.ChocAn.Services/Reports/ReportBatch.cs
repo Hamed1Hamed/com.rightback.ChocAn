@@ -1,5 +1,6 @@
 ﻿using com.rightback.ChocAn.DAL;
 using com.rightback.ChocAn.Services;
+using com.rightback.ChocAn.Services.Helpers;
 using com.rightback.ChocAn.Services.Services;
 using System;
 using System.Collections.Generic;
@@ -82,7 +83,7 @@ namespace com.rightback.ChocAn.Services
             foreach (Member m in from u in claims select u.Member)
             {
                 var memberClaims= claims.Where(e => e.Member.MemberID == m.MemberID);
-                var statment = Helpers.DataConversion.ConvertDataTableToHTML(IquerableConverter.ToDataTable(memberClaims.ToList()));
+                var statment = Helpers.DataConversion.ConvertDataTableToHTML(DataConversion.ToDataTable(memberClaims.ToList()));
                 MemoryStream stream = new MemoryStream(Encoding.ASCII.GetBytes(statment));
                     //Add a new attachment to the E-mail message, using the correct MIME type
                     Attachment attachment = new Attachment(stream, new ContentType("text/plain"));
@@ -94,7 +95,7 @@ namespace com.rightback.ChocAn.Services
             foreach (Provider  p in from u in claims select u.Provider)
             {
                 var providerClaims = claims.Where(e => e.Provider.ProviderID == p.ProviderID);
-                var statment = Helpers.DataConversion.ConvertDataTableToHTML(IquerableConverter.ToDataTable(providerClaims.ToList()));
+                var statment = Helpers.DataConversion.ConvertDataTableToHTML(DataConversion.ToDataTable(providerClaims.ToList()));
                 MemoryStream stream = new MemoryStream(Encoding.ASCII.GetBytes(statment));
                 //Add a new attachment to the E-mail message, using the correct MIME type
                 Attachment attachment = new Attachment(stream, new ContentType("text/plain"));

@@ -7,6 +7,7 @@ using com.rightback.ChocAn.DAL;
 using System.Data;
 using com.rightback.ChocAn.Services.Services;
 using com.rightback.ChocAn.DAL.Entities;
+using com.rightback.ChocAn.Services.Helpers;
 
 namespace com.rightback.ChocAn.Services.Reports
 {
@@ -16,7 +17,7 @@ namespace com.rightback.ChocAn.Services.Reports
         {
             string fileName = String.Format("ServiceDirectory_{0}_{1:MM-dd-yyyy}", provider.Name.Replace(" ", "-"), DateTime.Now);
             string filePath = System.Web.HttpContext.Current.Server.MapPath("~/Reports/" + fileName);
-            DataTable dt = IquerableConverter.ListToDataTable(services);
+            DataTable dt = DataConversion.ToDataTable(services);
             ReportWriter.CreateCSVFile(dt, filePath + "txt");
             ReportWriter.CreateHtmlFile(dt, filePath + "html");
         }
@@ -33,7 +34,7 @@ namespace com.rightback.ChocAn.Services.Reports
         {
             string fileName = String.Format("ServiceDirectory_{0}_{1:MM-dd-yyyy}", member.Name.Replace(" ", "-"), DateTime.Now);
             string filePath = System.Web.HttpContext.Current.Server.MapPath("~/Reports/" + fileName);
-            DataTable dt = IquerableConverter.ListToDataTable(services);
+            DataTable dt = DataConversion.ToDataTable(services);
             ReportWriter.CreateCSVFile(dt, filePath + "txt");
             ReportWriter.CreateHtmlFile(dt, filePath + "html");
         }

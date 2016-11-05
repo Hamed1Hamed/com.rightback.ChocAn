@@ -59,7 +59,6 @@
     <Compile Include="Emails\EmailService.cs" />
     <Compile Include="Emails\IEmailService.cs" />
     <Compile Include="Helpers\DataConversion.cs" />
-    <Compile Include="Helpers\IquerableConverter.cs" />
     <Compile Include="Members\IMemberService.cs" />
     <Compile Include="Members\MemberService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
