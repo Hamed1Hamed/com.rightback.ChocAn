@@ -60,6 +60,11 @@ namespace com.rightback.ChocAn.Services
         public static void CreateHtmlFile(DataTable dt, string strFilePath)
         {
             string content = Helpers.DataConversion.ConvertDataTableToHTML(dt);
+            CreateHtmlFile( content, strFilePath);
+           
+        }
+        public static void CreateHtmlFile(string content, string strFilePath)
+        {
             try
             {
                 // Use FileIO to replace the content of the text file
@@ -70,7 +75,7 @@ namespace com.rightback.ChocAn.Services
             }
             catch (Exception ex)
             {
-                throw ex; 
+                throw ex;
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using com.rightback.ChocAn.DAL;
+using com.rightback.ChocAn.DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,5 +79,35 @@ namespace com.rightback.ChocAn.Services.Claims
 
             return result; ;
         }
+
+  
+
+        public IQueryable<Claim> getClaimsWithin(DateTime start, DateTime end)
+        {
+            return from u in db.Claims.Where(e => e.DateOfClaim > start & e.DateOfClaim < end) select u;
+        }
+
+        public IList<ReportItemForProvider> generateSerializedReport(Provider person,IQueryable<Claim> claims)
+        {
+            if (claims==null)
+            return null;
+            IList<ReportItemForProvider> Data = new List<ReportItemForProvider>();
+            foreach (Claim c in claims)
+                Data.Add(new ReportItemForProvider(c));
+            return Data;
+
+        }
+        public IList<ReportItemForMember> generateSerializedReport(Member member, IQueryable<Claim> claims)
+        {
+            if (claims == null)
+                return null;
+            IList<ReportItemForMember> Data = new List<ReportItemForMember>();
+            foreach (Claim c in claims)
+                Data.Add(new ReportItemForMember(c));
+            return Data;
+
+        }
+
+ 
     }
 }

@@ -34,8 +34,15 @@ namespace com.rightback.ChocAn.Services.Helpers
             html += "</table>";
             return html;
         }
+        /// <summary>
+        /// Convert LIST TO Data Table
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        /// <returns>DataTable</returns>
         public static DataTable ToDataTable<T>(this IList<T> data)
         {
+
             PropertyDescriptorCollection properties =
                 TypeDescriptor.GetProperties(typeof(T));
             DataTable table = new DataTable();

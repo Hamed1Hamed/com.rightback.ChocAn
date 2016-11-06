@@ -29,5 +29,6 @@ namespace com.rightback.ChocAn.Services.Reports
         /// <param name="member"></param>
         /// <param name="services"></param>
         void writeServiceDirectory(Member member, List<ServiceReportItem> services);
+        void writeEFTData(Provider provider, string content);
     }
 }

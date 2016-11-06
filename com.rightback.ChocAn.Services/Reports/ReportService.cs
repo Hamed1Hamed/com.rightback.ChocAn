@@ -13,6 +13,13 @@ namespace com.rightback.ChocAn.Services.Reports
 {
     public class ReportService : IReportService
     {
+        public void writeEFTData(Provider provider,string content)
+        {
+            string fileName = String.Format("EFT_{0}_{1:MM-dd-yyyy}", provider.Name.Replace(" ", "-"), DateTime.Now);
+            string filePath = System.Web.HttpContext.Current.Server.MapPath("~/Reports/" + fileName);
+            ReportWriter.CreateHtmlFile(content, filePath+ "txt");
+        }
+
         public void writeServiceDirectory(Provider provider, List<ServiceReportItem> services)
         {
             string fileName = String.Format("ServiceDirectory_{0}_{1:MM-dd-yyyy}", provider.Name.Replace(" ", "-"), DateTime.Now);

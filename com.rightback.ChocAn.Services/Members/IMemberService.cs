@@ -60,5 +60,6 @@ namespace com.rightback.ChocAn.Services.Members
         /// <returns>IQueryable<Member></returns>
         IQueryable<Member> getMembersWhoContains(string keyWord);
 
+
     }
 }

@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseService.cs" />
+    <Compile Include="Claims\ClaimReportItem.cs" />
     <Compile Include="Claims\ClaimService.cs" />
     <Compile Include="Claims\IClaimService.cs" />
     <Compile Include="Emails\EmailService.cs" />

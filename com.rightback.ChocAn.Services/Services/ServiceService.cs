@@ -25,10 +25,7 @@ namespace com.rightback.ChocAn.Services.Services
                  .Where(s => s.Code.Equals(serviceCode))
                  .FirstOrDefault();
         }
-        public IQueryable<Claim> getClaimsWithin(DateTime start, DateTime end)
-        {
-            return from u in db.Claims.Where(e => e.DateOfClaim > start & e.DateOfClaim < end) select u;
-        }
+      
 
         /// <summary>
         /// Current implementation saves it to the file.

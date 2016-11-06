@@ -22,7 +22,7 @@ namespace com.rightback.ChocAn.Services.Services
         /// <returns></returns>
         List<Service> getAllServices();
 
-        IQueryable<Claim> getClaimsWithin(DateTime start, DateTime end);
+      
 
         /// <summary>
         /// Sends service directory to the provider

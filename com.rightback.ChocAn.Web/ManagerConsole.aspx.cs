@@ -1,4 +1,5 @@
 ﻿using com.rightback.ChocAn.DAL;
+using com.rightback.ChocAn.Services.Claims;
 using com.rightback.ChocAn.Services.Members;
 using com.rightback.ChocAn.Services.Providers;
 using com.rightback.ChocAn.Services.Services;
@@ -38,11 +39,11 @@ namespace com.rightback.ChocAn.Web
 
         private void BindStatistics()
         {
-            IServiceService services = new ServiceService();
-            var claims = services.getClaimsWithin(DateTime.Now.AddDays(-7), DateTime.Now);
+            IClaimService Claimservices = new ClaimService();
+            var claims = Claimservices.getClaimsWithin(DateTime.Now.AddDays(-7), DateTime.Now);
             LabelStatProviders.Text = (from u in claims select u.Provider.ProviderID).Distinct().Count().ToString();
-            LabelStatconsults.Text= services.getClaimsWithin(DateTime.Now.AddDays(-7), DateTime.Now).Count().ToString();
-            if(services.getClaimsWithin(DateTime.Now.AddDays(-7), DateTime.Now).Count()>0)
+            LabelStatconsults.Text= Claimservices.getClaimsWithin(DateTime.Now.AddDays(-7), DateTime.Now).Count().ToString();
+            if(Claimservices.getClaimsWithin(DateTime.Now.AddDays(-7), DateTime.Now).Count()>0)
                 LabelStatFees.Text = claims.Sum(e => e.Service.Fee).ToString();
             else
                 LabelStatFees.Text = "0";
@@ -90,9 +91,9 @@ namespace com.rightback.ChocAn.Web
         protected void GridViewMembers_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
 
-            IServiceService services = new ServiceService();
+            IClaimService Claimservices = new ClaimService();
             int MemberId = (int)this.GridViewMembers.DataKeys[e.NewSelectedIndex].Value;
-            Session["MemberClaims"] = (from u in services.getClaimsWithin(DateTime.Now.AddDays(-7), DateTime.Now) where u.Member.MemberID == MemberId select u).ToList();
+            Session["MemberClaims"] = (from u in Claimservices.getClaimsWithin(DateTime.Now.AddDays(-7), DateTime.Now) where u.Member.MemberID == MemberId select u).ToList();
             BindgridviewForMemberClaims();
         }
 
@@ -144,9 +145,9 @@ namespace com.rightback.ChocAn.Web
 
         protected void GridViewForProviders_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-            IServiceService services = new ServiceService();
+            IClaimService Claimservices = new ClaimService();
             int ProviderId = (int)this.GridViewForProviders.DataKeys[e.NewSelectedIndex].Value;
-            Session["ProviderClaims"] = (from u in services.getClaimsWithin(DateTime.Now.AddDays(-7), DateTime.Now) where u.Provider.ProviderID == ProviderId select u).ToList();
+            Session["ProviderClaims"] = (from u in Claimservices.getClaimsWithin(DateTime.Now.AddDays(-7), DateTime.Now) where u.Provider.ProviderID == ProviderId select u).ToList();
             BindGridViewForProviderClaims();
         }
         protected void TextBoxSearchProviders_TextChanged(object sender, EventArgs e)
