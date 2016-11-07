@@ -11,58 +11,43 @@ using System.Net.Mail;
 using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace com.rightback.ChocAn.Services
 {
-    public class ReportBatch
+    public static class ReportBatch
     {
         public static async void ScheduleTask()
         {
             if (!checkIfLastReportWasGenerated())
             {
-                int daysToOffset = (((int)DayOfWeek.Friday - (int)DateTime.Now.DayOfWeek + 7) % 7) * -1;
-                DateTime lastFridayOfLastCompletedWeek = DateTime.Now.AddDays(daysToOffset);
-                int day = lastFridayOfLastCompletedWeek.Date.Day;
-                int month = lastFridayOfLastCompletedWeek.Date.Month;
-                int year = lastFridayOfLastCompletedWeek.Date.Year;
-                runBatch(year, month, day);
+                DateTime batchDate = DateTime.Now.Previous( DayOfWeek.Friday);
+                runBatch(batchDate.Year, batchDate.Month, batchDate.Day);
             }
 
-            // This finds the next Friday (or today if it's Friday) and then adds a day... so the
-            // result is in the range [0-6]
-            int daysUntilFriday = (((int)DayOfWeek.Friday - (int)DateTime.Now.DayOfWeek + 7) % 7);
-
-            if (daysUntilFriday > 0)
+            else if (DateTime.Now.DayOfWeek==DayOfWeek.Friday&DateTime.Now.Hour==13)
             {
-                const int hrToMs = 60 * 60 * 1000;
-                //waits an hour and run the re run code
-                await Task.Delay(hrToMs);
+                runBatch(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
                 ScheduleTask();
             }
+
             else
             {
-                const int minToMs = 60 * 1000;
-                while (DateTime.Now.TimeOfDay.Hours != 1)
-                await Task.Delay(minToMs);
-                runBatch(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-            }
+                await Task.Delay(5*60*100);
+                ScheduleTask();
+            }         
         }
-
 
         private static bool checkIfLastReportWasGenerated()
         {
+            DateTime lastFriday = Previous( DateTime.Now,DayOfWeek.Friday);
+            int dayOfYear = lastFriday.Date.DayOfYear;
+            int year = lastFriday.Date.Year;
 
-            int daysToOffset = (((int)DayOfWeek.Friday - (int)DateTime.Now.DayOfWeek + 7) % 7) * -1;
-            DateTime lastFridayOfLastCompletedWeek = DateTime.Now.AddDays(daysToOffset);
-           int dayOfYear= lastFridayOfLastCompletedWeek.Date.DayOfYear;
-            int year = lastFridayOfLastCompletedWeek.Date.Year;
-
-            bool isSuccessful=false;
+            bool isSuccessful = false;
             using (var context = new ChocAnDBModel())
             {
                 // Perform data access using the context 
-                var entry = context.Batches.FirstOrDefault(e => e.DayOfYear == dayOfYear & e.Year == year);
+                var entry = context.Batches.Where(e => e.DayOfYear == dayOfYear & e.Year == year).FirstOrDefault();
                 if (entry != null)
                     isSuccessful = true;
             }
@@ -70,9 +55,28 @@ namespace com.rightback.ChocAn.Services
             return isSuccessful;
 
         }
-        private static void runBatch(int year, int month,int day)
+        private static DateTime Next(this DateTime from, DayOfWeek dayOfWeek)
         {
-            DateTime end = new DateTime(year,month,day);
+            DateTime newDate = from;
+            while (from.DayOfWeek!= dayOfWeek)
+            {
+                newDate = newDate.AddDays(-1);
+
+            }
+            return newDate;
+        }
+        private static DateTime Previous(this DateTime from, DayOfWeek dayOfWeek)
+        {
+            DateTime newDate =  from;
+            while (newDate.DayOfWeek != dayOfWeek)
+            {
+                newDate= newDate.AddDays(-1);
+            }
+            return newDate; 
+        }
+        private static void runBatch(int year, int month, int day)
+        {
+            DateTime end = new DateTime(year, month, day);
             DateTime start = end.AddDays(-7);
 
             IClaimService ClaimService = new ClaimService();
@@ -90,7 +94,7 @@ namespace com.rightback.ChocAn.Services
 
             foreach (Provider p in from u in claims select u.Provider)
             {
-                processProviderWeeklyStatement(p, claims,emailServer,Writer);
+                processProviderWeeklyStatement(p, claims, emailServer, Writer);
                 processEFT(p, claims, Writer);
             }
 
@@ -99,14 +103,16 @@ namespace com.rightback.ChocAn.Services
             {
                 // save batch details in the DB
                 int dayOfYear = end.DayOfYear;
-                Batch batchEntry = new Batch{ DayOfYear = dayOfYear, Year = year };
+                Batch batchEntry = new Batch { DayOfYear = dayOfYear, Year = year };
                 context.Batches.Add(batchEntry);
                 context.SaveChanges();
-                
+
             }
+            //schedule next report batch
+            ScheduleTask();
 
         }
-        private static void processMemberWeeklyStatement(Member m,IQueryable<Claim> claims,Emails.IEmailService emailServer, Reports.IReportService Writer)
+        private static void processMemberWeeklyStatement(Member m, IQueryable<Claim> claims, Emails.IEmailService emailServer, Reports.IReportService Writer)
         {
 
             Claims.IClaimService claimService = new Claims.ClaimService();
@@ -114,7 +120,7 @@ namespace com.rightback.ChocAn.Services
             IQueryable<Claim> personClaims = null;
             string statement = "";
             personId = m.MemberID;
-            personClaims = claims.Where(e => e.Member.MemberID == personId);     
+            personClaims = claims.Where(e => e.Member.MemberID == personId);
             var serializedClaims = claimService.generateSerializedReport(m, personClaims);
             statement = generateMemberCoverStatment(m);
             statement += DataConversion.ConvertDataTableToHTML(DataConversion.ToDataTable(serializedClaims));
@@ -125,44 +131,10 @@ namespace com.rightback.ChocAn.Services
             //send email
             emailServer.sendEmail("no-reply@ChocAn.com", m.Email, "ChocAn Statment", "Attached your statment for this week.", new Attachment[] { attachment });
             //store file
-            //Reports.IReportService  reportService= new Reports.ReportService();
-            //reportService.
+            Writer.writeWeeklyStatment(m, statement);
         }
-        //private static void processWeeklyStatement(Person person, IQueryable<Claim> claims, Emails.IEmailService emailServer, Reports.IReportService Writer)
-        //{
 
-        //    Claims.IClaimService claimService = new Claims.ClaimService();
-        //    int personId=0;
-        //    IQueryable<Claim> personClaims = null;
-        //    string statement = "";
-
-        //    if (person is Member)
-        //    {
-        //        personId = (person as Member).MemberID;
-        //        personClaims = claims.Where(e => e.Member.MemberID == personId);
-        //        var serializedClaims = claimService.generateSerializedReport(person as Member, personClaims);
-        //        statement = generateMemberCoverStatment(person as Member);
-        //    }
-        //    else
-        //    {
-        //        personId = (person as Provider).ProviderID;
-        //        personClaims = claims.Where(e => e.Provider.ProviderID == personId);
-        //        var serializedClaims = claimService.generateSerializedReport(person as Provider, personClaims);
-        //        statement = generateProviderCoverStatment(person as Provider,personClaims);
-        //    }
-          
-        //    statement += DataConversion.ConvertDataTableToHTML(DataConversion.ToDataTable(serializedClaims));
-        //    MemoryStream stream = new MemoryStream(Encoding.ASCII.GetBytes(statement));
-        //    //Add a new attachment to the E-mail message, using the correct MIME type
-        //    Attachment attachment = new Attachment(stream, new ContentType("text/plain"));
-        //    attachment.Name = "statment.html";
-        //    //send email
-        //    emailServer.sendEmail("no-reply@ChocAn.com", person.Email, "ChocAn Statment", "Attached your statment for this week.", new Attachment[] { attachment });
-        //    //store file
-        //    //Reports.IReportService  reportService= new Reports.ReportService();
-        //    //reportService.
-        //}
-        private  static void processProviderWeeklyStatement(Provider p, IQueryable<Claim> claims, Emails.IEmailService emailServer,Reports.IReportService Writer)
+        private static void processProviderWeeklyStatement(Provider p, IQueryable<Claim> claims, Emails.IEmailService emailServer, Reports.IReportService Writer)
         {
             Claims.IClaimService claimService = new Claims.ClaimService();
             int personId;
@@ -180,8 +152,7 @@ namespace com.rightback.ChocAn.Services
             //send email
             emailServer.sendEmail("no-reply@ChocAn.com", p.Email, "ChocAn Statment", "Attached your statment for this week.", new Attachment[] { attachment });
             //store file
-            //Reports.IReportService  reportService= new Reports.ReportService();
-            //reportService.
+            Writer.writeWeeklyStatment(p, statement);
 
         }
         private static void processEFT(Provider p, IQueryable<Claim> claims, Reports.IReportService Writer)
@@ -189,26 +160,26 @@ namespace com.rightback.ChocAn.Services
             if (p == null || claims == null || Writer == null) return;
             int providerId = p.ProviderID;
             var claimsForProvider = claims.Where(e => e.Provider.ProviderID == providerId);
-            string data=p.Name+", "+p.Code;
+            string data = p.Name + ", " + p.Code;
             decimal amountToTransfer = claimsForProvider.Sum(e => e.Fee);
             data += ", amountToTransfer=" + amountToTransfer;
             Writer.writeEFTData(p, data);
 
         }
-        private static string generateProviderCoverStatment(Provider provider,IQueryable<Claim> claims)
+        private static string generateProviderCoverStatment(Provider provider, IQueryable<Claim> claims)
         {
             string newLine = "<br/>";
             string statementCover = provider.Name + newLine + provider.Code + newLine + provider.StreetAddres + newLine
-            + provider.City + newLine + provider.State + newLine + provider.Zip + newLine+ "number of consultations:"
-            + claims.Where(c => c.Provider.ProviderID == provider.ProviderID).Count()+ newLine
-            + "total fee: " + claims.Where(c => c.Provider.ProviderID == provider.ProviderID).Sum(e => e.Fee)+ newLine;
+            + provider.City + newLine + provider.State + newLine + provider.Zip + newLine + "number of consultations:"
+            + claims.Where(c => c.Provider.ProviderID == provider.ProviderID).Count() + newLine
+            + "total fee: " + claims.Where(c => c.Provider.ProviderID == provider.ProviderID).Sum(e => e.Fee) + newLine;
             return statementCover;
         }
         private static string generateMemberCoverStatment(Member member)
         {
             string newLine = "<br/>";
             string statementCover = member.Name + newLine + member.Code + newLine + member.StreetAddres
-                + newLine + member.City + newLine + member.State + newLine + member.Zip+newLine;
+                + newLine + member.City + newLine + member.State + newLine + member.Zip + newLine;
             return statementCover;
         }
 

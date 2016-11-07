@@ -21,8 +21,6 @@ namespace com.rightback.ChocAn.Services.Claims
         public string Member_number { get; set; }
         public string Service_code { get; set; }
         public string Fee { get; set; }
-        public string number_of_consultations { get; set; }
-        public string Total_fee_for_week { get; set; }
         public ReportItemForProvider(Claim claim)
         {
             Date_of_service = claim.DateOfClaim.ToString("yyyy-MM-dd HH:mm tt");

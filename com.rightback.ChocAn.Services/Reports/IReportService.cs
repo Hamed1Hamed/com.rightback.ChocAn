@@ -18,17 +18,16 @@ namespace com.rightback.ChocAn.Services.Reports
         /// <param name="services"></param>
         void writeServiceDirectory(Provider provider, List<ServiceReportItem> services);
         /// <summary>
-        /// Writes service directory for person to a file.
+        /// Writes EFT for provider to a file
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <param name="content"></param>
+        void writeEFTData(Provider provider, string content);
+        /// <summary>
+        /// Writes weekly statment to a file
         /// </summary>
         /// <param name="person"></param>
-        /// <param name="services"></param>
-        void writeServiceDirectory(Person person, List<ServiceReportItem> services);
-        /// <summary>
-        /// Writes service directory for member to a file.
-        /// </summary>
-        /// <param name="member"></param>
-        /// <param name="services"></param>
-        void writeServiceDirectory(Member member, List<ServiceReportItem> services);
-        void writeEFTData(Provider provider, string content);
+        /// <param name="statment"></param>
+        void writeWeeklyStatment(Person person, String statment);
     }
 }

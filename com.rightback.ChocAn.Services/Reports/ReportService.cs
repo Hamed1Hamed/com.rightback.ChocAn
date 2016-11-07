@@ -17,33 +17,26 @@ namespace com.rightback.ChocAn.Services.Reports
         {
             string fileName = String.Format("EFT_{0}_{1:MM-dd-yyyy}", provider.Name.Replace(" ", "-"), DateTime.Now);
             string filePath = System.Web.HttpContext.Current.Server.MapPath("~/Reports/" + fileName);
-            ReportWriter.CreateHtmlFile(content, filePath+ "txt");
+            ReportWriter.CreateHtmlFile(content, filePath+ ".txt");
         }
+
 
         public void writeServiceDirectory(Provider provider, List<ServiceReportItem> services)
         {
             string fileName = String.Format("ServiceDirectory_{0}_{1:MM-dd-yyyy}", provider.Name.Replace(" ", "-"), DateTime.Now);
             string filePath = System.Web.HttpContext.Current.Server.MapPath("~/Reports/" + fileName);
             DataTable dt = DataConversion.ToDataTable(services);
-            ReportWriter.CreateCSVFile(dt, filePath + "txt");
-            ReportWriter.CreateHtmlFile(dt, filePath + "html");
+            ReportWriter.CreateCSVFile(dt, filePath + ".txt");
+            ReportWriter.CreateHtmlFile(dt, filePath + ".html");
         }
 
-        public void writeServiceDirectory(Person person, List<ServiceReportItem> services)
+        public void writeWeeklyStatment(Person person,String statment)
         {
-
-            if (person is Provider)
-                writeServiceDirectory( person, services);
-            if (person is Member)
-                writeServiceDirectory(person, services);
-        }
-        public void writeServiceDirectory(Member member, List<ServiceReportItem> services)
-        {
-            string fileName = String.Format("ServiceDirectory_{0}_{1:MM-dd-yyyy}", member.Name.Replace(" ", "-"), DateTime.Now);
+            string fileName = String.Format("WeeklyStatment_{0}_{1:MM-dd-yyyy}", person.Name.Replace(" ", "-"), DateTime.Now);
             string filePath = System.Web.HttpContext.Current.Server.MapPath("~/Reports/" + fileName);
-            DataTable dt = DataConversion.ToDataTable(services);
-            ReportWriter.CreateCSVFile(dt, filePath + "txt");
-            ReportWriter.CreateHtmlFile(dt, filePath + "html");
+            ReportWriter.CreateHtmlFile(statment, filePath + ".html");
         }
+
+
     }
 }

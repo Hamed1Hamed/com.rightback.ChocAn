@@ -466,7 +466,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Reports\" />
-    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\com.rightback.ChocAn.DAL\com.rightback.ChocAn.DAL.csproj">
