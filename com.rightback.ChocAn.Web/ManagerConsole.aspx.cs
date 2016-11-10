@@ -4,6 +4,7 @@ using com.rightback.ChocAn.Services.Members;
 using com.rightback.ChocAn.Services.Providers;
 using com.rightback.ChocAn.Services.Services;
 using com.rightback.ChocAn.Web.Code;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -22,6 +24,20 @@ namespace com.rightback.ChocAn.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            // check if logged in
+            if (User.Identity.GetUserId() == null)
+            {
+                Response.Redirect("~/Account/Login.aspx", true);
+            }
+            else
+            {
+                RolePrincipal r = (RolePrincipal)User;
+                var rolesArray = r.GetRoles();
+                if (!rolesArray.Contains("Manager"))
+                    Response.Redirect("~/Account/Login.aspx", true); 
+            }
+
             if (!IsPostBack)
             {
                 BindMemberData();
