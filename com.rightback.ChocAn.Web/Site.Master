@@ -58,10 +58,10 @@
                         </AnonymousTemplate>
                         <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
+                                <li><a runat="server" href="~/Account/ManagePassword" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
                                 <li>
                                     <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
-                                    <a href="OperatorConsole.aspx" > <span class="glyphicon glyphicon-tasks"></span> </a>
+                                    <a runat="server" href="~/OperatorConsole" title="Operator Console"> <span class="glyphicon glyphicon-tasks"></span> </a>
                                 </li>
                             </ul>
                         </LoggedInTemplate>

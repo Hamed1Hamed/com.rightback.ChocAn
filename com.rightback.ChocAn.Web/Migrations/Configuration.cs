@@ -1,5 +1,8 @@
 namespace com.rightback.ChocAn.Web.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -19,13 +22,39 @@ namespace com.rightback.ChocAn.Web.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data. E.g.
             //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            string[] roles = { "Manager", "Operator" };
+            var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            for (int i = 0; i < roles.Length; i++)
+            {
+                if (RoleManager.RoleExists(roles[i]) == false)
+                {
+                    RoleManager.Create(new IdentityRole(roles[i]));
+                }
+            }
+
+            // user
+
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            UserManager.Create(new ApplicationUser
+            {
+                UserName = "magid.yahya@hotmail.com",
+                Email = "magid.yahya@hotmail.com",
+                EmailConfirmed = true,
+                }, "123456");
+                UserManager.Create(new ApplicationUser
+                {
+                    UserName = "beribener@hotmail.com",
+                    Email = "beribener@hotmail.com",
+                    EmailConfirmed = true,
+                }, "123456");
+
+            var magid = context.Users.Where(e => e.Email == "magid.yahya@hotmail.com").FirstOrDefault() ;
+            var beri = context.Users.Where(e => e.Email == "beribener@hotmail.com").FirstOrDefault();
+            UserManager.AddToRole(magid.Id, roles[0]);
+            UserManager.AddToRole(beri.Id, roles[1]);
+
+            
         }
     }
 }
