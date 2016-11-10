@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManagerConsole.aspx.cs" Inherits="com.rightback.ChocAn.Web.ManagerConsole" %>
-
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <ul id="profileTabs2" class="nav nav-tabs">
@@ -12,8 +12,10 @@
         <div id="Members" class="tab-pane active">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
+                    <br>
                     </br>
                     <asp:TextBox ID="TextBoxSerchMembers" runat="server" placeHolder="Search Keword" OnTextChanged="TextBoxSerchMembers_TextChanged" AutoPostBack="true"></asp:TextBox>
+                     <br>
                      </br>
                     <asp:GridView  ID="GridViewMembers" runat="server" PageSize="20" AllowSorting="True" AutoGenerateColumns="False" CellPadding="3" DataKeyNames="MemberID" ForeColor="Black" GridLines="Vertical" OnPageIndexChanging="GridViewMembers_PageIndexChanging" OnSelectedIndexChanging="GridViewMembers_SelectedIndexChanging" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">
 
@@ -84,7 +86,7 @@
                     </asp:GridView>
 
            
-                                Selected Member Claims:
+                                <p>Selected Member Claims within 7 days:</p>
                                 <br />
                                 <asp:GridView ID="GridViewForMemberClaims"  runat="server" AutoGenerateColumns="False" DataKeyNames="ClaimID" ShowHeaderWhenEmpty="true"  EmptyDataText="No data found">
                                     <Columns>
@@ -108,8 +110,10 @@
         <div id="Providers" class="tab-pane fade">
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>`  
+                     <br>  
                      </br>
                     <asp:TextBox ID="TextBoxSearchProviders" runat="server" placeHolder="Search Keword" OnTextChanged="TextBoxSearchProviders_TextChanged" AutoPostBack="true"></asp:TextBox>
+                     <br>
                      </br>
                     <asp:GridView ID="GridViewForProviders" runat="server" PageSize="20" AllowSorting="True" AutoGenerateColumns="False" CellPadding="3" DataKeyNames="ProviderID" ForeColor="Black" GridLines="Vertical" OnPageIndexChanging="GridViewForProviders_PageIndexChanging" OnSelectedIndexChanging="GridViewForProviders_SelectedIndexChanging" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" ShowHeaderWhenEmpty="true" EmptyDataText="No data found" >
 
@@ -213,7 +217,28 @@
         </div>
           <div id="Other" class="tab-pane fade">
             <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+                    <Triggers>
+       <asp:PostBackTrigger ControlID="GridViewForFiles" />
+   </Triggers>
                 <ContentTemplate>
+                    <ajaxToolkit:AsyncFileUpload ID="AsyncFileUpload1" runat="server" 
+                onuploadedcomplete="AsyncFileUpload1_UploadedComplete" />
+<hr />
+<asp:GridView ID="GridViewForFiles" runat="server" AutoGenerateColumns="false" EmptyDataText = "No files uploaded">
+    <Columns>
+        <asp:BoundField DataField="Text" HeaderText="File Name" />
+        <asp:TemplateField>
+            <ItemTemplate>
+                <asp:LinkButton ID="lnkDownload" Text = "Download" CommandArgument = '<%# Eval("Value") %>' runat="server" OnClick = "DownloadFile"></asp:LinkButton>
+            </ItemTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField>
+            <ItemTemplate>
+                <asp:LinkButton ID = "lnkDelete" Text = "Delete" CommandArgument = '<%# Eval("Value") %>' runat = "server" OnClick = "DeleteFile" />
+            </ItemTemplate>
+        </asp:TemplateField>
+    </Columns>
+</asp:GridView>
                 </ContentTemplate>
             </asp:UpdatePanel>
 

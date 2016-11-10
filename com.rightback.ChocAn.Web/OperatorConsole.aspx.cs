@@ -20,6 +20,7 @@ namespace com.rightback.ChocAn.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
                 BindMemberData();
@@ -43,7 +44,7 @@ namespace com.rightback.ChocAn.Web
                 DetailsViewForMember.DataSource = Session["Member"];
             }
             else
-                //force the statil view into insert mode
+                //force the detail view into insert mode
                 DetailsViewForMember.ChangeMode(DetailsViewMode.Insert);
             DetailsViewForMember.DataBind();
         }
@@ -159,11 +160,12 @@ namespace com.rightback.ChocAn.Web
             if (Session["Provider"] != null)
             {
                 DetailsViewForSelectedProvider.DataSource = Session["Provider"];
+                DetailsViewForSelectedProvider.DataBind();
             }
             else
                 //force the statil view into insert mode
                 DetailsViewForSelectedProvider.ChangeMode(DetailsViewMode.Insert);
-            DetailsViewForSelectedProvider.DataBind();
+            
         }
         protected void GridViewForProviders_RowDeleted(object sender, GridViewDeletedEventArgs e)
         {

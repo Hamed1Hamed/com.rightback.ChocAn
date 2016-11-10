@@ -17,6 +17,7 @@ namespace com.rightback.ChocAn.Terminal
         //this code can be something embedded in every terminal by its firmware
         public const string TERMINAL_CODE= "CyxBTHEYFGj01L9nL0yl";
 
+
         public LoginForm()
         {
             InitializeComponent();
@@ -36,6 +37,7 @@ namespace com.rightback.ChocAn.Terminal
                 {
                     txtLog.Text += "LOGIN SUCCESSFUL";
                     TerminalScreenManager.providerLoggedIn(this);
+                    TerminalScreenManager.ProviderCode = providerCode;
 
                 }
                 else

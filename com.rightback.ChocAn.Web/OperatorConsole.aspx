@@ -5,7 +5,6 @@
     <ul id="profileTabs2" class="nav nav-tabs">
         <li class="active"><a href="#Members" aria-controls="Members" role="tab" data-toggle="tab">Members</a></li>
         <li><a href="#Providers" aria-controls="Providers" role="tab" data-toggle="tab">Providers</a></li>
-        <li><a href="#Reports" aria-controls="Reports" role="tab" data-toggle="tab">Reports</a></li>
     </ul>
     
     <div class="tab-content" id="myTabContent2">
@@ -168,7 +167,6 @@
                                                 <asp:RequiredFieldValidator runat="server" ID="EmailValidator"
                                                     ForeColor="Red" ErrorMessage="Please enter Email" ControlToValidate="TextBox5" />
                                                 <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox5" ID="RegularExpressionValidator9" ValidationExpression="^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*@((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))\z" runat="server" ErrorMessage="Not a valid Email format"></asp:RegularExpressionValidator>
-
                                             </EditItemTemplate>
                                             <InsertItemTemplate>
                                                 <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Email") %>'></asp:TextBox>
@@ -221,7 +219,6 @@
                                     <PagerStyle ForeColor="Black" HorizontalAlign="Center" BackColor="#999999" />
                                 </asp:DetailsView>
                             </div>
-                            <div class="col-xs-6">Claims</div>
                         </div>
                     </div>
 
@@ -441,17 +438,9 @@
                                     <PagerStyle ForeColor="Black" HorizontalAlign="Center" BackColor="#999999" />
                                 </asp:DetailsView>
                             </div>
-                            <div class="col-xs-6">Claims</div>
                         </div>
                     </div>
 
-                </ContentTemplate>
-            </asp:UpdatePanel>
-
-        </div>
-        <div id="Reports" class="tab-pane fade">
-            <asp:UpdatePanel ID="UpdatePanel3" runat="server">
-                <ContentTemplate>
                 </ContentTemplate>
             </asp:UpdatePanel>
 

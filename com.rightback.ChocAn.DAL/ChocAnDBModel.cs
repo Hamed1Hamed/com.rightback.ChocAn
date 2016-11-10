@@ -14,6 +14,7 @@ namespace com.rightback.ChocAn.DAL
  
         public virtual DbSet<Provider> Providers { get; set; }
         public virtual DbSet<Claim> Claims { get; set; }
+        public virtual DbSet<ClaimCheck> ClaimChecks { get; set; }
         public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<Service> Services { get; set; }
 

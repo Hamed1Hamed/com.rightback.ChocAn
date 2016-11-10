@@ -9,12 +9,7 @@ namespace com.rightback.ChocAn.Services
 {
    public abstract class BaseService
     {
-
-        protected ChocAnDBModel db;
-
-        public BaseService()
-        {
-            this.db = new ChocAnDBModel();
-        }
+        //  subclasses should use only one instance of the db context
+        protected  static ChocAnDBModel db=new ChocAnDBModel();
     }
 }

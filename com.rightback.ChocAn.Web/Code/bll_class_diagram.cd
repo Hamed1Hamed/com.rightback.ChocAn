@@ -4,62 +4,101 @@
     <Position X="0.5" Y="0.5" Height="0.75" Width="1.7" />
   </Comment>
   <Class Name="com.rightback.ChocAn.Services.ServiceFactory">
-    <Position X="2.75" Y="0.5" Width="2.75" />
+    <Position X="2.5" Y="0.75" Width="2.75" />
     <TypeIdentifier />
   </Class>
-  <Class Name="com.rightback.ChocAn.Services.Providers.ProviderService" Collapsed="true">
-    <Position X="1" Y="3.5" Width="3.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="com.rightback.ChocAn.Services.Members.MemberService" Collapsed="true">
-    <Position X="5" Y="3.5" Width="3.5" />
+  <Class Name="com.rightback.ChocAn.Services.Providers.ProviderService">
+    <Position X="0.5" Y="4" Width="3.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="com.rightback.ChocAn.Services.Services.ServiceService" Collapsed="true">
-    <Position X="8.75" Y="3.5" Width="2.75" />
+  <Class Name="com.rightback.ChocAn.Services.Members.MemberService">
+    <Position X="0.5" Y="7" Width="3.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="com.rightback.ChocAn.Services.Services.ServiceService">
+    <Position X="0.5" Y="10" Width="2.75" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="com.rightback.ChocAn.Services.BaseService">
-    <Position X="6.75" Y="0.5" Width="1.5" />
-    <TypeIdentifier />
-    <ShowAsAssociation>
-      <Field Name="db" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="com.rightback.ChocAn.DAL.ChocAnDBModel" Collapsed="true">
-    <Position X="10" Y="0.75" Width="1.5" />
+    <Position X="0.5" Y="1.75" Width="1.75" />
     <TypeIdentifier />
   </Class>
-  <Class Name="com.rightback.ChocAn.Services.Emails.EmailService" Collapsed="true">
-    <Position X="6.5" Y="7.5" Width="2.25" />
+  <Class Name="com.rightback.ChocAn.Services.Emails.EmailService">
+    <Position X="8.25" Y="14.5" Width="1.75" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="com.rightback.ChocAn.Services.ReportBatch">
-    <Position X="4" Y="7.5" Width="2" />
+    <Position X="0.5" Y="15" Width="2" />
     <TypeIdentifier />
   </Class>
   <Class Name="com.rightback.ChocAn.Services.ReportWriter">
-    <Position X="1.25" Y="7.5" Width="2.25" />
+    <Position X="3" Y="15" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="com.rightback.ChocAn.Services.Token">
+    <Position X="0.5" Y="16.75" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="com.rightback.ChocAn.Services.Claims.ReportItemForProvider">
+    <Position X="7.75" Y="16" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="com.rightback.ChocAn.Services.Claims.ReportItemForMember">
+    <Position X="3.5" Y="16.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="com.rightback.ChocAn.Services.Claims.ClaimService">
+    <Position X="0.5" Y="12.25" Width="4.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="com.rightback.ChocAn.Services.Extensions.DateTimeExtensions">
+    <Position X="3.5" Y="18.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="com.rightback.ChocAn.Services.Extensions.PersonCoverStatmentExtensions">
+    <Position X="5.75" Y="18.75" Width="3" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="com.rightback.ChocAn.Services.Helpers.DataConversion">
+    <Position X="0.5" Y="18.75" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="com.rightback.ChocAn.Services.Reports.ReportService" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="1" Width="2.25" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="com.rightback.ChocAn.Services.Services.ServiceReportItem">
+    <Position X="6" Y="16" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Interface Name="com.rightback.ChocAn.Services.Providers.IProviderService">
-    <Position X="1" Y="4.5" Width="3.5" />
+    <Position X="4.25" Y="4.25" Width="3.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="com.rightback.ChocAn.Services.Members.IMemberService">
-    <Position X="5" Y="4.5" Width="3.5" />
+    <Position X="4.25" Y="7" Width="3.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="com.rightback.ChocAn.Services.Services.IServiceService">
-    <Position X="8.75" Y="4.5" Width="2.75" />
+    <Position X="3.5" Y="9.75" Width="2.75" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="com.rightback.ChocAn.Services.Emails.IEmailService">
-    <Position X="6.5" Y="8.25" Width="2.25" />
+    <Position X="5.75" Y="14.5" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="com.rightback.ChocAn.Services.Claims.IClaimService">
+    <Position X="5.5" Y="12.5" Width="4.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="com.rightback.ChocAn.Services.Reports.IReportService">
+    <Position X="5.5" Y="2.75" Width="2.25" />
     <TypeIdentifier />
   </Interface>
   <Font Name="Segoe UI" Size="9" />

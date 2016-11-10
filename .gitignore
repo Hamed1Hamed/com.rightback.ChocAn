@@ -7,6 +7,7 @@ com.rightback.ChocAn.DAL/connections.config
 com.rightback.ChocAn.Web/connections.config
 com.rightback.ChocAn.Web/smtp.config
 com.rightback.ChocAn.Tests/smtp.config
+com.rightback.ChocAn.Web/Reports/**
 
 
 # User-specific files
@@ -249,3 +250,5 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /Modeling
+/com.rightback.ChocAn.WebLoadTest
+/com.rightback.ChocAn.Services/Mail.config

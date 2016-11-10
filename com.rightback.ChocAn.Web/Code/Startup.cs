@@ -11,7 +11,9 @@ namespace com.rightback.ChocAn.Web
 
           //friday report generation
           //this is creating exception, please do not leave the app in broken state :) - commenting out
-          //  ReportBatch.ScheduleTask();
+          //Maged reply: the problem fixed I forgot to put async keword on scheduler method :)
+          //
+            ReportBatch.ScheduleTask();
         }
 
     }

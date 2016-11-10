@@ -40,9 +40,11 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,21 +54,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseService.cs" />
+    <Compile Include="Claims\ClaimReportItem.cs" />
+    <Compile Include="Claims\ClaimService.cs" />
+    <Compile Include="Claims\IClaimService.cs" />
     <Compile Include="Emails\EmailService.cs" />
     <Compile Include="Emails\IEmailService.cs" />
-    <Compile Include="Helpers\DataConversion.cs" />
-    <Compile Include="Helpers\IquerableConverter.cs" />
+    <Compile Include="Extensions\DateTimeExtension.cs" />
+    <Compile Include="Extensions\PersonCoverExtensions.cs" />
+    <Compile Include="Extensions\DataConversion.cs" />
     <Compile Include="Members\IMemberService.cs" />
     <Compile Include="Members\MemberService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\IProviderService.cs" />
     <Compile Include="Providers\ProviderService.cs" />
+    <Compile Include="Reports\IReportService.cs" />
     <Compile Include="Reports\ReportBatch.cs" />
+    <Compile Include="Reports\ReportService.cs" />
     <Compile Include="Reports\ReportWriter.cs" />
     <Compile Include="ServiceFactory.cs" />
     <Compile Include="Services\IServiceService.cs" />
+    <Compile Include="Services\ServiceReportItem.cs" />
     <Compile Include="Services\ServiceService.cs" />
-    <Compile Include="Helpers\StringToInt.cs" />
     <Compile Include="Helpers\Token.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="Mail.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

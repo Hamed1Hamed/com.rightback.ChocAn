@@ -52,8 +52,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DataConversionTests.cs" />
+    <Compile Include="IquerableConverterTests.cs" />
+    <Compile Include="TokenTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EmailTest.cs" />
+    <Compile Include="ProviderServiceTests.cs" />
+    <Compile Include="ServiceServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\com.rightback.ChocAn.Services\com.rightback.ChocAn.Services.csproj">
@@ -67,6 +72,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using com.rightback.ChocAn.Services;
+using com.rightback.ChocAn.Services.Claims;
 using com.rightback.ChocAn.Services.Members;
 using com.rightback.ChocAn.Services.Providers;
 using com.rightback.ChocAn.Services.Services;
@@ -14,5 +15,6 @@ namespace com.rightback.ChocAn.Web.Code
         protected IProviderService providerService = ServiceFactory.getProviderService();
         protected IMemberService memberService = ServiceFactory.getMemberService();
         protected IServiceService serviceService = ServiceFactory.getServiceService();
+        protected IClaimService claimService = ServiceFactory.getClaimService();
     }
 }

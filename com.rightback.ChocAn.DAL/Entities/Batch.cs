@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using com.rightback.ChocAn.DAL.Entities;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace com.rightback.ChocAn.DAL
 {
-    public class Batch : BaseEntity
+    public class Batch 
     {
         //this table will keep track of each week report batch
         [Key]
