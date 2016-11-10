@@ -5,7 +5,6 @@
     <ul id="profileTabs2" class="nav nav-tabs">
         <li class="active"><a href="#Members" aria-controls="Members" role="tab" data-toggle="tab">Members</a></li>
         <li><a href="#Providers" aria-controls="Providers" role="tab" data-toggle="tab">Providers</a></li>
-        <li><a href="#Reports" aria-controls="Reports" role="tab" data-toggle="tab">Reports</a></li>
     </ul>
     
     <div class="tab-content" id="myTabContent2">
@@ -220,7 +219,6 @@
                                     <PagerStyle ForeColor="Black" HorizontalAlign="Center" BackColor="#999999" />
                                 </asp:DetailsView>
                             </div>
-                            <div class="col-xs-6">Claims</div>
                         </div>
                     </div>
 
@@ -440,17 +438,9 @@
                                     <PagerStyle ForeColor="Black" HorizontalAlign="Center" BackColor="#999999" />
                                 </asp:DetailsView>
                             </div>
-                            <div class="col-xs-6">Claims</div>
                         </div>
                     </div>
 
-                </ContentTemplate>
-            </asp:UpdatePanel>
-
-        </div>
-        <div id="Reports" class="tab-pane fade">
-            <asp:UpdatePanel ID="UpdatePanel3" runat="server">
-                <ContentTemplate>
                 </ContentTemplate>
             </asp:UpdatePanel>
 

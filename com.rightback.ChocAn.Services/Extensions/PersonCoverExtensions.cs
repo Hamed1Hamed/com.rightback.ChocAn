@@ -10,7 +10,7 @@ namespace com.rightback.ChocAn.Services.Extensions
     public static class PersonCoverStatmentExtensions
     {
         /// <summary>
-        /// Generate basic info about provider like name and address with some info about claims processed
+        /// Generate basic info about provider like name and address with some info about processed claims 
         /// </summary>
         /// <param name="provider"></param>
         /// <param name="claims"></param>
