@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace com.rightback.ChocAn.DAL
 {
-    public class Batch
+    public class Batch : BaseEntity
     {
         //this table will keep track of each week report batch
         [Key]

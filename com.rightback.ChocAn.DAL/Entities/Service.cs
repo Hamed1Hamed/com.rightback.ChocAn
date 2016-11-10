@@ -6,7 +6,7 @@ using System.Data.Entity;
 
 namespace com.rightback.ChocAn.DAL
 {
-    public class Service
+    public class Service : BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -20,7 +20,6 @@ namespace com.rightback.ChocAn.DAL
         //6 digit service code
         [Required]
         public string Code { get; set; }
-
 
         //Navigation 
         public virtual ICollection<Claim> Claims { get; set; }

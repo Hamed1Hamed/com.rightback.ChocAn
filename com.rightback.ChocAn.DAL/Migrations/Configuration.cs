@@ -29,14 +29,14 @@ namespace com.rightback.ChocAn.DAL.Migrations
             //
 
             context.Providers.AddOrUpdate(p => p.Email,
-                    new Provider { City = "Istanbul", Code = "123456789", Email = "beribener@hotmail.com", Name = "Beri Bener", StreetAddres = "Demet Sok.", Zip = "34370", TerminalCode = "CyxBTHEYFGj01L9nL0yl" },
-                    new Provider { City = "Milwaukee", Code = "223456789", Email = "osmik@darci.com", Name = "Osman Darcan", StreetAddres = "Abc Apt. 1245", Zip = "54370", TerminalCode = "7ChsHAU5aVrOYxvZ9IcC" },
-                    new Provider { City = "Franklin", Code = "323456789", Email = "tolga@mail.com", Name = "Tolga Ulus", StreetAddres = "Demet Sok.", Zip = "64370", TerminalCode = "DM64w9fLXsrWRmu5wRee" }
+                    new Provider { City = "Istanbul", Code = "123456789", Email = "beribener@hotmail.com", Name = "Beri Bener", StreetAddres = "Demet Sok.",State=Entities.USState.State.WI, Zip = "34370", TerminalCode = "CyxBTHEYFGj01L9nL0yl" },
+                    new Provider { City = "Milwaukee", Code = "223456789", Email = "osmik@darci.com", Name = "Osman Darcan", StreetAddres = "Abc Apt. 1245", State = Entities.USState.State.WI, Zip = "54370", TerminalCode = "7ChsHAU5aVrOYxvZ9IcC" },
+                    new Provider { City = "Franklin", Code = "323456789", Email = "tolga@mail.com", Name = "Tolga Ulus", StreetAddres = "Demet Sok.", State = Entities.USState.State.WI, Zip = "64370", TerminalCode = "DM64w9fLXsrWRmu5wRee" }
                     );
 
             context.Members.AddOrUpdate(m => m.Email,
-                new Member { City="Waukesha",Code="123456789",Email = "member@hotmail.com",Name="Koko Jambo",Status = Member.MemberStatus.Active, StreetAddres="I dunno", Zip="53707" },
-                                new Member { City = "Ozakee", Code = "223456789", Email = "suspendedusr@hotmail.com", Name = "Susta User", Status = Member.MemberStatus.Suspended, StreetAddres = "I dunno", Zip = "53707" }
+                new Member { City="Waukesha",Code="123456789",Email = "member@hotmail.com",Name="Koko Jambo",Status = Member.MemberStatus.Active, State = Entities.USState.State.WI, StreetAddres ="I dunno", Zip="53707" },
+                                new Member { City = "Ozakee", Code = "223456789", Email = "suspendedusr@hotmail.com", Name = "Susta User",State = Entities.USState.State.WI, Status = Member.MemberStatus.Suspended, StreetAddres = "I dunno", Zip = "53707" }
                 );
         }
     }

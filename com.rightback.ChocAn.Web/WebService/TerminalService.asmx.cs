@@ -74,5 +74,11 @@ namespace com.rightback.ChocAn.Web.WebService
             List<Service> services = serviceService.getAllServices();
             return ServiceViewModel.fromServiceList(services);
         }
+
+        [WebMethod]
+        public List<ServiceViewModel> recordProvidedService()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

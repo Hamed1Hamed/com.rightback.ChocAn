@@ -21,5 +21,8 @@ namespace com.rightback.ChocAn.Services.Services
         /// </summary>
         /// <returns></returns>
         List<Service> getAllServices();
+
+        IQueryable<Claim> getClaimsWithin(DateTime start, DateTime end);
+
     }
 }

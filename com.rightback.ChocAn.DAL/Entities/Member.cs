@@ -1,14 +1,15 @@
-﻿using com.rightback.ChocAn.DAL.Entities;
+﻿using com.rightback.ChocAn.DAL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using static com.rightback.ChocAn.DAL.Entities.USState;
 
 namespace com.rightback.ChocAn.DAL
 {
 
-    public class Member
+    public class Member : BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -20,6 +21,10 @@ namespace com.rightback.ChocAn.DAL
         public string StreetAddres { get; set; }
         [Required]
         public string City { get; set; }
+
+        [Required]
+        public State State { get; set; }
+        
         [Required]
         public string Zip { get; set; }
         [Required]

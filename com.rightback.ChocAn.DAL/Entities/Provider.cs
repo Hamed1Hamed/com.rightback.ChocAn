@@ -1,4 +1,4 @@
-﻿using com.rightback.ChocAn.DAL.Entities;
+﻿using com.rightback.ChocAn.DAL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,15 +6,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static com.rightback.ChocAn.DAL.Entities.USState;
 
 namespace com.rightback.ChocAn.DAL
 {
 
-    public class Provider
+    public class Provider : BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int PoviderID { get; set; }
+        public int ProviderID { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -22,6 +23,10 @@ namespace com.rightback.ChocAn.DAL
         public string StreetAddres { get; set; }
         [Required]
         public string City { get; set; }
+
+        [Required]
+        public State State { get; set; }
+
         [Required]
         public string Zip { get; set; }
         [Required]
@@ -33,12 +38,14 @@ namespace com.rightback.ChocAn.DAL
         [Required]
         public string TerminalCode { get; set; }
 
-        public enum Type
+        public ProviderType Type { get; set; }
+
+        public enum ProviderType
         {
-            internist,
-            dietitian,
-            exercise,
-            specialist
+            internist=0,
+            dietitian=1,
+            exercise=2,
+            specialist=3
         }
 
         //Navigation 

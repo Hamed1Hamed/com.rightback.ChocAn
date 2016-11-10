@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace com.rightback.ChocAn.Services
 {
-    class StringToInt
+    public class StringToInt
     {
             public static bool isNumber(string text)
             {
@@ -17,6 +17,7 @@ namespace com.rightback.ChocAn.Services
                 }
                 catch (FormatException e)
                 {
+
                     return false;
                 }
             }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace com.rightback.ChocAn.Services
 {
-    class Token
+    public class Token
     {
 
         private static readonly Object obj = new Object();
