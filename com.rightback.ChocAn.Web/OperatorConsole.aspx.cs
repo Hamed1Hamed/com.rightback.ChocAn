@@ -30,9 +30,7 @@ namespace com.rightback.ChocAn.Web
             }
             else
             {
-                RolePrincipal r = (RolePrincipal)User;
-                var rolesArray = r.GetRoles();
-                if (!rolesArray.Contains("Operator"))
+                if (!User.IsInRole("Operator"))
                     Response.Redirect("~/Account/Login.aspx", true);
             }
 

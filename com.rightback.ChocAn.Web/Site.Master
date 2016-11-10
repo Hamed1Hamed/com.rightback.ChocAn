@@ -11,7 +11,7 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 </head>
@@ -61,7 +61,9 @@
                                 <li><a runat="server" href="~/Account/ManagePassword" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
                                 <li>
                                     <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
-                                    <a runat="server" href="~/OperatorConsole" title="Operator Console"> <span class="glyphicon glyphicon-tasks"></span> </a>
+                                </li>
+                                <li>
+                                    <a runat="server" href="~/OperatorConsole" title="Operator Console"><span class="glyphicon glyphicon-tasks"></span></a>
                                 </li>
                             </ul>
                         </LoggedInTemplate>
