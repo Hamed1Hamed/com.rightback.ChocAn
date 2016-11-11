@@ -11,7 +11,7 @@ using static com.rightback.ChocAn.DAL.Member;
 namespace com.rightback.ChocAn.Web.WebService
 {
     /// <summary>
-    /// Summary description for MemberService
+    /// Member webservice provides methods for accounting provider to suspend and reinstate member statuses.
     /// </summary>
     [WebService(Namespace = "http://rightback.com/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
@@ -25,16 +25,19 @@ namespace com.rightback.ChocAn.Web.WebService
         /// <summary>
         /// To be used by Acme Accounting Services to update member information.
         /// </summary>
-        /// <param name="memberCode"></param>
-        /// <param name="status"></param>
+        /// <param name="memberCode">Code of the member to change its status.</param>
+        /// <param name="status">Can be Active or Invalid</param>
         /// <returns></returns>
         [WebMethod]
         public string UpdateMemberStatus(string memberCode, MemberStatus status)
         {
            Member member = memberService.getByCode(memberCode);
-
+           
             if (member == null)
                 return "NOK - Member not found.";
+
+            if (status != MemberStatus.Active && status != MemberStatus.Suspended)
+                return "NOK - Invalid status";
 
             member.Status = status;
 
