@@ -73,7 +73,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-6">
-                                Selected Member Is:<asp:DetailsView ID="DetailsViewForMember" ViewStateMode="Enabled" runat="server" AutoGenerateRows="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" DataKeyNames="MemberID" Height="50px" Width="125px" OnItemUpdating="DetailsViewForMember_ItemUpdating" OnItemInserting="DetailsViewForMember_ItemInserting" OnModeChanging="DetailsViewForMember_ModeChanging" ForeColor="Black" GridLines="Vertical">
+                                Selected Member Is:<asp:DetailsView ID="DetailsViewForMember" ViewStateMode="Enabled" runat="server" AutoGenerateRows="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" DataKeyNames="MemberID" Height="50px" Width="125px" OnItemUpdating="DetailsViewForMember_ItemUpdating" OnItemInserting="DetailsViewForMember_ItemInserting" OnModeChanging="DetailsViewForMember_ModeChanging"  ForeColor="Black" GridLines="Vertical">
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
                                     <EditRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
                                     <Fields>
@@ -166,14 +166,11 @@
                                                 <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Email") %>'></asp:TextBox>
                                                 <asp:RequiredFieldValidator runat="server" ID="EmailValidator"
                                                     ForeColor="Red" ErrorMessage="Please enter Email" ControlToValidate="TextBox5" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox5" ID="RegularExpressionValidator9" ValidationExpression="^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*@((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))\z" runat="server" ErrorMessage="Not a valid Email format"></asp:RegularExpressionValidator>
-                                            </EditItemTemplate>
+                                             </EditItemTemplate>
                                             <InsertItemTemplate>
                                                 <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Email") %>'></asp:TextBox>
                                                 <asp:RequiredFieldValidator runat="server" ID="EmailValidator2"
                                                     ForeColor="Red" ErrorMessage="Please enter Email" ControlToValidate="TextBox5" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox5" ID="RegularExpressionValidator10" ValidationExpression="^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*@((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))\z" runat="server" ErrorMessage="Not a valid Email format"></asp:RegularExpressionValidator>
-
                                             </InsertItemTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="Label5" runat="server" Text='<%# Bind("Email") %>'></asp:Label>

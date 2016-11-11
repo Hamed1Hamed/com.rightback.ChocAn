@@ -43,7 +43,7 @@
             this.btnService.Name = "btnService";
             this.btnService.Size = new System.Drawing.Size(288, 70);
             this.btnService.TabIndex = 23;
-            this.btnService.Text = "Record Service";
+            this.btnService.Text = "Enter Claim";
             this.btnService.UseVisualStyleBackColor = false;
             this.btnService.Click += new System.EventHandler(this.btnService_Click);
             // 

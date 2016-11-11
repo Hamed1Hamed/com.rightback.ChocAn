@@ -206,6 +206,7 @@
             // txtComments
             // 
             this.txtComments.Location = new System.Drawing.Point(16, 332);
+            this.txtComments.MaxLength = 100;
             this.txtComments.Multiline = true;
             this.txtComments.Name = "txtComments";
             this.txtComments.Size = new System.Drawing.Size(260, 66);
@@ -219,7 +220,6 @@
             this.label7.Size = new System.Drawing.Size(59, 13);
             this.label7.TabIndex = 21;
             this.label7.Text = "Comments:";
-            this.label7.Visible = false;
             // 
             // btnSave
             // 
@@ -230,7 +230,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(113, 35);
             this.btnSave.TabIndex = 22;
-            this.btnSave.Text = "Save Service";
+            this.btnSave.Text = "Save Claim";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
