@@ -177,6 +177,7 @@
     <Content Include="Account\Web.config" />
     <Content Include="ManagerConsole.aspx" />
     <Content Include="OperatorConsole.aspx" />
+    <Content Include="WebService\MemberService.asmx" />
     <Content Include="WebService\TerminalService.asmx" />
     <Content Include="Code\bll_class_diagram.cd" />
     <Content Include="Code\dal_class_diagram.cd" />
@@ -344,6 +345,10 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebService\MemberService.asmx.cs">
+      <DependentUpon>MemberService.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="WebService\RecordClaimResult.cs" />
     <Compile Include="WebService\TerminalService.asmx.cs">
