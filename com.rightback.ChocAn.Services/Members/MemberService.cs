@@ -81,6 +81,7 @@ namespace com.rightback.ChocAn.Services.Members
             else
             {
                 //using AddOrUpdate method is not safe as it may insert dublicate records
+                memberSearch.Name = member.Name;
                 memberSearch.City = member.City;
                 memberSearch.Code = member.Code;
                 memberSearch.Email = member.Email;

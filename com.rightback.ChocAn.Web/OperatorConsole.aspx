@@ -10,13 +10,15 @@
     <div class="tab-content" id="myTabContent2">
         <div id="Members" class="tab-pane active">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+
                 <ContentTemplate>
                     <br>
                     </br>
                     <asp:TextBox ID="TextBoxSerchMembers" runat="server" placeHolder="Search Keword" OnTextChanged="TextBoxSerchMembers_TextChanged" AutoPostBack="true"></asp:TextBox>
                      <br>
                      </br>
-                    <asp:GridView class="col-lg-8 col-xs-12 col-centered" ID="GridViewMembers" runat="server" AllowPaging="True" PageSize="20"  AutoGenerateColumns="False" CellPadding="3" DataKeyNames="MemberID" ForeColor="Black" GridLines="Vertical" OnRowDeleted="GridViewMembers_RowDeleted" OnPageIndexChanging="GridViewMembers_PageIndexChanging" OnSelectedIndexChanging="GridViewMembers_SelectedIndexChanging" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" ShowHeaderWhenEmpty="true" EmptyDataText="No data found">
+                    <asp:GridView class="col-lg-8 col-xs-12 col-centered" ID="GridViewMembers" runat="server" AllowPaging="True" PageSize="20"  AutoGenerateColumns="False" CellPadding="3" DataKeyNames="MemberID" ForeColor="Black" GridLines="Vertical" 
+                         OnPageIndexChanging  ="GridViewMembers_PageIndexChanging" OnRowDeleting="GridViewMembers_RowDeleting" OnRowCommand="GridViewMembers_RowCommand" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" ShowHeaderWhenEmpty="true" EmptyDataText="No data found">
 
                         <AlternatingRowStyle BackColor="#CCCCCC" />
                         <Columns>
@@ -52,10 +54,14 @@
                                     <asp:Label ID="Label5" runat="server" Text='<%# Bind("Email") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:BoundField DataField="Code" HeaderText="Code" SortExpression="Code" />
+                                                        <asp:TemplateField HeaderText="Code" SortExpression="Code">
+                                <ItemTemplate>
+                                    <asp:Label ID="Label6" runat="server" Text='<%# Bind("Code") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Status" SortExpression="Status">
                                 <ItemTemplate>
-                                    <asp:Label ID="Label6" runat="server" Text='<%# Bind("Status") %>'></asp:Label>
+                                    <asp:Label ID="Label7" runat="server" Text='<%# Bind("Status") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
@@ -81,15 +87,15 @@
                                         <asp:TemplateField HeaderText="Name" SortExpression="Name">
                                             <EditItemTemplate>
                                                 <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="NameValidator"
+                                                <asp:RequiredFieldValidator  ValidationGroup="member" runat="server" ID="NameValidator"
                                                     ForeColor="Red" ErrorMessage="Please enter the name" ControlToValidate="TextBox1" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox1" ID="RegularExpressionValidator1" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator  ValidationGroup="member" Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox1" ID="RegularExpressionValidator1" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
                                             </EditItemTemplate>
                                             <InsertItemTemplate>
                                                 <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="NameValidator2"
+                                                <asp:RequiredFieldValidator  ValidationGroup="member" runat="server" ID="NameValidator2"
                                                     ForeColor="Red" ErrorMessage="Please enter the name" ControlToValidate="TextBox1" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox1" ID="RegularExpressionValidator2" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator  ValidationGroup="member" Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox1" ID="RegularExpressionValidator2" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
                                             </InsertItemTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="Label1" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
@@ -98,15 +104,15 @@
                                         <asp:TemplateField HeaderText="StreetAddres" SortExpression="StreetAddres">
                                             <EditItemTemplate>
                                                 <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("StreetAddres") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="StreetAddresValidator"
+                                                <asp:RequiredFieldValidator  ValidationGroup="member" runat="server" ID="StreetAddresValidator"
                                                     ForeColor="Red" ErrorMessage="Please enter the street address" ControlToValidate="TextBox2" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox2" ID="RegularExpressionValidator3" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator  ValidationGroup="member" Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox2" ID="RegularExpressionValidator3" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
                                             </EditItemTemplate>
                                             <InsertItemTemplate>
                                                 <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("StreetAddres") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="StreetAddresValidator2"
+                                                <asp:RequiredFieldValidator  ValidationGroup="member" runat="server" ID="StreetAddresValidator2"
                                                     ForeColor="Red" ErrorMessage="Please enter the street address" ControlToValidate="TextBox2" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox2" ID="RegularExpressionValidator4" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator  ValidationGroup="member" Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox2" ID="RegularExpressionValidator4" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
                                             </InsertItemTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="Label2" runat="server" Text='<%# Bind("StreetAddres") %>'></asp:Label>
@@ -121,9 +127,9 @@
                                             </EditItemTemplate>
                                             <InsertItemTemplate>
                                                 <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("City") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="CityValidator2"
+                                                <asp:RequiredFieldValidator  ValidationGroup="member" runat="server" ID="CityValidator2"
                                                     ForeColor="Red" ErrorMessage="Please enter the name" ControlToValidate="TextBox3" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox3" ID="RegularExpressionValidator6" ValidationExpression="^[\s\S]{2,14}$" runat="server" ErrorMessage="Minimum 2 and Maximum 14 characters required."></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator  ValidationGroup="member"  Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox3" ID="RegularExpressionValidator6" ValidationExpression="^[\s\S]{2,14}$" runat="server" ErrorMessage="Minimum 2 and Maximum 14 characters required."></asp:RegularExpressionValidator>
                                             </InsertItemTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="Label3" runat="server" Text='<%# Bind("City") %>'></asp:Label>
@@ -153,9 +159,9 @@
                                             </EditItemTemplate>
                                             <InsertItemTemplate>
                                                 <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Zip") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="ZipValidator2"
+                                                <asp:RequiredFieldValidator  ValidationGroup="member" runat="server" ID="ZipValidator2"
                                                     ForeColor="Red" ErrorMessage="Please enter zip code" ControlToValidate="TextBox4" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox4" ID="RegularExpressionValidator8" ValidationExpression="^[0-9]{5,5}$" runat="server" ErrorMessage="Code of 5 digits is needed"></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator  ValidationGroup="member" Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox4" ID="RegularExpressionValidator8" ValidationExpression="^[0-9]{5,5}$" runat="server" ErrorMessage="Code of 5 digits is needed"></asp:RegularExpressionValidator>
                                             </InsertItemTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="Label4" runat="server" Text='<%# Bind("Zip") %>'></asp:Label>
@@ -164,15 +170,15 @@
                                         <asp:TemplateField HeaderText="Email" SortExpression="Email">
                                             <EditItemTemplate>
                                                 <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Email") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="EmailValidator"
-                                                    ForeColor="Red" ErrorMessage="Please enter Email" ControlToValidate="TextBox5" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox5" ID="RegularExpressionValidator9" ValidationExpression="^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*@((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))\z" runat="server" ErrorMessage="Not a valid Email format"></asp:RegularExpressionValidator>
+                                                <asp:RequiredFieldValidator  ValidationGroup="member" runat="server" ID="EmailValidator"
+                                                    ForeColor="Red"  ErrorMessage="Please enter Email" ControlToValidate="TextBox5" />
+                                                <asp:RegularExpressionValidator  ValidationGroup="member"  Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox5" ID="RegularExpressionValidator9" ValidationExpression="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" runat="server" ErrorMessage="Not a valid Email format"></asp:RegularExpressionValidator>
                                             </EditItemTemplate>
                                             <InsertItemTemplate>
                                                 <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Email") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="EmailValidator2"
+                                                <asp:RequiredFieldValidator  ValidationGroup="member" runat="server" ID="EmailValidator2"
                                                     ForeColor="Red" ErrorMessage="Please enter Email" ControlToValidate="TextBox5" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox5" ID="RegularExpressionValidator10" ValidationExpression="^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*@((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))\z" runat="server" ErrorMessage="Not a valid Email format"></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator  ValidationGroup="member" Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox5" ID="RegularExpressionValidator10" ValidationExpression="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" runat="server" ErrorMessage="Not a valid Email format"></asp:RegularExpressionValidator>
 
                                             </InsertItemTemplate>
                                             <ItemTemplate>
@@ -182,16 +188,16 @@
                                         <asp:TemplateField HeaderText="Code" SortExpression="Code">
                                             <EditItemTemplate>
                                                 <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("Code") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="CodeValidator"
+                                                <asp:RequiredFieldValidator  ValidationGroup="member" runat="server" ID="CodeValidator"
                                                     ForeColor="Red" ErrorMessage="Code can't be empty" ControlToValidate="TextBox6" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox6" ID="RegularExpressionValidator11" ValidationExpression="^[0-9]{9,9}$" runat="server" ErrorMessage="Code of 9 digits digits is needed"></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator  ValidationGroup="member" Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox6" ID="RegularExpressionValidator11" ValidationExpression="	^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" runat="server" ErrorMessage="Code of 9 digits digits is needed"></asp:RegularExpressionValidator>
 
                                             </EditItemTemplate>
                                             <InsertItemTemplate>
                                                 <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("Code") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="CodeValidator2"
+                                                <asp:RequiredFieldValidator  ValidationGroup="member" runat="server" ID="CodeValidator2"
                                                     ForeColor="Red" ErrorMessage="Code can't be empty" ControlToValidate="TextBox6" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox6" ID="RegularExpressionValidator12" ValidationExpression="^[0-9]{9,9}$" runat="server" ErrorMessage="Code of 9 digits digits is needed"></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator  ValidationGroup="member" Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox6" ID="RegularExpressionValidator12" ValidationExpression="	^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" runat="server" ErrorMessage="Code of 9 digits digits is needed"></asp:RegularExpressionValidator>
 
                                             </InsertItemTemplate>
                                             <ItemTemplate>
@@ -212,7 +218,7 @@
                                                 <asp:Label ID="Label6" runat="server" Text='<%# Bind("Status") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowInsertButton="True" />
+                                        <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowInsertButton="True"  ValidationGroup="member" />
                                     </Fields>
                                     <FooterStyle BackColor="#CCCCCC" />
                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -236,7 +242,8 @@
                     <asp:TextBox ID="TextBoxSearchProviders" runat="server" placeHolder="Search Keword" OnTextChanged="TextBoxSearchProviders_TextChanged" AutoPostBack="true"></asp:TextBox>
                      <br>
                      </br>
-                    <asp:GridView class="col-lg-8 col-xs-12 col-centered" ID="GridViewForProviders" runat="server" AllowPaging="True" PageSize="20"  AutoGenerateColumns="False" CellPadding="3" DataKeyNames="ProviderID" ForeColor="Black" GridLines="Vertical" OnRowDeleted="GridViewForProviders_RowDeleted" OnPageIndexChanging="GridViewForProviders_PageIndexChanging" OnSelectedIndexChanging="GridViewForProviders_SelectedIndexChanging" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" EmptyDataText="No data found">
+                    <asp:GridView class="col-lg-8 col-xs-12 col-centered" ID="GridViewForProviders" runat="server" AllowPaging="True" PageSize="20"  AutoGenerateColumns="False" CellPadding="3" DataKeyNames="ProviderID" ForeColor="Black" GridLines="Vertical" 
+                        OnRowDeleting="GridViewForProviders_RowDeleting" OnPageIndexChanging="GridViewForProviders_PageIndexChanging" OnRowCommand="GridViewForProviders_RowCommand" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" EmptyDataText="No data found">
 
                         <AlternatingRowStyle BackColor="#CCCCCC" />
                         <Columns>
@@ -272,10 +279,14 @@
                                     <asp:Label ID="Label5" runat="server" Text='<%# Bind("Email") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:BoundField DataField="Code" HeaderText="Code" SortExpression="Code" />
+                      <asp:TemplateField HeaderText="Code" SortExpression="Code">
+                                <ItemTemplate>
+                                    <asp:Label ID="Label6" runat="server" Text='<%# Bind("Code") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Type" SortExpression="Type">
                                 <ItemTemplate>
-                                    <asp:Label ID="Label6" runat="server" Text='<%# Bind("Type") %>'></asp:Label>
+                                    <asp:Label ID="Label7" runat="server" Text='<%# Bind("Type") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
@@ -301,15 +312,15 @@
                                         <asp:TemplateField HeaderText="Name" SortExpression="Name">
                                             <EditItemTemplate>
                                                 <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="NameValidator"
+                                                <asp:RequiredFieldValidator  ValidationGroup="provider"  runat="server" ID="NameValidator"
                                                     ForeColor="Red" ErrorMessage="Please enter the name" ControlToValidate="TextBox1" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox1" ID="RegularExpressionValidator1" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator   ValidationGroup="provider"  Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox1" ID="RegularExpressionValidator1" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
                                             </EditItemTemplate>
                                             <InsertItemTemplate>
                                                 <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="NameValidator2"
+                                                <asp:RequiredFieldValidator   ValidationGroup="provider"  runat="server" ID="NameValidator2"
                                                     ForeColor="Red" ErrorMessage="Please enter the name" ControlToValidate="TextBox1" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox1" ID="RegularExpressionValidator2" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator   ValidationGroup="provider"  Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox1" ID="RegularExpressionValidator2" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
                                             </InsertItemTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="Label1" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
@@ -318,15 +329,15 @@
                                         <asp:TemplateField HeaderText="StreetAddres" SortExpression="StreetAddres">
                                             <EditItemTemplate>
                                                 <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("StreetAddres") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="StreetAddresValidator"
+                                                <asp:RequiredFieldValidator   ValidationGroup="provider"  runat="server" ID="StreetAddresValidator"
                                                     ForeColor="Red" ErrorMessage="Please enter the street address" ControlToValidate="TextBox2" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox2" ID="RegularExpressionValidator3" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator   ValidationGroup="provider"  Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox2" ID="RegularExpressionValidator3" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
                                             </EditItemTemplate>
                                             <InsertItemTemplate>
                                                 <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("StreetAddres") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="StreetAddresValidator"
+                                                <asp:RequiredFieldValidator   ValidationGroup="provider"  runat="server" ID="StreetAddresValidator"
                                                     ForeColor="Red" ErrorMessage="Please enter the street address" ControlToValidate="TextBox2" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox2" ID="RegularExpressionValidator4" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator   ValidationGroup="provider"  Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox2" ID="RegularExpressionValidator4" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
                                             </InsertItemTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="Label2" runat="server" Text='<%# Bind("StreetAddres") %>'></asp:Label>
@@ -335,15 +346,15 @@
                                         <asp:TemplateField HeaderText="City" SortExpression="City">
                                             <EditItemTemplate>
                                                 <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("City") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="CityValidator"
+                                                <asp:RequiredFieldValidator   ValidationGroup="provider" runat="server" ID="CityValidator"
                                                     ForeColor="Red" ErrorMessage="Please enter the name" ControlToValidate="TextBox3" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox3" ID="RegularExpressionValidator5" ValidationExpression="^[\s\S]{2,14}$" runat="server" ErrorMessage="Minimum 2 and Maximum 14 characters required."></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator   ValidationGroup="provider"  Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox3" ID="RegularExpressionValidator5" ValidationExpression="^[\s\S]{2,14}$" runat="server" ErrorMessage="Minimum 2 and Maximum 14 characters required."></asp:RegularExpressionValidator>
                                             </EditItemTemplate>
                                             <InsertItemTemplate>
                                                 <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("City") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="CityValidator2"
+                                                <asp:RequiredFieldValidator    ValidationGroup="provider"  runat="server" ID="CityValidator2"
                                                     ForeColor="Red" ErrorMessage="Please enter the name" ControlToValidate="TextBox3" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox3" ID="RegularExpressionValidator6" ValidationExpression="^[\s\S]{2,14}$" runat="server" ErrorMessage="Minimum 2 and Maximum 14 characters required."></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator   ValidationGroup="provider"  Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox3" ID="RegularExpressionValidator6" ValidationExpression="^[\s\S]{2,14}$" runat="server" ErrorMessage="Minimum 2 and Maximum 14 characters required."></asp:RegularExpressionValidator>
                                             </InsertItemTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="Label3" runat="server" Text='<%# Bind("City") %>'></asp:Label>
@@ -352,16 +363,16 @@
                                         <asp:TemplateField HeaderText="Zip" SortExpression="Zip">
                                             <EditItemTemplate>
                                                 <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Zip") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="ZipValidator"
+                                                <asp:RequiredFieldValidator   ValidationGroup="provider"  runat="server" ID="ZipValidator"
                                                     ForeColor="Red" ErrorMessage="Please enter zip code" ControlToValidate="TextBox4" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox4" ID="RegularExpressionValidator7" ValidationExpression="^[0-9]{5,5}$" runat="server" ErrorMessage="Code of 5 digits is needed"></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator   ValidationGroup="provider"  Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox4" ID="RegularExpressionValidator7" ValidationExpression="^[0-9]{5,5}$" runat="server" ErrorMessage="Code of 5 digits is needed"></asp:RegularExpressionValidator>
 
                                             </EditItemTemplate>
                                             <InsertItemTemplate>
                                                 <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Zip") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="ZipValidator2"
+                                                <asp:RequiredFieldValidator   ValidationGroup="provider"  runat="server" ID="ZipValidator2"
                                                     ForeColor="Red" ErrorMessage="Please enter zip code" ControlToValidate="TextBox4" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox4" ID="RegularExpressionValidator8" ValidationExpression="^[0-9]{5,5}$" runat="server" ErrorMessage="Code of 5 digits is needed"></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator   ValidationGroup="provider"  Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox4" ID="RegularExpressionValidator8" ValidationExpression="^[0-9]{5,5}$" runat="server" ErrorMessage="Code of 5 digits is needed"></asp:RegularExpressionValidator>
 
                                             </InsertItemTemplate>
                                             <ItemTemplate>
@@ -384,15 +395,15 @@
                                         <asp:TemplateField HeaderText="Email" SortExpression="Email">
                                             <EditItemTemplate>
                                                 <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Email") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="EmailValidator"
+                                                <asp:RequiredFieldValidator   ValidationGroup="provider" runat="server" ID="EmailValidator"
                                                     ForeColor="Red" ErrorMessage="Please enter Email" ControlToValidate="TextBox5" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox5" ID="RegularExpressionValidator9" ValidationExpression="^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*@((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))\z" runat="server" ErrorMessage="Not a valid Email format"></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator   ValidationGroup="provider"  Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox5" ID="RegularExpressionValidator9" ValidationExpression="([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"  runat="server" ErrorMessage="Not a valid Email format"></asp:RegularExpressionValidator>
                                             </EditItemTemplate>
                                             <InsertItemTemplate>
                                                 <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Email") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="EmailValidator2"
+                                                <asp:RequiredFieldValidator   ValidationGroup="provider"  runat="server" ID="EmailValidator2"
                                                     ForeColor="Red" ErrorMessage="Please enter Email" ControlToValidate="TextBox5" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox5" ID="RegularExpressionValidator10" ValidationExpression="^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*@((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))\z" runat="server" ErrorMessage="Not a valid Email format"></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator   ValidationGroup="provider"  Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox5" ID="RegularExpressionValidator10" ValidationExpression="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" runat="server" ErrorMessage="Not a valid Email format"></asp:RegularExpressionValidator>
 
                                             </InsertItemTemplate>
                                             <ItemTemplate>
@@ -402,15 +413,15 @@
                                         <asp:TemplateField HeaderText="Code" SortExpression="Code">
                                             <EditItemTemplate>
                                                 <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("Code") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="CodeValidator"
+                                                <asp:RequiredFieldValidator   ValidationGroup="provider"  runat="server" ID="CodeValidator"
                                                     ForeColor="Red" ErrorMessage="Code can't be empty" ControlToValidate="TextBox6" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox6" ID="RegularExpressionValidator11" ValidationExpression="^[0-9]{9,9}$" runat="server" ErrorMessage="Code of 9 digits digits is needed"></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator   ValidationGroup="provider"  Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox6" ID="RegularExpressionValidator11" ValidationExpression="^[0-9]{9,9}$" runat="server" ErrorMessage="Code of 9 digits digits is needed"></asp:RegularExpressionValidator>
                                             </EditItemTemplate>
                                             <InsertItemTemplate>
                                                 <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("Code") %>'></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="CodeValidator2"
+                                                <asp:RequiredFieldValidator   ValidationGroup="provider"  runat="server" ID="CodeValidator2"
                                                     ForeColor="Red" ErrorMessage="Code can't be empty" ControlToValidate="TextBox6" />
-                                                <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox6" ID="RegularExpressionValidator12" ValidationExpression="^[0-9]{9,9}$" runat="server" ErrorMessage="Code of 9 digits digits is needed"></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator   ValidationGroup="provider"  Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox6" ID="RegularExpressionValidator12" ValidationExpression="^[0-9]{9,9}$" runat="server" ErrorMessage="Code of 9 digits digits is needed"></asp:RegularExpressionValidator>
 
                                             </InsertItemTemplate>
                                             <ItemTemplate>
@@ -431,7 +442,7 @@
                                                 <asp:Label ID="Label6" runat="server" Text='<%# Bind("Type") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowInsertButton="True" />
+                                        <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowInsertButton="True"   ValidationGroup="provider" />
                                     </Fields>
                                     <FooterStyle BackColor="#CCCCCC" />
                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />

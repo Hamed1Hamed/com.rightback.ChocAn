@@ -78,6 +78,7 @@ namespace com.rightback.ChocAn.Services.Providers
             else
             {
                 //using AddOrUpdate method is not safe as it may insert dublicate records
+                providerSearch.Name = provider.Name;
                 providerSearch.City = provider.City;
                 providerSearch.Email = provider.Email;
                 providerSearch.Name = provider.Name;

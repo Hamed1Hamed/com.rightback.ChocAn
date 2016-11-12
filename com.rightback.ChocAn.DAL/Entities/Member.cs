@@ -17,7 +17,6 @@ namespace com.rightback.ChocAn.DAL
         public int MemberID { get; set; }
 
 
-
         public MemberStatus Status { get; set; }
 
         public enum MemberStatus

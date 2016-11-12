@@ -47,7 +47,7 @@ namespace com.rightback.ChocAn.Web
 
         }
 
-      
+
         #region Members tab operations
 
         private void BindDetailViewForMember()
@@ -65,6 +65,7 @@ namespace com.rightback.ChocAn.Web
         {
             IMemberService members = new MemberService();
             GridViewMembers.DataSource = members.getMembersWhoContains(TextBoxSerchMembers.Text).ToList();
+            GridViewMembers.SelectedIndex = -1;
             GridViewMembers.DataBind();
         }
 
@@ -75,20 +76,37 @@ namespace com.rightback.ChocAn.Web
             GridViewMembers.DataBind();
         }
 
-  
-        protected void GridViewMembers_RowDeleted(object sender, GridViewDeletedEventArgs e)
+        protected void GridViewMembers_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            string Code = (string)this.GridViewMembers.DataKeys[e.AffectedRows]["Code"];
+  
+            if (e.CommandName == "Select")
+            {
+
+                IMemberService members = new MemberService();
+                int MemberId = (int)this.GridViewMembers.DataKeys[Int32.Parse(e.CommandArgument.ToString())].Value;
+                Session["Member"] = (from u in members.getAllMembers() where u.MemberID == MemberId select u).ToList();
+                DetailsViewForMember.ChangeMode(DetailsViewMode.ReadOnly);
+                BindDetailViewForMember();
+            }
+            BindMemberData();
+        }
+        protected void GridViewMembers_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+            var row = GridViewMembers.Rows[e.RowIndex];
+            string Code = (row.FindControl("Label6") as Label).Text;
             IMemberService members = new MemberService();
             members.deleteMember(Code);
+
+            BindMemberData();
         }
 
-      
+
         protected void DetailsViewForMember_ItemUpdating(object sender, DetailsViewUpdateEventArgs e)
         {
             //ugly solution to find Member id, but spent hours trying to find another soulution without luck
             var key = e.Keys.Values;
-            var enumerator =key.GetEnumerator();
+            var enumerator = key.GetEnumerator();
             enumerator.MoveNext();
 
             Member member = new Member();
@@ -98,29 +116,24 @@ namespace com.rightback.ChocAn.Web
             member.City = (DetailsViewForMember.Rows[1].FindControl("TextBox3") as TextBox).Text;
             member.Zip = (DetailsViewForMember.Rows[1].FindControl("TextBox4") as TextBox).Text;
             member.Email = (DetailsViewForMember.Rows[1].FindControl("TextBox5") as TextBox).Text;
-            member.State= (USState.State)Enum.Parse(typeof(USState.State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
+            member.State = (USState.State)Enum.Parse(typeof(USState.State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
             member.Code = (DetailsViewForMember.Rows[1].FindControl("TextBox6") as TextBox).Text;
             member.Status = (Member.MemberStatus)Enum.Parse(typeof(Member.MemberStatus), (DetailsViewForMember.Rows[1].FindControl("DdlForStatus") as DropDownList).SelectedValue, true);
 
             IMemberService members = new MemberService();
             members.upsertMember(member);
             DetailsViewForMember.ChangeMode(DetailsViewMode.ReadOnly);
-            Session["Member"] = (from u in members.getAllMembers() where 
-                                 u.MemberID == Int32.Parse(GridViewMembers.SelectedDataKey.Value as string)
+            int MemberId = member.MemberID;
+            Session["Member"] = (from u in members.getAllMembers()
+                                 where
+                                   u.MemberID == MemberId
                                  select u).ToList();
+            GridViewMembers.SelectedIndex = -1;
             BindMemberData();
             BindDetailViewForMember();
         }
 
-        protected void GridViewMembers_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
-        {
 
-            IMemberService members = new MemberService();
-            int MemberId = (int)this.GridViewMembers.DataKeys[e.NewSelectedIndex].Value;
-            Session["Member"] = (from u in members.getAllMembers() where u.MemberID == MemberId select u).ToList();
-            DetailsViewForMember.ChangeMode(DetailsViewMode.ReadOnly);
-            BindDetailViewForMember();
-        }
 
         protected void DetailsViewForMember_ModeChanging(object sender, DetailsViewModeEventArgs e)
         {
@@ -142,10 +155,12 @@ namespace com.rightback.ChocAn.Web
             member.Zip = (DetailsViewForMember.Rows[1].FindControl("TextBox4") as TextBox).Text;
             member.Email = (DetailsViewForMember.Rows[1].FindControl("TextBox5") as TextBox).Text;
             member.Status = (Member.MemberStatus)Enum.Parse(typeof(Member.MemberStatus), (DetailsViewForMember.Rows[1].FindControl("DdlForStatus") as DropDownList).SelectedValue, true);
-                 member.State = (USState.State)Enum.Parse(typeof(USState.State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
+            member.State = (USState.State)Enum.Parse(typeof(USState.State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
+            member.Code = (DetailsViewForMember.Rows[1].FindControl("TextBox6") as TextBox).Text;
             IMemberService members = new MemberService();
             members.upsertMember(member);
             DetailsViewForMember.ChangeMode(DetailsViewMode.ReadOnly);
+            GridViewMembers.SelectedIndex = -1;
             BindMemberData();
             BindDetailViewForMember();
         }
@@ -176,16 +191,11 @@ namespace com.rightback.ChocAn.Web
                 DetailsViewForSelectedProvider.DataBind();
             }
             else
-                //force the statil view into insert mode
+                //force the detail view into insert mode
                 DetailsViewForSelectedProvider.ChangeMode(DetailsViewMode.Insert);
-            
+
         }
-        protected void GridViewForProviders_RowDeleted(object sender, GridViewDeletedEventArgs e)
-        {
-            string Code = (string)this.GridViewMembers.DataKeys[e.AffectedRows]["Code"];
-            IProviderService provider = new ProviderService();
-            provider.deleteProvider(Code);
-        }
+
 
         protected void GridViewForProviders_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -193,14 +203,7 @@ namespace com.rightback.ChocAn.Web
             BindProviderData();
         }
 
-        protected void GridViewForProviders_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
-        {
-            IProviderService provider = new ProviderService();
-            int ProviderId = (int)this.GridViewForProviders.DataKeys[e.NewSelectedIndex].Value;
-            Session["Provider"] = (from u in provider.getAllProviders() where u.ProviderID == ProviderId select u).ToList();
-            DetailsViewForSelectedProvider.ChangeMode(DetailsViewMode.ReadOnly);
-            BindDetailViewForProvider();
-        }
+
 
         protected void DetailsViewForSelectedProvider_ItemUpdating(object sender, DetailsViewUpdateEventArgs e)
         {
@@ -219,14 +222,16 @@ namespace com.rightback.ChocAn.Web
             provider.Code = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox6") as TextBox).Text;
             provider.State = (USState.State)Enum.Parse(typeof(USState.State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
             provider.Type = (Provider.ProviderType)Enum.Parse(typeof(Provider.ProviderType), (DetailsViewForSelectedProvider.Rows[1].FindControl("DdlForType") as DropDownList).SelectedValue, true);
-
+            provider.TerminalCode = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox7") as TextBox).Text;
             IProviderService providers = new ProviderService();
             providers.upsertProvider(provider);
             DetailsViewForSelectedProvider.ChangeMode(DetailsViewMode.ReadOnly);
+            int ProviderId = provider.ProviderID;
             Session["Provider"] = (from u in providers.getAllProviders()
-                                 where
-u.ProviderID == Int32.Parse(GridViewForProviders.SelectedDataKey.Value as string)
-                                 select u).ToList();
+                                   where
+                                    u.ProviderID == ProviderId
+                                   select u).ToList();
+            GridViewForProviders.SelectedIndex = -1;
             BindProviderData();
             BindDetailViewForProvider();
         }
@@ -238,14 +243,19 @@ u.ProviderID == Int32.Parse(GridViewForProviders.SelectedDataKey.Value as string
             provider.StreetAddres = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox2") as TextBox).Text;
             provider.City = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox3") as TextBox).Text;
             provider.Zip = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox4") as TextBox).Text;
-            provider.State = (USState.State)Enum.Parse(typeof(USState.State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
+            provider.State = (USState.State)Enum.Parse(typeof(USState.State), (DetailsViewForSelectedProvider.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
             provider.Email = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox5") as TextBox).Text;
+            provider.Code = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox6") as TextBox).Text;
             provider.Type = (Provider.ProviderType)Enum.Parse(typeof(Provider.ProviderType), (DetailsViewForSelectedProvider.Rows[1].FindControl("DdlForType") as DropDownList).SelectedValue, true);
+            provider.TerminalCode = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox7") as TextBox).Text;
             IProviderService providers = new ProviderService();
             providers.upsertProvider(provider);
             DetailsViewForSelectedProvider.ChangeMode(DetailsViewMode.ReadOnly);
+            GridViewForProviders.SelectedIndex = -1;
             BindProviderData();
             BindDetailViewForProvider();
+
+
         }
 
         protected void DetailsViewForSelectedProvider_ModeChanging(object sender, DetailsViewModeEventArgs e)
@@ -262,8 +272,35 @@ u.ProviderID == Int32.Parse(GridViewForProviders.SelectedDataKey.Value as string
         {
             IProviderService providers = new ProviderService();
             GridViewForProviders.DataSource = providers.getProvidersWhoContains(TextBoxSearchProviders.Text).ToList();
+            GridViewForProviders.SelectedIndex = -1;
             GridViewForProviders.DataBind();
         }
+
+        protected void GridViewForProviders_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+          
+            if (e.CommandName == "Select")
+            {
+                IProviderService provider = new ProviderService();
+                int ProviderId = (int)this.GridViewForProviders.DataKeys[Int32.Parse(e.CommandArgument.ToString())].Value;
+                Session["Provider"] = (from u in provider.getAllProviders() where u.ProviderID == ProviderId select u).ToList();
+                DetailsViewForSelectedProvider.ChangeMode(DetailsViewMode.ReadOnly);
+                BindDetailViewForProvider();
+            }
+ 
+        }
+
+        protected void GridViewForProviders_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+          
+                var row = GridViewForProviders.Rows[e.RowIndex];
+                string Code = (row.FindControl("Label6") as Label).Text;
+                IProviderService provider = new ProviderService();
+                provider.deleteProvider(Code);
+            
+            BindProviderData();
+        }
+
 
         #endregion
 
