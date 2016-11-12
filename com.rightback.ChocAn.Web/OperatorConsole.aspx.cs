@@ -97,8 +97,9 @@ namespace com.rightback.ChocAn.Web
             string Code = (row.FindControl("Label6") as Label).Text;
             IMemberService members = new MemberService();
             members.deleteMember(Code);
-
+            DetailsViewForMember.ChangeMode(DetailsViewMode.ReadOnly);
             BindMemberData();
+            BindDetailViewForMember();
         }
 
 
@@ -297,7 +298,8 @@ namespace com.rightback.ChocAn.Web
                 string Code = (row.FindControl("Label6") as Label).Text;
                 IProviderService provider = new ProviderService();
                 provider.deleteProvider(Code);
-            
+            DetailsViewForSelectedProvider.ChangeMode(DetailsViewMode.ReadOnly);
+            BindDetailViewForProvider();
             BindProviderData();
         }
 

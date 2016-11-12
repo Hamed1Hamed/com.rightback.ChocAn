@@ -10,7 +10,11 @@
     <div class="tab-content" id="myTabContent2">
         <div id="Members" class="tab-pane active">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="TextBoxSerchMembers" />
+                    <asp:AsyncPostBackTrigger ControlID="GridViewMembers" />
+                    <asp:AsyncPostBackTrigger ControlID="DetailsViewForMember" />
+                </Triggers>
                 <ContentTemplate>
                     <br>
                     </br>
@@ -190,14 +194,14 @@
                                                 <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("Code") %>'></asp:TextBox>
                                                 <asp:RequiredFieldValidator  ValidationGroup="member" runat="server" ID="CodeValidator"
                                                     ForeColor="Red" ErrorMessage="Code can't be empty" ControlToValidate="TextBox6" />
-                                                <asp:RegularExpressionValidator  ValidationGroup="member" Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox6" ID="RegularExpressionValidator11" ValidationExpression="	^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" runat="server" ErrorMessage="Code of 9 digits digits is needed"></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator  ValidationGroup="member" Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox6" ID="RegularExpressionValidator11" ValidationExpression="[0-9]{9,9}$" runat="server" ErrorMessage="Code of 9 digits digits is needed"></asp:RegularExpressionValidator>
 
                                             </EditItemTemplate>
                                             <InsertItemTemplate>
                                                 <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("Code") %>'></asp:TextBox>
                                                 <asp:RequiredFieldValidator  ValidationGroup="member" runat="server" ID="CodeValidator2"
                                                     ForeColor="Red" ErrorMessage="Code can't be empty" ControlToValidate="TextBox6" />
-                                                <asp:RegularExpressionValidator  ValidationGroup="member" Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox6" ID="RegularExpressionValidator12" ValidationExpression="	^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" runat="server" ErrorMessage="Code of 9 digits digits is needed"></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator  ValidationGroup="member" Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox6" ID="RegularExpressionValidator12" ValidationExpression="[0-9]{9,9}$" runat="server" ErrorMessage="Code of 9 digits digits is needed"></asp:RegularExpressionValidator>
 
                                             </InsertItemTemplate>
                                             <ItemTemplate>
@@ -218,7 +222,7 @@
                                                 <asp:Label ID="Label6" runat="server" Text='<%# Bind("Status") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowInsertButton="True"  ValidationGroup="member" />
+                                        <asp:CommandField ShowDeleteButton="False" ShowEditButton="True" ShowInsertButton="True"  ValidationGroup="member" />
                                     </Fields>
                                     <FooterStyle BackColor="#CCCCCC" />
                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -236,6 +240,11 @@
         </div>
         <div id="Providers" class="tab-pane fade">
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                         <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="TextBoxSearchProviders" />
+                    <asp:AsyncPostBackTrigger ControlID="GridViewForProviders" />
+                    <asp:AsyncPostBackTrigger ControlID="DetailsViewForSelectedProvider" />
+                </Triggers>
                 <ContentTemplate>
                      <br>
                      </br>
@@ -442,7 +451,24 @@
                                                 <asp:Label ID="Label6" runat="server" Text='<%# Bind("Type") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowInsertButton="True"   ValidationGroup="provider" />
+                                        <asp:TemplateField HeaderText="TerminalCode" SortExpression="TerminalCode">
+                                            <EditItemTemplate>
+                                                <asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("TerminalCode") %>'></asp:TextBox>
+                                                <asp:RequiredFieldValidator   ValidationGroup="provider"  runat="server" ID="TerminalCodeValidator"
+                                                    ForeColor="Red" ErrorMessage="Please enter terminal code" ControlToValidate="TextBox7" />
+                                                <asp:RegularExpressionValidator   ValidationGroup="provider"  Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox7" ID="RegularExpressionValidator13" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
+                                            </EditItemTemplate>
+                                            <InsertItemTemplate>
+                                                <asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("TerminalCode") %>'></asp:TextBox>
+                                                <asp:RequiredFieldValidator   ValidationGroup="provider"  runat="server" ID="TerminalCodeValidator"
+                                                    ForeColor="Red" ErrorMessage="Please enter the terminal code" ControlToValidate="TextBox7" />
+                                                <asp:RegularExpressionValidator   ValidationGroup="provider"  Display="Dynamic" ForeColor="Red" ControlToValidate="TextBox7" ID="RegularExpressionValidator14" ValidationExpression="^[\s\S]{5,25}$" runat="server" ErrorMessage="Minimum 5 and Maximum 25 characters required."></asp:RegularExpressionValidator>
+                                            </InsertItemTemplate>
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label7" runat="server" Text='<%# Bind("TerminalCode") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:CommandField ShowDeleteButton="False" ShowEditButton="True" ShowInsertButton="True"   ValidationGroup="provider" />
                                     </Fields>
                                     <FooterStyle BackColor="#CCCCCC" />
                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
