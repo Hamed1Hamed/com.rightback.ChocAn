@@ -10,6 +10,15 @@ namespace com.rightback.ChocAn.Services.Claims
 {
     public class ClaimService : BaseService, IClaimService
     { 
+        /// <summary>
+        /// Adds claim entry to database with the provided details.
+        /// </summary>
+        /// <param name="providerNumber">9 digit provider number</param>
+        /// <param name="memberNumber">9 digit member number</param>
+        /// <param name="serviceCode">6 digit service code</param>
+        /// <param name="comments">Comments for the provided service (optional)</param>
+        /// <param name="dateServiceProvided">Date of the service provided.</param>
+        /// <returns>Returns empty string if successfull or explanation about the error otherwise.</returns>
         public string addClaim(string providerNumber, string memberNumber, string serviceCode, string comments, DateTime dateServiceProvided)
         {
                 Provider provider = db.Providers.Where(p => p.Code.Equals(providerNumber)).FirstOrDefault();
@@ -42,6 +51,17 @@ namespace com.rightback.ChocAn.Services.Claims
             return String.Empty;
         }
 
+        /// <summary>
+        /// Adds claim check entry to the database
+        /// </summary>
+        /// <param name="providerCode">9 digit provider code</param>
+        /// <param name="currentDate">Date of the request</param>
+        /// <param name="serviceDate">Date of the service provided</param>
+        /// <param name="memberName">Name of the member who get the service</param>
+        /// <param name="memberNumber">9 digit member code</param>
+        /// <param name="serviceCode">6 digit service code</param>
+        /// <param name="fee">Fee to be recorded for confirmation purposes.</param>
+        /// <returns>Empty string if successfull or explanation about the error otherwise.</returns>
         public string addClaimCheck(string providerCode,DateTime currentDate, DateTime serviceDate, string memberName, string memberNumber, string serviceCode, decimal fee)
         {
             String result = String.Empty;
@@ -77,16 +97,26 @@ namespace com.rightback.ChocAn.Services.Claims
                 result = "An error occurred";
             }
 
-            return result; ;
+            return result;
         }
 
-  
-
+        /// <summary>
+        /// Returns claim entries between the provided two dates.
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <returns></returns>
         public IQueryable<Claim> getClaimsWithin(DateTime start, DateTime end)
         {
             return from u in db.Claims.Where(e => e.DateOfClaim > start & e.DateOfClaim < end) select u;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="person"></param>
+        /// <param name="claims"></param>
+        /// <returns></returns>
         public IList<ReportItemForProvider> generateSerializedReport(Provider person,IQueryable<Claim> claims)
         {
             if (claims==null)
@@ -95,8 +125,14 @@ namespace com.rightback.ChocAn.Services.Claims
             foreach (Claim c in claims)
                 Data.Add(new ReportItemForProvider(c));
             return Data;
-
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="member"></param>
+        /// <param name="claims"></param>
+        /// <returns></returns>
         public IList<ReportItemForMember> generateSerializedReport(Member member, IQueryable<Claim> claims)
         {
             if (claims == null)

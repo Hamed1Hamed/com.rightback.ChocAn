@@ -16,7 +16,7 @@ using static com.rightback.ChocAn.DAL.Member;
 namespace com.rightback.ChocAn.Web.WebService
 {
     /// <summary>
-    /// Summary description for TerminalService
+    /// Provides services for the terminal device to invoke to operate.
     /// </summary>
     [WebService(Namespace = "http://rightback.com/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
@@ -34,9 +34,9 @@ namespace com.rightback.ChocAn.Web.WebService
         /// Returns true if correct provider code and terminal code provided for the provider.
         /// False otherwise.
         /// </summary>
-        /// <param name="providerCode"></param>
-        /// <param name="terminalCode"></param>
-        /// <returns></returns>
+        /// <param name="providerCode">9 digit code of the provider.</param>
+        /// <param name="terminalCode">Embedded terminal code from the device.</param>
+        /// <returns>True if provider is found, false otherwise.</returns>
         [WebMethod]
         public bool loginProvider(String providerCode, String terminalCode)
         {
@@ -50,7 +50,11 @@ namespace com.rightback.ChocAn.Web.WebService
                 .Equals(terminalCode);
         }
 
-
+        /// <summary>
+        /// Returns the status of the member for the provided membercode.
+        /// </summary>
+        /// <param name="memberCode">9 digit code for the provider.</param>
+        /// <returns>Can be Invalid, Suspended or Validated</returns>
         [WebMethod]
         public VerifyMemberResult verifyMember(String memberCode)
         {
@@ -67,9 +71,12 @@ namespace com.rightback.ChocAn.Web.WebService
                 return VerifyMemberResult.Validated;
 
             return VerifyMemberResult.InvalidMember;
-
         }
 
+        /// <summary>
+        /// Returns all available services (products) in the system which can be given by a provider.
+        /// </summary>
+        /// <returns>List of service view models.</returns>
         [WebMethod]
         [ScriptMethod(UseHttpGet = true)]
         public List<ServiceViewModel> getServices()
@@ -79,14 +86,27 @@ namespace com.rightback.ChocAn.Web.WebService
             return ServiceViewModel.fromServiceList(services);
         }
 
+        /// <summary>
+        /// Returns a service object by the provided service code.
+        /// </summary>
+        /// <param name="code">6 digit code for the service</param>
+        /// <returns>Service object or null if no service found.</returns>
         [WebMethod]
         [ScriptMethod(UseHttpGet = true)]
         public ServiceViewModel getService(string code)
         {
-
             return ServiceViewModel.fromService(serviceService.getServiceByCode(code));
         }
 
+        /// <summary>
+        /// Records a claim data into the database according to the provided details.
+        /// </summary>
+        /// <param name="providerNumber">9 digit provider number</param>
+        /// <param name="memberNumber">9 digit member number</param>
+        /// <param name="serviceCode">6 digit service code</param>
+        /// <param name="comments">Comments for the provided service. (optional)</param>
+        /// <param name="dateServiceProvided">Date of the service provided.</param>
+        /// <returns></returns>
         [WebMethod]
         public RecordClaimResult recordClaim(string providerNumber, string memberNumber, string serviceCode, string comments, DateTime dateServiceProvided)
         {
@@ -110,6 +130,17 @@ namespace com.rightback.ChocAn.Web.WebService
             };
         }
 
+        /// <summary>
+        /// Records a ClaimCheck entry into the database.
+        /// </summary>
+        /// <param name="providerNumber">9 digit provider number.</param>
+        /// <param name="currentDate">Current date as provided by the terminal interface.</param>
+        /// <param name="serviceDate">Date of the provided service</param>
+        /// <param name="memberName">Name of the member</param>
+        /// <param name="memberNumber">9 digit number for the member</param>
+        /// <param name="serviceCode">6 digit service code.</param>
+        /// <param name="fee">Fee of the service for confirmation purposes.</param>
+        /// <returns>Empty string if successfull or information about the error if operation failed.</returns>
         [WebMethod]
         public String recordClaimCheck(string providerNumber, DateTime currentDate, DateTime serviceDate, String memberName, String memberNumber, String serviceCode, decimal fee)
         {
