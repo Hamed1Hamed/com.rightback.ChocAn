@@ -484,9 +484,11 @@
         </div>
         <asp:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="0">
             <ProgressTemplate>
+
                 <div style=" background: #e9e9e9; position: absolute; top: 0; right: 0; bottom: 0; left: 0;">
                     <img src="http://i.stack.imgur.com/8puiO.gif" />&nbsp;
                 </div>
+
             </ProgressTemplate>
         </asp:UpdateProgress>
     </div>

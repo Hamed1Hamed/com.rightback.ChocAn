@@ -6,7 +6,7 @@
         <li class="active"><a href="#Members" aria-controls="Members" role="tab" data-toggle="tab">Members Reports</a></li>
         <li><a href="#Providers" aria-controls="Providers" role="tab" data-toggle="tab">Providers Reports</a></li>
         <li><a href="#Summary" aria-controls="Summary" role="tab" data-toggle="tab">Summary Reports</a></li>
-          <li><a href="#Other" aria-controls="Reports" role="tab" data-toggle="tab">Other</a></li>
+          <li><a href="#Files" aria-controls="Files" role="tab" data-toggle="tab">Files</a></li>
     </ul>
     <div class="tab-content" id="myTabContent2">
         <div id="Members" class="tab-pane active">
@@ -215,7 +215,7 @@
             </asp:UpdatePanel>
 
         </div>
-          <div id="Other" class="tab-pane fade">
+          <div id="Files" class="tab-pane fade">
             <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                     <Triggers>
        <asp:PostBackTrigger ControlID="GridViewForFiles" />
