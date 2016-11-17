@@ -112,8 +112,10 @@
         #endregion
 
         private System.Windows.Forms.DataGridView gvServiceCodes;
+        #pragma warning disable 0169
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        #pragma warning restore 0169
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.BindingSource serviceCodeSource;

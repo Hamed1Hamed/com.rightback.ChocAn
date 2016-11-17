@@ -94,7 +94,7 @@ namespace com.rightback.ChocAn.Services.Claims
             }
             catch(Exception ex)
             {
-                result = "An error occurred";
+                result = "An error occurred, "+ex.Message;
             }
 
             return result;

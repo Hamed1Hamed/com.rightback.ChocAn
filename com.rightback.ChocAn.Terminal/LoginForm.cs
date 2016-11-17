@@ -45,7 +45,7 @@ namespace com.rightback.ChocAn.Terminal
             }
             catch(Exception ex)
             {
-                txtLog.Text += "CONNECTION FAILURE";
+                txtLog.Text += "CONNECTION FAILURE, "+ex.Message;
             }
 
             txtLog.Text += Environment.NewLine;
