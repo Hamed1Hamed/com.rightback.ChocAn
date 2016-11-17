@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static com.rightback.ChocAn.DAL.Entities.USState;
+using static com.rightback.ChocAn.DAL.Enums.USState;
 
 namespace com.rightback.ChocAn.DAL.Entities
 {

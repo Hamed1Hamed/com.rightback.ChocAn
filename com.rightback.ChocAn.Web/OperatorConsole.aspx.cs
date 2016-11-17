@@ -1,5 +1,6 @@
 ﻿using com.rightback.ChocAn.DAL;
 using com.rightback.ChocAn.DAL.Entities;
+using com.rightback.ChocAn.DAL.Enums;
 using com.rightback.ChocAn.Services.Members;
 using com.rightback.ChocAn.Services.Providers;
 using com.rightback.ChocAn.Web.Code;
@@ -119,7 +120,7 @@ namespace com.rightback.ChocAn.Web
             member.Email = (DetailsViewForMember.Rows[1].FindControl("TextBox5") as TextBox).Text;
             member.State = (USState.State)Enum.Parse(typeof(USState.State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
             member.Code = (DetailsViewForMember.Rows[1].FindControl("TextBox6") as TextBox).Text;
-            member.Status = (Member.MemberStatus)Enum.Parse(typeof(Member.MemberStatus), (DetailsViewForMember.Rows[1].FindControl("DdlForStatus") as DropDownList).SelectedValue, true);
+            member.Status = (MemberStatus)Enum.Parse(typeof(MemberStatus), (DetailsViewForMember.Rows[1].FindControl("DdlForStatus") as DropDownList).SelectedValue, true);
 
             IMemberService members = new MemberService();
             members.upsertMember(member);
@@ -155,7 +156,7 @@ namespace com.rightback.ChocAn.Web
             member.City = (DetailsViewForMember.Rows[1].FindControl("TextBox3") as TextBox).Text;
             member.Zip = (DetailsViewForMember.Rows[1].FindControl("TextBox4") as TextBox).Text;
             member.Email = (DetailsViewForMember.Rows[1].FindControl("TextBox5") as TextBox).Text;
-            member.Status = (Member.MemberStatus)Enum.Parse(typeof(Member.MemberStatus), (DetailsViewForMember.Rows[1].FindControl("DdlForStatus") as DropDownList).SelectedValue, true);
+            member.Status = (MemberStatus)Enum.Parse(typeof(MemberStatus), (DetailsViewForMember.Rows[1].FindControl("DdlForStatus") as DropDownList).SelectedValue, true);
             member.State = (USState.State)Enum.Parse(typeof(USState.State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
             member.Code = (DetailsViewForMember.Rows[1].FindControl("TextBox6") as TextBox).Text;
             IMemberService members = new MemberService();
@@ -222,7 +223,7 @@ namespace com.rightback.ChocAn.Web
             provider.Email = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox5") as TextBox).Text;
             provider.Code = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox6") as TextBox).Text;
             provider.State = (USState.State)Enum.Parse(typeof(USState.State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
-            provider.Type = (Provider.ProviderType)Enum.Parse(typeof(Provider.ProviderType), (DetailsViewForSelectedProvider.Rows[1].FindControl("DdlForType") as DropDownList).SelectedValue, true);
+            provider.Type = (ProviderType)Enum.Parse(typeof(ProviderType), (DetailsViewForSelectedProvider.Rows[1].FindControl("DdlForType") as DropDownList).SelectedValue, true);
             provider.TerminalCode = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox7") as TextBox).Text;
             IProviderService providers = new ProviderService();
             providers.upsertProvider(provider);
@@ -247,7 +248,7 @@ namespace com.rightback.ChocAn.Web
             provider.State = (USState.State)Enum.Parse(typeof(USState.State), (DetailsViewForSelectedProvider.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
             provider.Email = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox5") as TextBox).Text;
             provider.Code = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox6") as TextBox).Text;
-            provider.Type = (Provider.ProviderType)Enum.Parse(typeof(Provider.ProviderType), (DetailsViewForSelectedProvider.Rows[1].FindControl("DdlForType") as DropDownList).SelectedValue, true);
+            provider.Type = (ProviderType)Enum.Parse(typeof(ProviderType), (DetailsViewForSelectedProvider.Rows[1].FindControl("DdlForType") as DropDownList).SelectedValue, true);
             provider.TerminalCode = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox7") as TextBox).Text;
             IProviderService providers = new ProviderService();
             providers.upsertProvider(provider);

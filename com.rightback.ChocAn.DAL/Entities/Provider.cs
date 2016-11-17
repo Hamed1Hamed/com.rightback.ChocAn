@@ -1,5 +1,6 @@
 ﻿using com.rightback.ChocAn.DAL;
 using com.rightback.ChocAn.DAL.Entities;
+using com.rightback.ChocAn.DAL.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static com.rightback.ChocAn.DAL.Entities.USState;
+
 
 namespace com.rightback.ChocAn.DAL
 {
@@ -23,13 +24,6 @@ namespace com.rightback.ChocAn.DAL
 
         public ProviderType Type { get; set; }
 
-        public enum ProviderType
-        {
-            internist=0,
-            dietitian=1,
-            exercise=2,
-            specialist=3
-        }
 
         //Navigation 
         public virtual ICollection<Claim> Claims { get; set; }

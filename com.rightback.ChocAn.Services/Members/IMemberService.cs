@@ -46,7 +46,7 @@ namespace com.rightback.ChocAn.Services.Members
         void deleteMember(string code);
 
         /// <summary>
-        /// Returns Members who consulted within specific range
+        /// Returns Members who consulted within specific time
         /// </summary>
         /// <param name="Start"></param>
         /// <param name="End"></param>

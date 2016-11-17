@@ -141,11 +141,11 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="State" SortExpression="State">
                                             <EditItemTemplate>
-                                                <asp:DropDownList ID="DdlForState" runat="server" DataSource="<%# Enum.GetNames(typeof(com.rightback.ChocAn.DAL.Entities.USState.State))%>" SelectedItem='<%# Bind("State") %>'>
+                                                <asp:DropDownList ID="DdlForState" runat="server" DataSource="<%# Enum.GetNames(typeof(com.rightback.ChocAn.DAL.Enums.USState.State))%>" SelectedItem='<%# Bind("State") %>'>
                                                 </asp:DropDownList>
                                            </EditItemTemplate>
                                             <InsertItemTemplate>
-                                                <asp:DropDownList ID="DdlForState" runat="server" DataSource="<%# Enum.GetNames(typeof(com.rightback.ChocAn.DAL.Entities.USState.State))%>">
+                                                <asp:DropDownList ID="DdlForState" runat="server" DataSource="<%# Enum.GetNames(typeof(com.rightback.ChocAn.DAL.Enums.USState.State))%>">
                                                 </asp:DropDownList>
                                             </InsertItemTemplate>
                                             <ItemTemplate>
@@ -210,12 +210,12 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Status" SortExpression="Status">
                                             <EditItemTemplate>
-                                                <asp:DropDownList ID="DdlForStatus" runat="server" DataSource="<%# Enum.GetNames(typeof(com.rightback.ChocAn.DAL.Member.MemberStatus))%>" SelectedItem='<%# Bind("Status") %>'>
+                                                <asp:DropDownList ID="DdlForStatus" runat="server" DataSource="<%# Enum.GetNames(typeof(com.rightback.ChocAn.DAL.Enums.MemberStatus))%>" SelectedItem='<%# Bind("Status") %>'>
                                                 </asp:DropDownList>
 
                                             </EditItemTemplate>
                                             <InsertItemTemplate>
-                                                <asp:DropDownList ID="DdlForStatus" runat="server" DataSource="<%# Enum.GetNames(typeof(com.rightback.ChocAn.DAL.Member.MemberStatus))%>">
+                                                <asp:DropDownList ID="DdlForStatus" runat="server" DataSource="<%# Enum.GetNames(typeof(com.rightback.ChocAn.DAL.Enums.MemberStatus))%>">
                                                 </asp:DropDownList>
                                             </InsertItemTemplate>
                                             <ItemTemplate>
@@ -390,11 +390,11 @@
                                         </asp:TemplateField>
                                          <asp:TemplateField HeaderText="State" SortExpression="State">
                                             <EditItemTemplate>
-                                                <asp:DropDownList ID="DdlForState" runat="server" DataSource="<%# Enum.GetNames(typeof(com.rightback.ChocAn.DAL.Entities.USState.State))%>" SelectedItem='<%# Bind("State") %>'>
+                                                <asp:DropDownList ID="DdlForState" runat="server" DataSource="<%# Enum.GetNames(typeof(com.rightback.ChocAn.DAL.Enums.USState.State))%>" SelectedItem='<%# Bind("State") %>'>
                                                 </asp:DropDownList>
                                            </EditItemTemplate>
                                             <InsertItemTemplate>
-                                                <asp:DropDownList ID="DdlForState" runat="server" DataSource="<%# Enum.GetNames(typeof(com.rightback.ChocAn.DAL.Entities.USState.State))%>">
+                                                <asp:DropDownList ID="DdlForState" runat="server" DataSource="<%# Enum.GetNames(typeof(com.rightback.ChocAn.DAL.Enums.USState.State))%>">
                                                 </asp:DropDownList>
                                             </InsertItemTemplate>
                                             <ItemTemplate>
@@ -439,12 +439,12 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Type" SortExpression="Type">
                                             <EditItemTemplate>
-                                                <asp:DropDownList ID="DdlForType" runat="server" DataSource="<%# Enum.GetNames(typeof(com.rightback.ChocAn.DAL.Provider.ProviderType))%>" SelectedItem='<%# Bind("Status") %>'>
+                                                <asp:DropDownList ID="DdlForType" runat="server" DataSource="<%# Enum.GetNames(typeof(com.rightback.ChocAn.DAL.Enums.ProviderType))%>" SelectedItem='<%# Bind("Status") %>'>
                                                 </asp:DropDownList>
 
                                             </EditItemTemplate>
                                             <InsertItemTemplate>
-                                                <asp:DropDownList ID="DdlForType" runat="server" DataSource="<%# Enum.GetNames(typeof(com.rightback.ChocAn.DAL.Provider.ProviderType))%>">
+                                                <asp:DropDownList ID="DdlForType" runat="server" DataSource="<%# Enum.GetNames(typeof(com.rightback.ChocAn.DAL.Enums.ProviderType))%>">
                                                 </asp:DropDownList>
                                             </InsertItemTemplate>
                                             <ItemTemplate>

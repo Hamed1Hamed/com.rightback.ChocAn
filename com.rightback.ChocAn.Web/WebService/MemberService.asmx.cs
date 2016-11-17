@@ -1,4 +1,5 @@
 ﻿using com.rightback.ChocAn.DAL;
+using com.rightback.ChocAn.DAL.Enums;
 using com.rightback.ChocAn.Services;
 using com.rightback.ChocAn.Services.Members;
 using System;
