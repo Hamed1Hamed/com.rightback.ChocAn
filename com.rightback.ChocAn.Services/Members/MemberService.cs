@@ -25,7 +25,7 @@ namespace com.rightback.ChocAn.Services.Members
 
         }
 
-        public DbSet<Member> getAllMembers()
+        public IEnumerable<Member> getAllMembers()
         {
             return db.Members;
         }

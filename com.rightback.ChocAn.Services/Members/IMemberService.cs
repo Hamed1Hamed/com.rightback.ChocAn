@@ -36,7 +36,7 @@ namespace com.rightback.ChocAn.Services.Members
         /// Returns all members.
         /// </summary>
         /// <returns> DbSet </returns>
-        DbSet<Member> getAllMembers();
+        IEnumerable<Member> getAllMembers();
 
         /// <summary>
         ///Delete member .

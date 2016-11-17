@@ -64,7 +64,7 @@ namespace com.rightback.ChocAn.Web
         protected void TextBoxSerchMembers_TextChanged(object sender, EventArgs e)
         {
             IMemberService members = new MemberService();
-            GridViewMembers.DataSource = members.getMembersWhoContains(TextBoxSerchMembers.Text).ToList();
+            GridViewMembers.DataSource = members.getMembersWhoContains(TextBoxSerchMembers.Text);
             GridViewMembers.SelectedIndex = -1;
             GridViewMembers.DataBind();
         }
@@ -72,7 +72,7 @@ namespace com.rightback.ChocAn.Web
         private void BindMemberData()
         {
             IMemberService members = new MemberService();
-            GridViewMembers.DataSource = members.getAllMembers().ToList();
+            GridViewMembers.DataSource = members.getAllMembers();
             GridViewMembers.DataBind();
         }
 
@@ -84,7 +84,7 @@ namespace com.rightback.ChocAn.Web
 
                 IMemberService members = new MemberService();
                 int MemberId = (int)this.GridViewMembers.DataKeys[Int32.Parse(e.CommandArgument.ToString())].Value;
-                Session["Member"] = (from u in members.getAllMembers() where u.MemberID == MemberId select u).ToList();
+                Session["Member"] = (from u in members.getAllMembers() where u.MemberID == MemberId select u);
                 DetailsViewForMember.ChangeMode(DetailsViewMode.ReadOnly);
                 BindDetailViewForMember();
             }
@@ -128,7 +128,7 @@ namespace com.rightback.ChocAn.Web
             Session["Member"] = (from u in members.getAllMembers()
                                  where
                                    u.MemberID == MemberId
-                                 select u).ToList();
+                                 select u);
             GridViewMembers.SelectedIndex = -1;
             BindMemberData();
             BindDetailViewForMember();
@@ -180,7 +180,7 @@ namespace com.rightback.ChocAn.Web
         private void BindProviderData()
         {
             IProviderService providers = new ProviderService();
-            GridViewForProviders.DataSource = providers.getAllProviders().ToList();
+            GridViewForProviders.DataSource = providers.getAllProviders();
             GridViewForProviders.DataBind();
         }
 
@@ -231,7 +231,7 @@ namespace com.rightback.ChocAn.Web
             Session["Provider"] = (from u in providers.getAllProviders()
                                    where
                                     u.ProviderID == ProviderId
-                                   select u).ToList();
+                                   select u);
             GridViewForProviders.SelectedIndex = -1;
             BindProviderData();
             BindDetailViewForProvider();
@@ -272,7 +272,7 @@ namespace com.rightback.ChocAn.Web
         protected void TextBoxSearchProviders_TextChanged(object sender, EventArgs e)
         {
             IProviderService providers = new ProviderService();
-            GridViewForProviders.DataSource = providers.getProvidersWhoContains(TextBoxSearchProviders.Text).ToList();
+            GridViewForProviders.DataSource = providers.getProvidersWhoContains(TextBoxSearchProviders.Text);
             GridViewForProviders.SelectedIndex = -1;
             GridViewForProviders.DataBind();
         }
@@ -284,7 +284,7 @@ namespace com.rightback.ChocAn.Web
             {
                 IProviderService provider = new ProviderService();
                 int ProviderId = (int)this.GridViewForProviders.DataKeys[Int32.Parse(e.CommandArgument.ToString())].Value;
-                Session["Provider"] = (from u in provider.getAllProviders() where u.ProviderID == ProviderId select u).ToList();
+                Session["Provider"] = (from u in provider.getAllProviders() where u.ProviderID == ProviderId select u);
                 DetailsViewForSelectedProvider.ChangeMode(DetailsViewMode.ReadOnly);
                 BindDetailViewForProvider();
             }
