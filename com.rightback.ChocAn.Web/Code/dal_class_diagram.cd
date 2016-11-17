@@ -1,88 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
-  <Comment CommentText="Data Access Layer">
-    <Position X="0.542" Y="0.5" Height="0.75" Width="1.7" />
-  </Comment>
-  <Class Name="com.rightback.ChocAn.DAL.Batch">
-    <Position X="0.5" Y="8" Width="1.5" />
+  <Class Name="com.rightback.ChocAn.DAL.Batch" Collapsed="true">
+    <Position X="12" Y="8" Width="1.5" />
     <TypeIdentifier />
   </Class>
-  <Class Name="com.rightback.ChocAn.DAL.Claim">
-    <Position X="5.75" Y="9.75" Width="2" />
-    <TypeIdentifier />
-    <ShowAsAssociation>
-      <Property Name="Provider" />
-      <Property Name="Member" />
-      <Property Name="Service" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="com.rightback.ChocAn.DAL.Member">
-    <Position X="2.5" Y="1.75" Width="2" />
-    <Members>
-      <Method Name="getStatusAsString" Hidden="true" />
-    </Members>
-    <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
-    </Compartments>
-    <NestedTypes>
-      <Enum Name="com.rightback.ChocAn.DAL.Member.MemberStatus" Collapsed="true">
-        <TypeIdentifier />
-      </Enum>
-    </NestedTypes>
-    <TypeIdentifier />
-    <ShowAsCollectionAssociation>
-      <Property Name="Claims" />
-    </ShowAsCollectionAssociation>
-  </Class>
-  <Class Name="com.rightback.ChocAn.DAL.Provider">
-    <Position X="2.5" Y="5.25" Width="2.25" />
-    <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
-    </Compartments>
-    <NestedTypes>
-      <Enum Name="com.rightback.ChocAn.DAL.Provider.ProviderType" Collapsed="true">
-        <TypeIdentifier />
-      </Enum>
-    </NestedTypes>
-    <TypeIdentifier />
-    <ShowAsCollectionAssociation>
-      <Property Name="Claims" />
-    </ShowAsCollectionAssociation>
-  </Class>
-  <Class Name="com.rightback.ChocAn.DAL.Service">
-    <Position X="2.25" Y="9.25" Width="2" />
-    <AssociationLine Name="Claims" Type="com.rightback.ChocAn.DAL.Claim">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="1.068" Y="-1.982" />
-      </MemberNameLabel>
-    </AssociationLine>
-    <TypeIdentifier />
-    <ShowAsCollectionAssociation>
-      <Property Name="Claims" />
-    </ShowAsCollectionAssociation>
-  </Class>
-  <Class Name="com.rightback.ChocAn.DAL.Entities.USState">
-    <Position X="0.5" Y="5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
-    </Compartments>
-    <NestedTypes>
-      <Enum Name="com.rightback.ChocAn.DAL.Entities.USState.State" Collapsed="true">
-        <TypeIdentifier />
-      </Enum>
-    </NestedTypes>
+  <Class Name="com.rightback.ChocAn.DAL.Claim" Collapsed="true">
+    <Position X="13.75" Y="8" Width="1.5" />
     <TypeIdentifier />
   </Class>
-  <Class Name="com.rightback.ChocAn.DAL.ChocAnDBModel">
-    <Position X="0.5" Y="1.75" Width="1.5" />
-    <Members>
-      <Method Name="OnModelCreating" Hidden="true" />
-    </Members>
+  <Class Name="com.rightback.ChocAn.DAL.ClaimCheck" Collapsed="true">
+    <Position X="12" Y="9" Width="1.5" />
     <TypeIdentifier />
   </Class>
-  <Class Name="com.rightback.ChocAn.DAL.Entities.Person">
-    <Position X="6" Y="0.5" Width="1.5" />
+  <Class Name="com.rightback.ChocAn.DAL.Member" Collapsed="true">
+    <Position X="7.25" Y="9.25" Width="1.5" />
     <TypeIdentifier />
   </Class>
+  <Class Name="com.rightback.ChocAn.DAL.Provider" Collapsed="true">
+    <Position X="9.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="com.rightback.ChocAn.DAL.Service" Collapsed="true">
+    <Position X="13.75" Y="9" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="com.rightback.ChocAn.DAL.Entities.Person" Collapsed="true">
+    <Position X="8.5" Y="8" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Enum Name="com.rightback.ChocAn.DAL.Enums.MemberStatus" Collapsed="true">
+    <Position X="12" Y="10.25" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="com.rightback.ChocAn.DAL.Enums.ProviderType" Collapsed="true">
+    <Position X="13.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

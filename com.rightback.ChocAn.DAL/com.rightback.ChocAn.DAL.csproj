@@ -57,7 +57,7 @@
     <Compile Include="Entities\Claim.cs" />
     <Compile Include="Entities\Member.cs" />
     <Compile Include="Entities\Person.cs" />
-    <Compile Include="Enums\USState.cs" />
+    <Compile Include="Enums\State.cs" />
     <Compile Include="Enums\MemberStatus.cs" />
     <Compile Include="Enums\ProviderType.cs" />
     <Compile Include="Migrations\Configuration.cs" />

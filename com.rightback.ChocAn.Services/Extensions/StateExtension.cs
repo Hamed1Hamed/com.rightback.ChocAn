@@ -4,11 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace com.rightback.ChocAn.DAL.Enums
 {
-    public class USState
+    /// <summary>
+    /// Adds extra functionality to state class
+    /// </summary>
+    public static class a
     {
-        public string GetState(State state)
+        public static string GetStateFullName(this State state)
         {
             switch (state)
             {
@@ -195,7 +199,7 @@ namespace com.rightback.ChocAn.DAL.Enums
     
 
 
-    public State GetStateByName(string name)
+    public static  State GetStateByName(this string name)
     {
         switch (name.ToUpper())
         {
@@ -380,68 +384,6 @@ namespace com.rightback.ChocAn.DAL.Enums
         throw new Exception("Not Available");
     }
 
-    public enum State
-    {
-        AL,
-        AK,
-        AS,
-        AZ,
-        AR,
-        CA,
-        CO,
-        CT,
-        DE,
-        DC,
-        FM,
-        FL,
-        GA,
-        GU,
-        HI,
-        ID,
-        IL,
-        IN,
-        IA,
-        KS,
-        KY,
-        LA,
-        ME,
-        MH,
-        MD,
-        MA,
-        MI,
-        MN,
-        MS,
-        MO,
-        MT,
-        NE,
-        NV,
-        NH,
-        NJ,
-        NM,
-        NY,
-        NC,
-        ND,
-        MP,
-        OH,
-        OK,
-        OR,
-        PW,
-        PA,
-        PR,
-        RI,
-        SC,
-        SD,
-        TN,
-        TX,
-        UT,
-        VT,
-        VI,
-        VA,
-        WA,
-        WV,
-        WI,
-        WY
-    }
-
+   
 }
 }

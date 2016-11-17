@@ -8,9 +8,9 @@ namespace com.rightback.ChocAn.DAL.Enums
 {
     public enum ProviderType
     {
-        internist = 0,
-        dietitian = 1,
-        exercise = 2,
-        specialist = 3
+        Internist = 0,
+        Dietitian = 1,
+        Exercise = 2,
+        Specialist = 3
     }
 }

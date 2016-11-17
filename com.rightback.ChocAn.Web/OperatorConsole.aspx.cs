@@ -118,7 +118,7 @@ namespace com.rightback.ChocAn.Web
             member.City = (DetailsViewForMember.Rows[1].FindControl("TextBox3") as TextBox).Text;
             member.Zip = (DetailsViewForMember.Rows[1].FindControl("TextBox4") as TextBox).Text;
             member.Email = (DetailsViewForMember.Rows[1].FindControl("TextBox5") as TextBox).Text;
-            member.State = (USState.State)Enum.Parse(typeof(USState.State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
+            member.State = (State)Enum.Parse(typeof(State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
             member.Code = (DetailsViewForMember.Rows[1].FindControl("TextBox6") as TextBox).Text;
             member.Status = (MemberStatus)Enum.Parse(typeof(MemberStatus), (DetailsViewForMember.Rows[1].FindControl("DdlForStatus") as DropDownList).SelectedValue, true);
 
@@ -157,7 +157,7 @@ namespace com.rightback.ChocAn.Web
             member.Zip = (DetailsViewForMember.Rows[1].FindControl("TextBox4") as TextBox).Text;
             member.Email = (DetailsViewForMember.Rows[1].FindControl("TextBox5") as TextBox).Text;
             member.Status = (MemberStatus)Enum.Parse(typeof(MemberStatus), (DetailsViewForMember.Rows[1].FindControl("DdlForStatus") as DropDownList).SelectedValue, true);
-            member.State = (USState.State)Enum.Parse(typeof(USState.State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
+            member.State = (State)Enum.Parse(typeof(State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
             member.Code = (DetailsViewForMember.Rows[1].FindControl("TextBox6") as TextBox).Text;
             IMemberService members = new MemberService();
             members.upsertMember(member);
@@ -222,7 +222,7 @@ namespace com.rightback.ChocAn.Web
             provider.Zip = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox4") as TextBox).Text;
             provider.Email = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox5") as TextBox).Text;
             provider.Code = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox6") as TextBox).Text;
-            provider.State = (USState.State)Enum.Parse(typeof(USState.State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
+            provider.State = (State)Enum.Parse(typeof(State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
             provider.Type = (ProviderType)Enum.Parse(typeof(ProviderType), (DetailsViewForSelectedProvider.Rows[1].FindControl("DdlForType") as DropDownList).SelectedValue, true);
             provider.TerminalCode = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox7") as TextBox).Text;
             IProviderService providers = new ProviderService();
@@ -245,7 +245,7 @@ namespace com.rightback.ChocAn.Web
             provider.StreetAddres = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox2") as TextBox).Text;
             provider.City = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox3") as TextBox).Text;
             provider.Zip = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox4") as TextBox).Text;
-            provider.State = (USState.State)Enum.Parse(typeof(USState.State), (DetailsViewForSelectedProvider.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
+            provider.State = (State)Enum.Parse(typeof(State), (DetailsViewForSelectedProvider.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
             provider.Email = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox5") as TextBox).Text;
             provider.Code = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox6") as TextBox).Text;
             provider.Type = (ProviderType)Enum.Parse(typeof(ProviderType), (DetailsViewForSelectedProvider.Rows[1].FindControl("DdlForType") as DropDownList).SelectedValue, true);

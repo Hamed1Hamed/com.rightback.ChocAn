@@ -62,6 +62,7 @@
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Extensions\PersonCoverExtensions.cs" />
     <Compile Include="Extensions\DataConversion.cs" />
+    <Compile Include="Extensions\StateExtension.cs" />
     <Compile Include="Members\IMemberService.cs" />
     <Compile Include="Members\MemberService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
