@@ -3,6 +3,7 @@ using com.rightback.ChocAn.DAL.Entities;
 using com.rightback.ChocAn.Services.Claims;
 using com.rightback.ChocAn.Services.Extensions;
 using com.rightback.ChocAn.Services.Helpers;
+using com.rightback.ChocAn.Services.Reports;
 using com.rightback.ChocAn.Services.Services;
 using System;
 using System.Collections.Generic;
@@ -72,6 +73,9 @@ namespace com.rightback.ChocAn.Services
                 processProviderWeeklyStatement(p, claims, emailServer, Writer);
                 processEFT(p, claims, Writer);
             }
+
+            processWeeklySumarryReort(claims);
+
             using (var context = new ChocAnDBModel())
             {
                 // save batch details in the DB
@@ -82,6 +86,22 @@ namespace com.rightback.ChocAn.Services
             }
             //schedule next report batch
             ScheduleTask();
+        }
+
+        private static void processWeeklySumarryReort(IQueryable<Claim> claimInWeek)
+        {
+            string firstLine = "Total number of providers: "+
+                (from u in claimInWeek select u.Provider.ProviderID).Distinct().Count().ToString()+"</br>";
+            string seconedtLine = "The total number of consultations: "+
+                claimInWeek.Count().ToString()+"</ br >";
+            string thirdLine = "Overall fee  The total number of consultations: ";
+            if (claimInWeek.Count() > 0)
+                thirdLine= thirdLine + claimInWeek.Sum(e => e.Service.Fee).ToString();
+            else
+                thirdLine = thirdLine + 0;
+            IReportService reportService = new ReportService();
+            reportService.writeSummaryReport(firstLine + seconedtLine + thirdLine);
+
         }
         private static void processMemberWeeklyStatement(Member m, IQueryable<Claim> claims, Emails.IEmailService emailServer, Reports.IReportService Writer)
         {

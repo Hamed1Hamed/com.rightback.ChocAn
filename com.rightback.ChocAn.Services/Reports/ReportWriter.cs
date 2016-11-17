@@ -60,10 +60,10 @@ namespace com.rightback.ChocAn.Services
         public static void CreateHtmlFile(DataTable dt, string strFilePath)
         {
             string content = Helpers.DataConversion.ConvertDataTableToHTML(dt);
-            CreateHtmlFile( content, strFilePath);
+            CreateFile( content, strFilePath);
            
         }
-        public static void CreateHtmlFile(string content, string strFilePath)
+        public static void CreateFile(string content, string strFilePath)
         {
             try
             {

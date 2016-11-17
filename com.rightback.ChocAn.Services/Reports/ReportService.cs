@@ -17,7 +17,7 @@ namespace com.rightback.ChocAn.Services.Reports
         {
             string fileName = String.Format("EFT_{0}_{1:MM-dd-yyyy}", provider.Name.Replace(" ", "-"), DateTime.Now);
             string filePath = System.Web.HttpContext.Current.Server.MapPath("~/Reports/" + fileName);
-            ReportWriter.CreateHtmlFile(content, filePath+ ".txt");
+            ReportWriter.CreateFile(content, filePath+ ".txt");
         }
 
 
@@ -26,15 +26,23 @@ namespace com.rightback.ChocAn.Services.Reports
             string fileName = String.Format("ServiceDirectory_{0}_{1:MM-dd-yyyy}", provider.Name.Replace(" ", "-"), DateTime.Now);
             string filePath = System.Web.HttpContext.Current.Server.MapPath("~/Reports/" + fileName);
             DataTable dt = DataConversion.ToDataTable(services);
-            ReportWriter.CreateCSVFile(dt, filePath + ".txt");
+            //you can activate next line to do CSV file
+           // ReportWriter.CreateCSVFile(dt, filePath + ".txt");
             ReportWriter.CreateHtmlFile(dt, filePath + ".html");
+        }
+
+        public void writeSummaryReport(string report)
+        {
+            string fileName = String.Format("SummaryReport_{0:MM-dd-yyyy}", DateTime.Now);
+            string filePath = System.Web.HttpContext.Current.Server.MapPath("~/Reports/" + fileName);
+            ReportWriter.CreateFile(report, filePath + ".txt");
         }
 
         public void writeWeeklyStatment(Person person,String statment)
         {
             string fileName = String.Format("WeeklyStatment_{0}_{1:MM-dd-yyyy}", person.Name.Replace(" ", "-"), DateTime.Now);
             string filePath = System.Web.HttpContext.Current.Server.MapPath("~/Reports/" + fileName);
-            ReportWriter.CreateHtmlFile(statment, filePath + ".html");
+            ReportWriter.CreateFile(statment, filePath + ".html");
         }
 
 

@@ -24,10 +24,16 @@ namespace com.rightback.ChocAn.Services.Reports
         /// <param name="content"></param>
         void writeEFTData(Provider provider, string content);
         /// <summary>
-        /// Writes weekly statment to a file
+        /// Writes weekly statment of a provider or member to a file
         /// </summary>
         /// <param name="person"></param>
         /// <param name="statment"></param>
         void writeWeeklyStatment(Person person, String statment);
+
+        /// <summary>
+        /// wrie weekly summay report to the disk
+        /// </summary>
+        /// <param name="report"></param>
+        void writeSummaryReport(String report);
     }
 }
