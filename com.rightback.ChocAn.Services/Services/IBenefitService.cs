@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace com.rightback.ChocAn.Services.Services
 {
-    public interface IServiceService
+    public interface IBenefitService
     {
         /// <summary>
-        /// Returns name for the provided service code.
+        /// Returns the service of the provided service code.
         /// </summary>
         /// <param name="serviceCode"></param>
-        /// <returns></returns>
+        /// <returns>Service</returns>
         Service getServiceByCode(string serviceCode);
 
         /// <summary>
         /// Returns all services from the repository.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of services</returns>
         List<Service> getAllServices();
 
       

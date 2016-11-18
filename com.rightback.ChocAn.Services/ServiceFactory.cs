@@ -24,9 +24,9 @@ namespace com.rightback.ChocAn.Services
             return new ProviderService();
         }
 
-        public static IServiceService getServiceService()
+        public static IBenefitService getBenefitService()
         {
-            return new ServiceService();
+            return new BenefitService();
         }
 
         public static IEmailService getEmailService()

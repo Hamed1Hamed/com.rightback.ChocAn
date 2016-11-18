@@ -1,6 +1,7 @@
 ﻿using com.rightback.ChocAn.DAL;
 using com.rightback.ChocAn.DAL.Entities;
 using com.rightback.ChocAn.Services.Claims;
+using com.rightback.ChocAn.Services.Emails;
 using com.rightback.ChocAn.Services.Extensions;
 using com.rightback.ChocAn.Services.Helpers;
 using com.rightback.ChocAn.Services.Reports;
@@ -60,18 +61,15 @@ namespace com.rightback.ChocAn.Services
             DateTime start = end.AddDays(-7);
             IClaimService ClaimService = new ClaimService();
             var claims = ClaimService.getClaimsWithin(start, end);
-            Emails.IEmailService emailServer = new Emails.EmailService();
-            Reports.IReportService Writer = new Reports.ReportService();
-            Claims.IClaimService claimService = new Claims.ClaimService();
 
             foreach (Member m in from u in claims select u.Member)
             {
-                processMemberWeeklyStatement(m, claims, emailServer, Writer);
+                processMemberWeeklyStatement(m, claims);
             }
             foreach (Provider p in from u in claims select u.Provider)
             {
-                processProviderWeeklyStatement(p, claims, emailServer, Writer);
-                processEFT(p, claims, Writer);
+                processProviderWeeklyStatement(p, claims);
+                processEFT(p, claims);
             }
 
             processWeeklySumarryReort(claims);
@@ -103,9 +101,11 @@ namespace com.rightback.ChocAn.Services
             reportService.writeSummaryReport(firstLine + seconedtLine + thirdLine);
 
         }
-        private static void processMemberWeeklyStatement(Member m, IQueryable<Claim> claims, Emails.IEmailService emailServer, Reports.IReportService Writer)
+        private static void processMemberWeeklyStatement(Member m, IQueryable<Claim> claims)
         {
-            Claims.IClaimService claimService = new Claims.ClaimService();
+            IReportService Writer = new ReportService();
+            IEmailService emailServer = new EmailService();
+            IClaimService claimService = new Claims.ClaimService();
             int personId;
             IQueryable<Claim> personClaims = null;
             string statement = "";
@@ -124,8 +124,10 @@ namespace com.rightback.ChocAn.Services
             Writer.writeWeeklyStatment(m, statement);
         }
 
-        private static void processProviderWeeklyStatement(Provider p, IQueryable<Claim> claims, Emails.IEmailService emailServer, Reports.IReportService Writer)
+        private static void processProviderWeeklyStatement(Provider p, IQueryable<Claim> claims)
         {
+            IReportService Writer = new ReportService();
+            IEmailService emailServer = new EmailService();
             Claims.IClaimService claimService = new Claims.ClaimService();
             int personId;
             IQueryable<Claim> personClaims = null;
@@ -145,8 +147,9 @@ namespace com.rightback.ChocAn.Services
             Writer.writeWeeklyStatment(p, statement);
 
         }
-        private static void processEFT(Provider p, IQueryable<Claim> claims, Reports.IReportService Writer)
+        private static void processEFT(Provider p, IQueryable<Claim> claims)
         {
+            IReportService Writer = new ReportService();
             if (p == null || claims == null || Writer == null) return;
             int providerId = p.ProviderID;
             var claimsForProvider = claims.Where(e => e.Provider.ProviderID == providerId);

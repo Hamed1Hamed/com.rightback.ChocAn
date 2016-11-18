@@ -14,7 +14,7 @@ namespace com.rightback.ChocAn.Web.Code
     {
         protected IProviderService providerService = ServiceFactory.getProviderService();
         protected IMemberService memberService = ServiceFactory.getMemberService();
-        protected IServiceService serviceService = ServiceFactory.getServiceService();
+        protected IBenefitService serviceService = ServiceFactory.getBenefitService();
         protected IClaimService claimService = ServiceFactory.getClaimService();
     }
 }

@@ -10,7 +10,7 @@ namespace com.rightback.ChocAn.DAL.Enums
     /// <summary>
     /// Adds extra functionality to state class
     /// </summary>
-    public static class a
+    public static class StateExtension
     {
         public static string GetStateFullName(this State state)
         {

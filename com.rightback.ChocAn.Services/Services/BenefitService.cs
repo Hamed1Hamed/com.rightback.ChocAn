@@ -8,7 +8,7 @@ using com.rightback.ChocAn.Services.Reports;
 
 namespace com.rightback.ChocAn.Services.Services
 {
-    public class ServiceService : BaseService, IServiceService
+    public class BenefitService : BaseService, IBenefitService
     {
         private IReportService reportService = new ReportService();
 

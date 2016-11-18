@@ -28,7 +28,7 @@ namespace com.rightback.ChocAn.Web.WebService
     {
         private IProviderService providerService = ServiceFactory.getProviderService();
         private IMemberService memberService = ServiceFactory.getMemberService();
-        private IServiceService serviceService = ServiceFactory.getServiceService();
+        private IBenefitService serviceService = ServiceFactory.getBenefitService();
         private IClaimService claimService = ServiceFactory.getClaimService();
 
         /// <summary>

@@ -73,9 +73,9 @@
     <Compile Include="Reports\ReportService.cs" />
     <Compile Include="Reports\ReportWriter.cs" />
     <Compile Include="ServiceFactory.cs" />
-    <Compile Include="Services\IServiceService.cs" />
+    <Compile Include="Services\IBenefitService.cs" />
     <Compile Include="Services\ServiceReportItem.cs" />
-    <Compile Include="Services\ServiceService.cs" />
+    <Compile Include="Services\BenefitService.cs" />
     <Compile Include="Helpers\Token.cs" />
   </ItemGroup>
   <ItemGroup>

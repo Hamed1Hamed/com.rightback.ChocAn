@@ -17,11 +17,6 @@
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="com.rightback.ChocAn.Services.Services.ServiceService">
-    <Position X="0.5" Y="10" Width="2.75" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="com.rightback.ChocAn.Services.BaseService">
     <Position X="0.5" Y="1.75" Width="1.75" />
     <TypeIdentifier />
@@ -83,10 +78,6 @@
   </Interface>
   <Interface Name="com.rightback.ChocAn.Services.Members.IMemberService">
     <Position X="4.25" Y="7" Width="3.5" />
-    <TypeIdentifier />
-  </Interface>
-  <Interface Name="com.rightback.ChocAn.Services.Services.IServiceService">
-    <Position X="3.5" Y="9.75" Width="2.75" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="com.rightback.ChocAn.Services.Emails.IEmailService">
