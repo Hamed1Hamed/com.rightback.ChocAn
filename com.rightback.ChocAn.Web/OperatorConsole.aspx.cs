@@ -1,19 +1,8 @@
 ﻿using com.rightback.ChocAn.DAL;
-using com.rightback.ChocAn.DAL.Entities;
 using com.rightback.ChocAn.DAL.Enums;
-using com.rightback.ChocAn.Services.Members;
-using com.rightback.ChocAn.Services.Providers;
 using com.rightback.ChocAn.Web.Code;
 using Microsoft.AspNet.Identity;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Reflection;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace com.rightback.ChocAn.Web
@@ -64,16 +53,14 @@ namespace com.rightback.ChocAn.Web
         }
         protected void TextBoxSerchMembers_TextChanged(object sender, EventArgs e)
         {
-            IMemberService members = new MemberService();
-            GridViewMembers.DataSource = members.getMembersWhoContains(TextBoxSerchMembers.Text);
+            GridViewMembers.DataSource = memberService.getMembersWhoContains(TextBoxSerchMembers.Text);
             GridViewMembers.SelectedIndex = -1;
             GridViewMembers.DataBind();
         }
 
         private void BindMemberData()
         {
-            IMemberService members = new MemberService();
-            GridViewMembers.DataSource = members.getAllMembers();
+            GridViewMembers.DataSource = memberService.getAllMembers();
             GridViewMembers.DataBind();
         }
 
@@ -82,10 +69,8 @@ namespace com.rightback.ChocAn.Web
   
             if (e.CommandName == "Select")
             {
-
-                IMemberService members = new MemberService();
                 int MemberId = (int)this.GridViewMembers.DataKeys[Int32.Parse(e.CommandArgument.ToString())].Value;
-                Session["Member"] = (from u in members.getAllMembers() where u.MemberID == MemberId select u);
+                Session["Member"] =  memberService.getById(MemberId) ;
                 DetailsViewForMember.ChangeMode(DetailsViewMode.ReadOnly);
                 BindDetailViewForMember();
             }
@@ -96,8 +81,7 @@ namespace com.rightback.ChocAn.Web
 
             var row = GridViewMembers.Rows[e.RowIndex];
             string Code = (row.FindControl("Label6") as Label).Text;
-            IMemberService members = new MemberService();
-            members.deleteMember(Code);
+            memberService.deleteMember(Code);
             DetailsViewForMember.ChangeMode(DetailsViewMode.ReadOnly);
             BindMemberData();
             BindDetailViewForMember();
@@ -122,14 +106,10 @@ namespace com.rightback.ChocAn.Web
             member.Code = (DetailsViewForMember.Rows[1].FindControl("TextBox6") as TextBox).Text;
             member.Status = (MemberStatus)Enum.Parse(typeof(MemberStatus), (DetailsViewForMember.Rows[1].FindControl("DdlForStatus") as DropDownList).SelectedValue, true);
 
-            IMemberService members = new MemberService();
-            members.upsertMember(member);
+            memberService.upsertMember(member);
             DetailsViewForMember.ChangeMode(DetailsViewMode.ReadOnly);
             int MemberId = member.MemberID;
-            Session["Member"] = (from u in members.getAllMembers()
-                                 where
-                                   u.MemberID == MemberId
-                                 select u);
+            Session["Member"] = memberService.getById(MemberId);    
             GridViewMembers.SelectedIndex = -1;
             BindMemberData();
             BindDetailViewForMember();
@@ -159,8 +139,7 @@ namespace com.rightback.ChocAn.Web
             member.Status = (MemberStatus)Enum.Parse(typeof(MemberStatus), (DetailsViewForMember.Rows[1].FindControl("DdlForStatus") as DropDownList).SelectedValue, true);
             member.State = (State)Enum.Parse(typeof(State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
             member.Code = (DetailsViewForMember.Rows[1].FindControl("TextBox6") as TextBox).Text;
-            IMemberService members = new MemberService();
-            members.upsertMember(member);
+            memberService.upsertMember(member);
             DetailsViewForMember.ChangeMode(DetailsViewMode.ReadOnly);
             GridViewMembers.SelectedIndex = -1;
             BindMemberData();
@@ -180,8 +159,7 @@ namespace com.rightback.ChocAn.Web
 
         private void BindProviderData()
         {
-            IProviderService providers = new ProviderService();
-            GridViewForProviders.DataSource = providers.getAllProviders();
+            GridViewForProviders.DataSource = providerService.getAllProviders();
             GridViewForProviders.DataBind();
         }
 
@@ -225,14 +203,10 @@ namespace com.rightback.ChocAn.Web
             provider.State = (State)Enum.Parse(typeof(State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
             provider.Type = (ProviderType)Enum.Parse(typeof(ProviderType), (DetailsViewForSelectedProvider.Rows[1].FindControl("DdlForType") as DropDownList).SelectedValue, true);
             provider.TerminalCode = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox7") as TextBox).Text;
-            IProviderService providers = new ProviderService();
-            providers.upsertProvider(provider);
+            providerService.upsertProvider(provider);
             DetailsViewForSelectedProvider.ChangeMode(DetailsViewMode.ReadOnly);
             int ProviderId = provider.ProviderID;
-            Session["Provider"] = (from u in providers.getAllProviders()
-                                   where
-                                    u.ProviderID == ProviderId
-                                   select u);
+            Session["Provider"] =providerService.getAllProviders();
             GridViewForProviders.SelectedIndex = -1;
             BindProviderData();
             BindDetailViewForProvider();
@@ -250,8 +224,7 @@ namespace com.rightback.ChocAn.Web
             provider.Code = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox6") as TextBox).Text;
             provider.Type = (ProviderType)Enum.Parse(typeof(ProviderType), (DetailsViewForSelectedProvider.Rows[1].FindControl("DdlForType") as DropDownList).SelectedValue, true);
             provider.TerminalCode = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox7") as TextBox).Text;
-            IProviderService providers = new ProviderService();
-            providers.upsertProvider(provider);
+            providerService.upsertProvider(provider);
             DetailsViewForSelectedProvider.ChangeMode(DetailsViewMode.ReadOnly);
             GridViewForProviders.SelectedIndex = -1;
             BindProviderData();
@@ -272,8 +245,7 @@ namespace com.rightback.ChocAn.Web
         }
         protected void TextBoxSearchProviders_TextChanged(object sender, EventArgs e)
         {
-            IProviderService providers = new ProviderService();
-            GridViewForProviders.DataSource = providers.getProvidersWhoContains(TextBoxSearchProviders.Text);
+            GridViewForProviders.DataSource = providerService.getProvidersWhoContains(TextBoxSearchProviders.Text);
             GridViewForProviders.SelectedIndex = -1;
             GridViewForProviders.DataBind();
         }
@@ -283,9 +255,8 @@ namespace com.rightback.ChocAn.Web
           
             if (e.CommandName == "Select")
             {
-                IProviderService provider = new ProviderService();
                 int ProviderId = (int)this.GridViewForProviders.DataKeys[Int32.Parse(e.CommandArgument.ToString())].Value;
-                Session["Provider"] = (from u in provider.getAllProviders() where u.ProviderID == ProviderId select u);
+                Session["Provider"] = providerService.getById(ProviderId) ;
                 DetailsViewForSelectedProvider.ChangeMode(DetailsViewMode.ReadOnly);
                 BindDetailViewForProvider();
             }
@@ -297,8 +268,7 @@ namespace com.rightback.ChocAn.Web
           
                 var row = GridViewForProviders.Rows[e.RowIndex];
                 string Code = (row.FindControl("Label6") as Label).Text;
-                IProviderService provider = new ProviderService();
-                provider.deleteProvider(Code);
+                providerService.deleteProvider(Code);
             DetailsViewForSelectedProvider.ChangeMode(DetailsViewMode.ReadOnly);
             BindDetailViewForProvider();
             BindProviderData();
