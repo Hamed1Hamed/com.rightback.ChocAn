@@ -4,9 +4,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using com.rightback.ChocAn.Web.Models;
+
 
 namespace com.rightback.ChocAn.Web.Models
 {

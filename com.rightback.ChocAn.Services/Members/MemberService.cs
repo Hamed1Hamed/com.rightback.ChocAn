@@ -27,7 +27,7 @@ namespace com.rightback.ChocAn.Services.Members
 
         public IEnumerable<Member> getAllMembers()
         {
-            return db.Members;
+            return db.Members.ToList();
         }
 
         public Member getByCode(string code)
