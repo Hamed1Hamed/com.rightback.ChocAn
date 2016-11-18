@@ -13,7 +13,7 @@ namespace com.rightback.ChocAn.Services.Extensions
             DateTime newDate = from;
             while (from.DayOfWeek != dayOfWeek)
             {
-                newDate = newDate.AddDays(-1);
+                newDate = newDate.AddDays(1);
 
             }
             return newDate;
