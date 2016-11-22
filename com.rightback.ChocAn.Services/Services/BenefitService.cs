@@ -10,7 +10,7 @@ namespace com.rightback.ChocAn.Services.Services
 {
     public class BenefitService : BaseService, IBenefitService
     {
-        private IReportService reportService = new ReportService();
+        private IReportService reportService = ServiceFactory.getReportService();
 
         public List<Service> getAllServices()
         {

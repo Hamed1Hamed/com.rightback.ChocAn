@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using com.rightback.ChocAn.Services.Claims;
+using com.rightback.ChocAn.Services.Reports;
 
 namespace com.rightback.ChocAn.Services
 {
@@ -38,5 +39,10 @@ namespace com.rightback.ChocAn.Services
         {
             return new ClaimService();
         }
+        public static IReportService getReportService()
+        {
+            return new ReportService();
+        }
+
     }
 }

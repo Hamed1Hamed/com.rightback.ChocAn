@@ -13,7 +13,7 @@ namespace com.rightback.ChocAn.Tests
         [TestInitialize]
         public void StartUp()
         {
-            emailService = new EmailService();
+            emailService = ServiceFactory.getEmailService();
         }
      
 
