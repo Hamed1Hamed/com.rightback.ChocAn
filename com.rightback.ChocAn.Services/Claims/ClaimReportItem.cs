@@ -30,6 +30,15 @@ namespace com.rightback.ChocAn.Services.Claims
             Service_code = claim.Service.ServiceID.ToString();
             Fee = claim.Fee.ToString();
         }
+        public ReportItemForProvider(ClaimCheck claim)
+        {
+            Date_of_service = claim.DateOfServiceProvided.ToString("yyyy-MM-dd HH:mm tt");
+            TimeStamp = claim.DateOfClaimCheck.ToString();
+            Member_name = claim.MemberName;
+            Member_number = claim.MemberName;
+            Service_code = claim.ServiceCode;
+            Fee = claim.Fee.ToString();
+        }
     }
     /// <summary>
     /// Serializable class for claim class to be used to convert 
@@ -46,8 +55,6 @@ namespace com.rightback.ChocAn.Services.Claims
             Date = claim.DateOfClaim.ToString("yyyy-MM-dd"); ;
             Provider = claim.Provider.Name;
             Service = claim.Service.Name;
-
-
         }
     }
 

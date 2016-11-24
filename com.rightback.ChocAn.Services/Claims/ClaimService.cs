@@ -112,7 +112,21 @@ namespace com.rightback.ChocAn.Services.Claims
         }
 
         /// <summary>
-        /// 
+        /// get claims that provider have already processed claim check upon within tow dates
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <returns>IQueryable</returns>
+        public IQueryable<ClaimCheck> getCheckedClaimsWithin(DateTime start, DateTime end)
+        {
+            return from u in db.ClaimChecks.Where(
+                e => e.DateOfServiceProvided > start & e.DateOfServiceProvided < end).OrderBy(e => e.Timestamp)
+                   select u;
+        
+        }
+
+        /// <summary>
+        /// generate list of serialized reoprt item for the provider
         /// </summary>
         /// <param name="person"></param>
         /// <param name="claims"></param>
@@ -128,11 +142,11 @@ namespace com.rightback.ChocAn.Services.Claims
         }
 
         /// <summary>
-        /// 
+        ///  generate list of serialized reoprt item for the member
         /// </summary>
         /// <param name="member"></param>
         /// <param name="claims"></param>
-        /// <returns></returns>
+        /// <returns> serialized list of claims </returns>
         public IList<ReportItemForMember> generateSerializedReport(Member member, IQueryable<Claim> claims)
         {
             if (claims == null)
@@ -143,7 +157,21 @@ namespace com.rightback.ChocAn.Services.Claims
             return Data;
 
         }
+        /// <summary>
+        ///  generate list of serialized reoprt item for the member
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <param name="claims"></param>
+        /// <returns> serialized list of claims </returns>
 
- 
+        public IList<ReportItemForProvider> generateSerializedReport(Provider person, IQueryable<ClaimCheck> claims)
+        {
+            if (claims == null)
+                return null;
+            IList<ReportItemForProvider> Data = new List<ReportItemForProvider>();
+            foreach (ClaimCheck c in claims)
+                Data.Add(new ReportItemForProvider(c));
+            return Data;
+        }
     }
 }

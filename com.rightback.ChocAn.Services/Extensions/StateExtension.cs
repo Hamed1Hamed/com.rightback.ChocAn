@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace com.rightback.ChocAn.DAL.Enums
 {
     /// <summary>
-    /// Adds extra functionality to state class
+    /// Adds extra functionality to state enum
     /// </summary>
     public static class StateExtension
     {

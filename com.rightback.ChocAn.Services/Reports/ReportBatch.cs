@@ -61,6 +61,7 @@ namespace com.rightback.ChocAn.Services
             DateTime start = end.AddDays(-7);
             IClaimService ClaimService = new ClaimService();
             var claims = ClaimService.getClaimsWithin(start, end);
+            var claimsChecked=ClaimService.getCheckedClaimsWithin(start,end);
 
             foreach (Member m in from u in claims select u.Member)
             {
@@ -68,9 +69,11 @@ namespace com.rightback.ChocAn.Services
             }
             foreach (Provider p in from u in claims select u.Provider)
             {
+                processProviderWeeklyClaimCheckList(p, claimsChecked);
                 processProviderWeeklyStatement(p, claims);
                 processEFT(p, claims);
             }
+
 
             processWeeklySumarryReort(claims);
 
@@ -107,10 +110,9 @@ namespace com.rightback.ChocAn.Services
             IEmailService emailServer = new EmailService();
             IClaimService claimService = new Claims.ClaimService();
             int personId;
-            IQueryable<Claim> personClaims = null;
             string statement = "";
             personId = m.MemberID;
-            personClaims = claims.Where(e => e.Member.MemberID == personId);
+            IQueryable<Claim> personClaims = claims.Where(e => e.Member.MemberID == personId);
             var serializedClaims = claimService.generateSerializedReport(m, personClaims);
             statement = m.generateMemberCoverStatment();
             statement += DataConversion.ConvertDataTableToHTML(DataConversion.ToDataTable(serializedClaims));
@@ -123,17 +125,34 @@ namespace com.rightback.ChocAn.Services
             //store file
             Writer.writeWeeklyStatment(m, statement);
         }
+        private static void processProviderWeeklyClaimCheckList(Provider p, IQueryable<ClaimCheck> claims)
+        {
+            IEmailService emailServer = new EmailService();
+            IClaimService claimService = new ClaimService();
+            int personId;
+            string statement = "";
+            personId = p.ProviderID;
+            IQueryable<ClaimCheck> personClaims = claims.Where(e => e.Provider.ProviderID == personId);
+            statement = p.generateProviderCoverStatment(personClaims);
+            var serializedClaims = claimService.generateSerializedReport(p, personClaims);
+            statement += DataConversion.ConvertDataTableToHTML(DataConversion.ToDataTable(serializedClaims));
+            MemoryStream stream = new MemoryStream(Encoding.ASCII.GetBytes(statement));
+            //Add a new attachment to the E-mail message, using the correct MIME type
+            Attachment attachment = new Attachment(stream, new ContentType("text/plain"));
+            attachment.Name = "statment.html";
+            //send email
+            emailServer.sendEmail("no-reply@ChocAn.com", p.Email, "ChocAn claim check", "Attached your checked claims for this week.", new Attachment[] { attachment });
+        }
 
         private static void processProviderWeeklyStatement(Provider p, IQueryable<Claim> claims)
         {
             IReportService Writer = new ReportService();
             IEmailService emailServer = new EmailService();
-            Claims.IClaimService claimService = new Claims.ClaimService();
+            IClaimService claimService = new ClaimService();
             int personId;
-            IQueryable<Claim> personClaims = null;
             string statement = "";
-            personId = (p as Provider).ProviderID;
-            personClaims = claims.Where(e => e.Provider.ProviderID == personId);
+            personId = p.ProviderID;
+            IQueryable<Claim> personClaims = claims.Where(e => e.Provider.ProviderID == personId);
             statement = p.generateProviderCoverStatment(personClaims);
             var serializedClaims = claimService.generateSerializedReport(p, personClaims);
             statement += DataConversion.ConvertDataTableToHTML(DataConversion.ToDataTable(serializedClaims));
@@ -145,7 +164,6 @@ namespace com.rightback.ChocAn.Services
             emailServer.sendEmail("no-reply@ChocAn.com", p.Email, "ChocAn Statment", "Attached your statment for this week.", new Attachment[] { attachment });
             //store file
             Writer.writeWeeklyStatment(p, statement);
-
         }
         private static void processEFT(Provider p, IQueryable<Claim> claims)
         {

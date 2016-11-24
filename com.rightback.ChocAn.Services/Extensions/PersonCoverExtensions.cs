@@ -15,8 +15,27 @@ namespace com.rightback.ChocAn.Services.Extensions
         /// <param name="provider"></param>
         /// <param name="claims"></param>
         /// <returns></returns>
+        public static string generateProviderCoverStatment(this Provider provider, IQueryable<ClaimCheck> claims)
+        {
+            if (provider == null || claims == null)
+                return "";
+            string newLine = "<br/>";
+            string statementCover = provider.Name + newLine + provider.Code + newLine + provider.StreetAddres + newLine
+            + provider.City + newLine + provider.State + newLine + provider.Zip + newLine + "number of consultations:"
+            + claims.Where(c => c.Provider.ProviderID == provider.ProviderID).Count() + newLine
+            + "total fee: " + claims.Where(c => c.Provider.ProviderID == provider.ProviderID).Sum(e => e.Fee) + newLine;
+            return statementCover;
+        }
+        /// <summary>
+        /// Generate basic info about provider like name and address with some info about processed claims 
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <param name="claims"></param>
+        /// <returns></returns>
         public static string generateProviderCoverStatment(this Provider provider, IQueryable<Claim> claims)
         {
+            if (provider == null || claims == null)
+                return "";
             string newLine = "<br/>";
             string statementCover = provider.Name + newLine + provider.Code + newLine + provider.StreetAddres + newLine
             + provider.City + newLine + provider.State + newLine + provider.Zip + newLine + "number of consultations:"
@@ -31,6 +50,8 @@ namespace com.rightback.ChocAn.Services.Extensions
         /// <returns></returns>
         public static string generateMemberCoverStatment(this Member member)
         {
+            if (member == null )
+                return "";
             string newLine = "<br/>";
             string statementCover = member.Name + newLine + member.Code + newLine + member.StreetAddres
                 + newLine + member.City + newLine + member.State + newLine + member.Zip + newLine;

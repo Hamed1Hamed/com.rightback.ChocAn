@@ -42,6 +42,14 @@ namespace com.rightback.ChocAn.Services.Claims
         /// <returns>IQueryable</returns>
         IQueryable<Claim> getClaimsWithin(DateTime start, DateTime end);
 
+        /// <summary>
+        /// get confirmed claims that provider have already checked within duration
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <returns>IQueryable</returns>
+        IQueryable<ClaimCheck> getCheckedClaimsWithin(DateTime start, DateTime end);
+
 
         /// <summary>
         /// convert claims into list serialized claims 
@@ -50,6 +58,14 @@ namespace com.rightback.ChocAn.Services.Claims
         /// <param name="claims"></param>
         /// <returns>list</returns>
         IList<ReportItemForProvider> generateSerializedReport(Provider person, IQueryable<Claim> claims);
+
+        /// <summary>
+        /// convert checked claims into list serialized claims 
+        /// </summary>
+        /// <param name="person"></param>
+        /// <param name="claims"></param>
+        /// <returns>list</returns>
+        IList<ReportItemForProvider> generateSerializedReport(Provider person, IQueryable<ClaimCheck> claims);
 
         /// <summary>
         /// convert claims into list serialized claims 
