@@ -72,6 +72,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.SystemColors.Window;
             this.label2.Location = new System.Drawing.Point(57, 142);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 13);
@@ -81,6 +82,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.SystemColors.Window;
             this.label3.Location = new System.Drawing.Point(96, 166);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 13);
@@ -90,6 +92,7 @@
             // lblMemberCode
             // 
             this.lblMemberCode.AutoSize = true;
+            this.lblMemberCode.BackColor = System.Drawing.SystemColors.Window;
             this.lblMemberCode.Location = new System.Drawing.Point(152, 142);
             this.lblMemberCode.Name = "lblMemberCode";
             this.lblMemberCode.Size = new System.Drawing.Size(10, 13);
@@ -99,6 +102,7 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
+            this.lblStatus.BackColor = System.Drawing.SystemColors.Window;
             this.lblStatus.Location = new System.Drawing.Point(152, 166);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(10, 13);
@@ -186,6 +190,7 @@
             // lblServiceName
             // 
             this.lblServiceName.AutoSize = true;
+            this.lblServiceName.BackColor = System.Drawing.SystemColors.Window;
             this.lblServiceName.Location = new System.Drawing.Point(57, 300);
             this.lblServiceName.Name = "lblServiceName";
             this.lblServiceName.Size = new System.Drawing.Size(80, 13);
@@ -215,6 +220,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.SystemColors.Window;
             this.label7.Location = new System.Drawing.Point(13, 316);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(59, 13);
@@ -251,6 +257,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(294, 501);

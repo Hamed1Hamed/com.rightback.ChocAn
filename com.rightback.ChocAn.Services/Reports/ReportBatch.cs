@@ -59,7 +59,7 @@ namespace com.rightback.ChocAn.Services
         {
             DateTime end = new DateTime(year, month, day);
             DateTime start = end.AddDays(-7);
-            IClaimService ClaimService = new ClaimService();
+            IClaimService ClaimService = ServiceFactory.getClaimService();
             var claims = ClaimService.getClaimsWithin(start, end);
             var claimsChecked=ClaimService.getCheckedClaimsWithin(start,end);
 
@@ -73,7 +73,6 @@ namespace com.rightback.ChocAn.Services
                 processProviderWeeklyStatement(p, claims);
                 processEFT(p, claims);
             }
-
 
             processWeeklySumarryReort(claims);
 
@@ -89,7 +88,7 @@ namespace com.rightback.ChocAn.Services
             ScheduleTask();
         }
 
-        private static void processWeeklySumarryReort(IQueryable<Claim> claimInWeek)
+        private static void processWeeklySummaryReport(IQueryable<Claim> claimInWeek)
         {
             string firstLine = "Total number of providers: "+
                 (from u in claimInWeek select u.Provider.ProviderID).Distinct().Count().ToString()+"</br>";
@@ -100,15 +99,15 @@ namespace com.rightback.ChocAn.Services
                 thirdLine= thirdLine + claimInWeek.Sum(e => e.Service.Fee).ToString();
             else
                 thirdLine = thirdLine + 0;
-            IReportService reportService = new ReportService();
+            IReportService reportService = ServiceFactory.getReportService();
             reportService.writeSummaryReport(firstLine + seconedtLine + thirdLine);
 
         }
         private static void processMemberWeeklyStatement(Member m, IQueryable<Claim> claims)
         {
-            IReportService Writer = new ReportService();
-            IEmailService emailServer = new EmailService();
-            IClaimService claimService = new Claims.ClaimService();
+            IReportService Writer = ServiceFactory.getReportService();
+            IEmailService emailServer = ServiceFactory.getEmailService();
+            IClaimService claimService = ServiceFactory.getClaimService();
             int personId;
             string statement = "";
             personId = m.MemberID;
@@ -148,11 +147,11 @@ namespace com.rightback.ChocAn.Services
         {
             IReportService Writer = new ReportService();
             IEmailService emailServer = new EmailService();
-            IClaimService claimService = new ClaimService();
+            Claims.IClaimService claimService = new Claims.ClaimService();
             int personId;
             string statement = "";
-            personId = p.ProviderID;
-            IQueryable<Claim> personClaims = claims.Where(e => e.Provider.ProviderID == personId);
+            personId = (p as Provider).ProviderID;
+            personClaims = claims.Where(e => e.Provider.ProviderID == personId);
             statement = p.generateProviderCoverStatment(personClaims);
             var serializedClaims = claimService.generateSerializedReport(p, personClaims);
             statement += DataConversion.ConvertDataTableToHTML(DataConversion.ToDataTable(serializedClaims));
@@ -167,7 +166,7 @@ namespace com.rightback.ChocAn.Services
         }
         private static void processEFT(Provider p, IQueryable<Claim> claims)
         {
-            IReportService Writer = new ReportService();
+            IReportService Writer = ServiceFactory.getReportService();
             if (p == null || claims == null || Writer == null) return;
             int providerId = p.ProviderID;
             var claimsForProvider = claims.Where(e => e.Provider.ProviderID == providerId);
