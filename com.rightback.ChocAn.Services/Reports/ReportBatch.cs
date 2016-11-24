@@ -1,13 +1,10 @@
 ﻿using com.rightback.ChocAn.DAL;
-using com.rightback.ChocAn.DAL.Entities;
 using com.rightback.ChocAn.Services.Claims;
 using com.rightback.ChocAn.Services.Emails;
 using com.rightback.ChocAn.Services.Extensions;
 using com.rightback.ChocAn.Services.Helpers;
 using com.rightback.ChocAn.Services.Reports;
-using com.rightback.ChocAn.Services.Services;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
@@ -74,7 +71,7 @@ namespace com.rightback.ChocAn.Services
                 processEFT(p, claims);
             }
 
-            processWeeklySumarryReort(claims);
+            processWeeklySummaryReport(claims);
 
             using (var context = new ChocAnDBModel())
             {
@@ -126,8 +123,8 @@ namespace com.rightback.ChocAn.Services
         }
         private static void processProviderWeeklyClaimCheckList(Provider p, IQueryable<ClaimCheck> claims)
         {
-            IEmailService emailServer = new EmailService();
-            IClaimService claimService = new ClaimService();
+            IEmailService emailServer = ServiceFactory.getEmailService();
+            IClaimService claimService = ServiceFactory.getClaimService();
             int personId;
             string statement = "";
             personId = p.ProviderID;
@@ -145,13 +142,14 @@ namespace com.rightback.ChocAn.Services
 
         private static void processProviderWeeklyStatement(Provider p, IQueryable<Claim> claims)
         {
-            IReportService Writer = new ReportService();
-            IEmailService emailServer = new EmailService();
-            Claims.IClaimService claimService = new Claims.ClaimService();
+
+            IReportService Writer = ServiceFactory.getReportService();
+            IEmailService emailServer = ServiceFactory.getEmailService();
+            IClaimService claimService = ServiceFactory.getClaimService();
             int personId;
             string statement = "";
             personId = (p as Provider).ProviderID;
-            personClaims = claims.Where(e => e.Provider.ProviderID == personId);
+            var personClaims = claims.Where(e => e.Provider.ProviderID == personId);
             statement = p.generateProviderCoverStatment(personClaims);
             var serializedClaims = claimService.generateSerializedReport(p, personClaims);
             statement += DataConversion.ConvertDataTableToHTML(DataConversion.ToDataTable(serializedClaims));
