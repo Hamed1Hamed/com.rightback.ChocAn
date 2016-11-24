@@ -76,7 +76,6 @@
     <Compile Include="Services\IBenefitService.cs" />
     <Compile Include="Services\ServiceReportItem.cs" />
     <Compile Include="Services\BenefitService.cs" />
-    <Compile Include="Helpers\Token.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\com.rightback.ChocAn.DAL\com.rightback.ChocAn.DAL.csproj">
