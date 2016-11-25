@@ -66,11 +66,12 @@ namespace com.rightback.ChocAn.Services
             }
             foreach (Provider p in from u in claims select u.Provider)
             {
-                processProviderWeeklyClaimCheckList(p, claimsChecked);
                 processProviderWeeklyStatement(p, claims);
                 processEFT(p, claims);
             }
-
+            foreach (Provider p in from u in  claimsChecked select u.Provider)
+                processProviderWeeklyClaimCheckList(p, claimsChecked);   
+                           
             processWeeklySummaryReport(claims);
 
             using (var context = new ChocAnDBModel())
