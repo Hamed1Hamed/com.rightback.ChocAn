@@ -76,7 +76,7 @@ namespace com.rightback.ChocAn.Web
 
         private void BindMemberData()
         {
-            GridViewMembers.DataSource = memberService.getAllMembers();
+            GridViewMembers.DataSource = memberService.getAllMembers().ToList();
             GridViewMembers.DataBind();
         }
 
@@ -113,7 +113,7 @@ namespace com.rightback.ChocAn.Web
 
         private void BindProviderData()
         {
-            GridViewForProviders.DataSource = providerService.getAllProviders();
+            GridViewForProviders.DataSource = providerService.getAllProviders().ToList();
             GridViewForProviders.DataBind();
         }
 

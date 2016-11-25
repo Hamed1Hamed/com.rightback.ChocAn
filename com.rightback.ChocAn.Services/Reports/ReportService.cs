@@ -35,7 +35,7 @@ namespace com.rightback.ChocAn.Services.Reports
         {
             string fileName = String.Format("SummaryReport_{0:MM-dd-yyyy}", DateTime.Now);
             string filePath = System.Web.HttpContext.Current.Server.MapPath("~/Reports/" + fileName);
-            ReportWriter.CreateFile(report, filePath + ".txt");
+            ReportWriter.CreateFile(report, filePath + ".html");
         }
 
         public void writeWeeklyStatment(Person person,String statment)

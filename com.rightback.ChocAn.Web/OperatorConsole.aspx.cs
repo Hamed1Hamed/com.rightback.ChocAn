@@ -4,6 +4,7 @@ using com.rightback.ChocAn.Web.Code;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Web.UI.WebControls;
+using System.Linq;
 
 namespace com.rightback.ChocAn.Web
 {
@@ -47,20 +48,23 @@ namespace com.rightback.ChocAn.Web
                 DetailsViewForMember.DataSource = Session["Member"];
             }
             else
+            {
                 //force the detail view into insert mode
                 DetailsViewForMember.ChangeMode(DetailsViewMode.Insert);
+            }
             DetailsViewForMember.DataBind();
+
         }
         protected void TextBoxSerchMembers_TextChanged(object sender, EventArgs e)
         {
-            GridViewMembers.DataSource = memberService.getMembersWhoContains(TextBoxSerchMembers.Text);
+            GridViewMembers.DataSource = memberService.getMembersWhoContains(TextBoxSerchMembers.Text).ToList();
             GridViewMembers.SelectedIndex = -1;
             GridViewMembers.DataBind();
         }
 
         private void BindMemberData()
         {
-            GridViewMembers.DataSource = memberService.getAllMembers();
+            GridViewMembers.DataSource = memberService.getAllMembers().ToList();
             GridViewMembers.DataBind();
         }
 
@@ -70,7 +74,8 @@ namespace com.rightback.ChocAn.Web
             if (e.CommandName == "Select")
             {
                 int MemberId = (int)this.GridViewMembers.DataKeys[Int32.Parse(e.CommandArgument.ToString())].Value;
-                Session["Member"] =  memberService.getById(MemberId) ;
+                var member= memberService.getAllMembers().Where(x=>x.MemberID==MemberId).ToList();
+                Session["Member"] = member;
                 DetailsViewForMember.ChangeMode(DetailsViewMode.ReadOnly);
                 BindDetailViewForMember();
             }
@@ -105,11 +110,10 @@ namespace com.rightback.ChocAn.Web
             member.State = (State)Enum.Parse(typeof(State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
             member.Code = (DetailsViewForMember.Rows[1].FindControl("TextBox6") as TextBox).Text;
             member.Status = (MemberStatus)Enum.Parse(typeof(MemberStatus), (DetailsViewForMember.Rows[1].FindControl("DdlForStatus") as DropDownList).SelectedValue, true);
-
             memberService.upsertMember(member);
             DetailsViewForMember.ChangeMode(DetailsViewMode.ReadOnly);
             int MemberId = member.MemberID;
-            Session["Member"] = memberService.getById(MemberId);    
+            Session["Member"] =null;    
             GridViewMembers.SelectedIndex = -1;
             BindMemberData();
             BindDetailViewForMember();
@@ -159,7 +163,7 @@ namespace com.rightback.ChocAn.Web
 
         private void BindProviderData()
         {
-            GridViewForProviders.DataSource = providerService.getAllProviders();
+            GridViewForProviders.DataSource = providerService.getAllProviders().ToList();
             GridViewForProviders.DataBind();
         }
 
@@ -206,7 +210,7 @@ namespace com.rightback.ChocAn.Web
             providerService.upsertProvider(provider);
             DetailsViewForSelectedProvider.ChangeMode(DetailsViewMode.ReadOnly);
             int ProviderId = provider.ProviderID;
-            Session["Provider"] =providerService.getAllProviders();
+            Session["Provider"] =null;
             GridViewForProviders.SelectedIndex = -1;
             BindProviderData();
             BindDetailViewForProvider();
@@ -245,7 +249,7 @@ namespace com.rightback.ChocAn.Web
         }
         protected void TextBoxSearchProviders_TextChanged(object sender, EventArgs e)
         {
-            GridViewForProviders.DataSource = providerService.getProvidersWhoContains(TextBoxSearchProviders.Text);
+            GridViewForProviders.DataSource = providerService.getProvidersWhoContains(TextBoxSearchProviders.Text).ToList();
             GridViewForProviders.SelectedIndex = -1;
             GridViewForProviders.DataBind();
         }
@@ -256,7 +260,7 @@ namespace com.rightback.ChocAn.Web
             if (e.CommandName == "Select")
             {
                 int ProviderId = (int)this.GridViewForProviders.DataKeys[Int32.Parse(e.CommandArgument.ToString())].Value;
-                Session["Provider"] = providerService.getById(ProviderId) ;
+                Session["Provider"] = providerService.getAllProviders().Where(x=>x.ProviderID==ProviderId).ToList();
                 DetailsViewForSelectedProvider.ChangeMode(DetailsViewMode.ReadOnly);
                 BindDetailViewForProvider();
             }

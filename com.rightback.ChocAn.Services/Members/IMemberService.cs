@@ -36,7 +36,7 @@ namespace com.rightback.ChocAn.Services.Members
         /// Returns all members.
         /// </summary>
         /// <returns> IEnumerable Member </returns>
-        IEnumerable<Member> getAllMembers();
+        IQueryable<Member> getAllMembers();
 
         /// <summary>
         ///Delete member .

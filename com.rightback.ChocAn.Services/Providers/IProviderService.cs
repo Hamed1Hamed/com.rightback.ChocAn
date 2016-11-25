@@ -13,8 +13,8 @@ namespace com.rightback.ChocAn.Services.Providers
         /// <summary>
         /// Returns all providers in database.
         /// </summary>
-        /// <returns></returns>
-        IEnumerable<Provider> getAllProviders();
+        /// <returns>IQueryable</returns>
+        IQueryable<Provider> getAllProviders();
 
         /// <summary>
         /// Returns provider by 9 digit provider code

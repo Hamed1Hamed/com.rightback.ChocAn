@@ -25,9 +25,9 @@ namespace com.rightback.ChocAn.Services.Providers
 
         }
 
-        public IEnumerable<Provider> getAllProviders()
+        public IQueryable<Provider> getAllProviders()
         {
-            return db.Providers.ToList();
+            return db.Providers.AsQueryable();
         }
 
         public Provider getByCode(string code)
