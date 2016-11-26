@@ -14,15 +14,15 @@ namespace com.rightback.ChocAn.DAL.Enums.Tests
         [TestMethod()]
         public void GetStateFullNameTest()
         {
-            string alaska = StateExtension.GetStateFullName(State.AL);
-            Assert.IsTrue("ALASKA".Equals( alaska));
+            string alaska = StateExtension.GetStateFullName(State.AK);
+            Assert.AreEqual("ALASKA",alaska);
         }
 
         [TestMethod()]
         public void GetStateByNameTest()
         {
             State alaska = StateExtension.GetStateByName("ALASKA");
-            Assert.IsTrue(alaska.Equals(State.AL));
+            Assert.AreEqual(alaska,State.AK);
         }
 
 

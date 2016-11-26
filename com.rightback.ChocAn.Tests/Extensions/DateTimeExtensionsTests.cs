@@ -19,9 +19,9 @@ namespace com.rightback.ChocAn.Services.Extensions.Tests
             //next monday should be 11/21/2016
            DateTime nextMonday = date.Next(DayOfWeek.Monday);
 
-            Assert.AreEqual(date.Day, 21);
-            Assert.AreEqual(date.Month, 11);
-            Assert.AreEqual(date.Year, 2016);
+            Assert.AreEqual(nextMonday.Day, 21);
+            Assert.AreEqual(nextMonday.Month, 11);
+            Assert.AreEqual(nextMonday.Year, 2016);
         }
 
         [TestMethod()]
@@ -29,11 +29,11 @@ namespace com.rightback.ChocAn.Services.Extensions.Tests
         {  //saturday
             DateTime date = new DateTime(2016, 11, 19);
             //previos monday should be 11/14/2016
-            DateTime nextMonday = date.Next(DayOfWeek.Monday);
+            DateTime previousMonday = date.Previous(DayOfWeek.Monday);
 
-            Assert.AreEqual(date.Day, 14);
-            Assert.AreEqual(date.Month, 11);
-            Assert.AreEqual(date.Year, 2016);
+            Assert.AreEqual(previousMonday.Day, 14);
+            Assert.AreEqual(previousMonday.Month, 11);
+            Assert.AreEqual(previousMonday.Year, 2016);
         }
     }
 }

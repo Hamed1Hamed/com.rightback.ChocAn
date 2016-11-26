@@ -10,8 +10,8 @@ namespace com.rightback.ChocAn.Services.Extensions
     {
         public static DateTime Next(this DateTime from, DayOfWeek dayOfWeek)
         {
-            DateTime newDate = from;
-            while (from.DayOfWeek != dayOfWeek)
+            DateTime newDate = new DateTime(from.Year,from.Month,from.Day);
+            while (newDate.DayOfWeek != dayOfWeek)
             {
                 newDate = newDate.AddDays(1);
 
@@ -20,7 +20,7 @@ namespace com.rightback.ChocAn.Services.Extensions
         }
         public static DateTime Previous(this DateTime from, DayOfWeek dayOfWeek)
         {
-            DateTime newDate = from;
+            DateTime newDate = new DateTime(from.Year, from.Month, from.Day);
             while (newDate.DayOfWeek != dayOfWeek)
             {
                 newDate = newDate.AddDays(-1);
