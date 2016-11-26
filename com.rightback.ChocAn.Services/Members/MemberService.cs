@@ -73,7 +73,7 @@ namespace com.rightback.ChocAn.Services.Members
                 throw new ArgumentNullException("Code", "Member code is missing");
 
 
-            var memberSearch = getByCode(member.Code);
+            var memberSearch = getById(member.MemberID);
             if (memberSearch == null)
             {
                 db.Members.Add(member);
@@ -86,6 +86,7 @@ namespace com.rightback.ChocAn.Services.Members
                 memberSearch.Code = member.Code;
                 memberSearch.Email = member.Email;
                 memberSearch.Status = member.Status;
+                memberSearch.State = member.State;
                 memberSearch.Zip = member.Zip;
                 memberSearch.StreetAddres = member.StreetAddres;
 

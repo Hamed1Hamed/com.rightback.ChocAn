@@ -112,7 +112,6 @@ namespace com.rightback.ChocAn.Web
             member.Status = (MemberStatus)Enum.Parse(typeof(MemberStatus), (DetailsViewForMember.Rows[1].FindControl("DdlForStatus") as DropDownList).SelectedValue, true);
             memberService.upsertMember(member);
             DetailsViewForMember.ChangeMode(DetailsViewMode.ReadOnly);
-            int MemberId = member.MemberID;
             Session["Member"] =null;    
             GridViewMembers.SelectedIndex = -1;
             BindMemberData();
@@ -204,12 +203,11 @@ namespace com.rightback.ChocAn.Web
             provider.Zip = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox4") as TextBox).Text;
             provider.Email = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox5") as TextBox).Text;
             provider.Code = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox6") as TextBox).Text;
-            provider.State = (State)Enum.Parse(typeof(State), (DetailsViewForMember.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
+            provider.State = (State)Enum.Parse(typeof(State), (DetailsViewForSelectedProvider.Rows[1].FindControl("DdlForState") as DropDownList).SelectedValue, true);
             provider.Type = (ProviderType)Enum.Parse(typeof(ProviderType), (DetailsViewForSelectedProvider.Rows[1].FindControl("DdlForType") as DropDownList).SelectedValue, true);
             provider.TerminalCode = (DetailsViewForSelectedProvider.Rows[1].FindControl("TextBox7") as TextBox).Text;
             providerService.upsertProvider(provider);
             DetailsViewForSelectedProvider.ChangeMode(DetailsViewMode.ReadOnly);
-            int ProviderId = provider.ProviderID;
             Session["Provider"] =null;
             GridViewForProviders.SelectedIndex = -1;
             BindProviderData();

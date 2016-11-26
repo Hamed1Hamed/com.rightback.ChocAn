@@ -70,7 +70,7 @@ namespace com.rightback.ChocAn.Services.Providers
                 throw new ArgumentNullException();
             if (provider.Code == null)
                 throw new ArgumentNullException("Code", "Member code is missing");
-            var providerSearch = getByCode(provider.Code);
+            var providerSearch = getById(provider.ProviderID);
             if (providerSearch == null)
             {
                 db.Providers.Add(provider);
@@ -81,10 +81,13 @@ namespace com.rightback.ChocAn.Services.Providers
                 providerSearch.Name = provider.Name;
                 providerSearch.City = provider.City;
                 providerSearch.Email = provider.Email;
-                providerSearch.Name = provider.Name;
                 providerSearch.Zip = provider.Zip;
                 providerSearch.TerminalCode = provider.TerminalCode;
                 providerSearch.StreetAddres = provider.StreetAddres;
+                providerSearch.Code = provider.Code;
+                providerSearch.State = provider.State;
+                providerSearch.Type = provider.Type;
+
             }
             db.SaveChanges();
         }
