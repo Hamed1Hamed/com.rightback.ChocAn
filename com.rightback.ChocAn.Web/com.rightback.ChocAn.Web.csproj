@@ -177,6 +177,21 @@
     <Content Include="Account\Web.config" />
     <Content Include="ManagerConsole.aspx" />
     <Content Include="OperatorConsole.aspx" />
+    <Content Include="Reports\EFT_Beri-Bener_11-06-2016.txt" />
+    <Content Include="Reports\EFT_Beri-Bener_11-11-2016.txt" />
+    <Content Include="Reports\EFT_Beri-Bener_11-25-2016.txt" />
+    <Content Include="Reports\ServiceDirectory_Beri-Bener_11-10-2016.html" />
+    <Content Include="Reports\ServiceDirectory_Beri-Bener_11-10-2016.txt" />
+    <Content Include="Reports\ServiceDirectory_Beri-Bener_11-25-2016.html" />
+    <Content Include="Reports\SummaryReport_11-18-2016.txt" />
+    <Content Include="Reports\SummaryReport_11-25-2016.html" />
+    <Content Include="Reports\WeeklyStatment_Beri-Bener_11-06-2016.html" />
+    <Content Include="Reports\WeeklyStatment_Beri-Bener_11-11-2016.html" />
+    <Content Include="Reports\WeeklyStatment_Beri-Bener_11-25-2016.html" />
+    <Content Include="Reports\WeeklyStatment_Koko-Jambo_11-11-2016.html" />
+    <Content Include="Reports\WeeklyStatment_Koko-Jambo_11-25-2016.html" />
+    <Content Include="Reports\WeeklyStatment_Maged-Alfifi_11-06-2016.html" />
+    <Content Include="Reports\WeeklyStatment_Maged-Alfifi_11-11-2016.html" />
     <Content Include="WebService\MemberService.asmx" />
     <Content Include="WebService\TerminalService.asmx" />
     <Content Include="Code\bll_class_diagram.cd" />
@@ -351,7 +366,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Reports\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\com.rightback.ChocAn.DAL\com.rightback.ChocAn.DAL.csproj">

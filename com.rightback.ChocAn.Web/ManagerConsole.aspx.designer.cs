@@ -22,13 +22,13 @@ namespace com.rightback.ChocAn.Web {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// TextBoxSerchMembers control.
+        /// TextBoxSearchMembers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxSerchMembers;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxSearchMembers;
         
         /// <summary>
         /// GridViewMembers control.
@@ -128,15 +128,6 @@ namespace com.rightback.ChocAn.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel4;
-        
-        /// <summary>
-        /// AsyncFileUpload1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.AsyncFileUpload AsyncFileUpload1;
         
         /// <summary>
         /// GridViewForFiles control.

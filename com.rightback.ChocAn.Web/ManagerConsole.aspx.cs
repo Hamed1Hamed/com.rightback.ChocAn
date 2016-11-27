@@ -155,9 +155,9 @@ namespace com.rightback.ChocAn.Web
             GridViewForProviders.DataSource = providerService.getProvidersWhoContains(TextBoxSearchProviders.Text).ToList();
             GridViewForProviders.DataBind();
         }
-        protected void TextBoxSerchMembers_TextChanged(object sender, EventArgs e)
+        protected void TextBoxSearchMembers_TextChanged(object sender, EventArgs e)
         {
-            GridViewMembers.DataSource = memberService.getMembersWhoContains(TextBoxSerchMembers.Text).ToList();
+            GridViewMembers.DataSource = memberService.getMembersWhoContains(TextBoxSearchMembers.Text).ToList();
             GridViewMembers.DataBind();
         }
 
@@ -175,15 +175,7 @@ namespace com.rightback.ChocAn.Web
             GridViewForFiles.DataSource = files;
             GridViewForFiles.DataBind();
         }
-        protected void AsyncFileUpload1_UploadedComplete(object sender, AjaxControlToolkit.AsyncFileUploadEventArgs e)
-        {
-            if (AsyncFileUpload1.HasFile)
-            {
-                string fileName = Path.GetFileName(AsyncFileUpload1.PostedFile.FileName);
-                AsyncFileUpload1.PostedFile.SaveAs(Server.MapPath("~/Reports/") + fileName);
-                Response.Redirect(Request.Url.AbsoluteUri);
-            }
-        }
+  
         protected void DownloadFile(object sender, EventArgs e)
         {
             string filePath = (sender as LinkButton).CommandArgument;
