@@ -1,0 +1,4 @@
+Name,Code,Fee
+Aerobics Excersise,883948,70.00
+Dietitian,598470,60.00
+Test Session,100000,80.00
